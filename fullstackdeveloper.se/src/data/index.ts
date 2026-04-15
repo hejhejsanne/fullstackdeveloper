@@ -1,119 +1,105 @@
-import { Project, Skill } from "../types";
+import { Project, Skill } from '@/types';
 
 export const projects: Project[] = [
   {
-    id: "proj-grading",
-    title: "AI-Assisted Programming Assignment Grading System",
-    impact:
-      "Examensarbete inom prompt engineering – ett system som automatiserar bedömning av programmeringsuppgifter med hjälp av AI-modeller som genererar dynamiska, kontextuella svar.",
+    id: 'proj-chatbot',
+    title: 'Portfolio Chatbot',
+    impact: 'An AI-powered chatbot built for a previous portfolio – answers questions about me, my projects and my experience in real time.',
     tags: [
-      { label: "AI / Prompt Engineering", variant: "blue" },
-      { label: "Examensarbete", variant: "green" },
-      { label: "2025", variant: "gray" },
+      { label: 'AI / Chatbot', variant: 'blue' },
+      { label: 'Portfolio', variant: 'green' },
+      { label: '2024', variant: 'gray' },
     ],
-    processSteps: [
-      { label: "1. Problem", status: "done" },
-      { label: "2. Research", status: "done" },
-      { label: "3. Prompt design", status: "done" },
-      { label: "4. Integration", status: "done" },
-      { label: "5. Utvärdering", status: "active" },
-    ],
-    reflectionLabel: "Varför dessa beslut?",
-    reflectionText:
-      "Jag valde att fokusera på prompt engineering snarare än fine-tuning eftersom det gav snabbare iteration och lägre kostnad för prototypen. Det viktigaste lärdomen var hur mycket kontexten i prompten påverkar bedömningskvaliteten – små formuleringsändringar gav drastiskt olika resultat.",
-    tech: ["TypeScript", "Node.js", "AI API", "Prompt Engineering", "REST API"],
-    githubUrl: "https://github.com/hejhejsanne",
+    reflectionLabel: 'How it works',
+    reflectionText: 'Update this with your stack and what you are proud of – which AI API did you use, how did you handle context, and what would you do differently next time?',
+    tech: ['TypeScript', 'React', 'Node.js'],
+    githubUrl: 'https://github.com/hejhejsanne',
   },
   {
-    id: "proj-platform",
-    title: "Utbildningsplattform – Klarr Utvecklingsbyrå",
-    impact:
-      "Full-stack utbildningsplattform med JWT-autentisering, WebSockets och CI/CD. Byggd iterativt under LIA 1 & 2 och vidareutvecklad som anställd – från enkel REST-backend till skalbar produktionsmiljö.",
+    id: 'proj-tarot',
+    title: 'Kortens Budskap – Tarot Learning Platform',
+    impact: 'Full-stack educational platform for tarot cards featuring a training game, dynamic learning pages and a data layer covering all 78 cards. Built with NextAuth, Drizzle ORM and deployed on Vercel.',
     tags: [
-      { label: "Fullstack", variant: "blue" },
-      { label: "Produktionssatt", variant: "green" },
-      { label: "2024–2025", variant: "gray" },
+      { label: 'Full Stack', variant: 'blue' },
+      { label: 'Deployed', variant: 'green' },
+      { label: '2025', variant: 'gray' },
     ],
     processSteps: [
-      { label: "1. Krav", status: "done" },
-      { label: "2. API-design", status: "done" },
-      { label: "3. Frontend", status: "done" },
-      { label: "4. Auth & WS", status: "done" },
-      { label: "5. CI/CD", status: "done" },
+      { label: '1. Data model',     status: 'done' },
+      { label: '2. Learn pages',    status: 'done' },
+      { label: '3. Training game',  status: 'done' },
+      { label: '4. Auth',           status: 'done' },
+      { label: '5. Challenge mode', status: 'active' },
     ],
-    reflectionLabel: "Vad jag valde bort",
-    reflectionText:
-      "Vi utvärderade GraphQL tidigt men valde REST eftersom teamet var nytt och vi behövde leverera snabbt. JWT valdes framför sessions för att hålla backend stateless – vilket visade sig rätt när vi senare lade till WebSocket-stöd utan att behöva skriva om autentisering.",
-    tech: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "JWT",
-      "WebSockets",
-      "GitHub Actions",
-      "Docker",
-    ],
-    githubUrl: "https://github.com/hejhejsanne",
+    reflectionLabel: 'Architecture & decisions',
+    reflectionText: 'I built a custom data layer with all 78 cards and 25+ fields per card (archetype, element, chakra, crystals etc.) rather than fetching external data – this gave full control and faster renders. Auth is implemented but intentionally disabled until there is something worth locking in. Next steps are detail pages per card and an active challenge mode.',
+    tech: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'NextAuth', 'Drizzle ORM', 'Vercel'],
+    githubUrl: 'https://github.com/hejhejsanne',
   },
   {
-    id: "proj-startup",
-    title: "Startupprojekt – Next.js & Prisma",
-    impact:
-      "Fullstackutveckling och teknisk projektledning i startupprojekt. Ansvarade för REST API-design, frontend-komponenter, databasscheman och integrationstester.",
+    id: 'proj-grading',
+    title: 'AI-Assisted Programming Assignment Grading System',
+    impact: 'Thesis project in prompt engineering – a system that automates grading of programming assignments using AI models that generate dynamic, contextual feedback.',
     tags: [
-      { label: "Fullstack", variant: "blue" },
-      { label: "Tech Lead", variant: "green" },
-      { label: "2025–pågående", variant: "gray" },
+      { label: 'AI / Prompt Engineering', variant: 'blue' },
+      { label: 'Thesis', variant: 'green' },
+      { label: '2025', variant: 'gray' },
     ],
-    reflectionLabel: "Min roll",
-    reflectionText:
-      "Utöver koden etablerade jag arbetsstrukturer, fördelade ansvar och höll teamet rörligt när vi stötte på hinder. Jag märkte att teknisk klarhet och tydlig kommunikation är lika viktigt som bra kod – oklara ansvarsområden bromsar mer än teknisk skuld.",
-    tech: [
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "Prisma",
-      "Neon",
-      "Supabase",
-      "Mocha",
-      "Supertest",
+    processSteps: [
+      { label: '1. Problem',       status: 'done' },
+      { label: '2. Research',      status: 'done' },
+      { label: '3. Prompt design', status: 'done' },
+      { label: '4. Integration',   status: 'done' },
+      { label: '5. Evaluation',    status: 'active' },
     ],
-    githubUrl: "https://github.com/hejhejsanne",
+    reflectionLabel: 'Why these decisions?',
+    reflectionText: 'I chose prompt engineering over fine-tuning because it allowed faster iteration at lower cost for the prototype. The key insight was how much context within the prompt affects grading quality – small phrasing changes produced drastically different results.',
+    tech: ['TypeScript', 'Node.js', 'AI API', 'Prompt Engineering', 'REST API'],
+    githubUrl: 'https://github.com/hejhejsanne',
+  },
+  {
+    id: 'proj-platform',
+    title: 'Learning Platform – Klarr Utvecklingsbyrå',
+    impact: 'Full-stack educational platform with JWT authentication, WebSockets and CI/CD. Built iteratively during LIA 1 & 2 and continued as an employee – from a simple REST backend to a scalable production environment.',
+    tags: [
+      { label: 'Full Stack', variant: 'blue' },
+      { label: 'Production', variant: 'green' },
+      { label: '2024–2025', variant: 'gray' },
+    ],
+    processSteps: [
+      { label: '1. Requirements', status: 'done' },
+      { label: '2. API design',   status: 'done' },
+      { label: '3. Frontend',     status: 'done' },
+      { label: '4. Auth & WS',    status: 'done' },
+      { label: '5. CI/CD',        status: 'done' },
+    ],
+    reflectionLabel: 'What I chose not to do',
+    reflectionText: 'We evaluated GraphQL early on but chose REST because the team was new and we needed to ship fast. JWT was chosen over sessions to keep the backend stateless – a decision that proved right when we later added WebSocket support without having to rewrite authentication.',
+    tech: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'WebSockets', 'GitHub Actions', 'Docker'],
+    githubUrl: 'https://github.com/hejhejsanne',
+  },
+  {
+    id: 'proj-startup',
+    title: 'Startup Project – Next.js & Prisma',
+    impact: 'Full-stack development and technical project management in a startup setting. Responsible for REST API design, frontend components, database schemas and integration tests.',
+    tags: [
+      { label: 'Full Stack', variant: 'blue' },
+      { label: 'Tech Lead', variant: 'green' },
+      { label: '2025–ongoing', variant: 'gray' },
+    ],
+    reflectionLabel: 'My role',
+    reflectionText: 'Beyond the code I established work structures, distributed responsibilities and kept the team moving when we hit obstacles. Technical clarity and clear communication matter just as much as good code – unclear ownership slows things down more than technical debt.',
+    tech: ['Next.js', 'TypeScript', 'Node.js', 'Prisma', 'Neon', 'Supabase', 'Mocha', 'Supertest'],
+    githubUrl: 'https://github.com/hejhejsanne',
   },
 ];
 
 export const skills: Skill[] = [
-  {
-    category: "Frontend",
-    items: "React.js, Next.js, Vue.js, TypeScript, Tailwind CSS, SCSS",
-  },
-  {
-    category: "Backend",
-    items: "Node.js, Express.js, Spring Boot, REST APIs, WebSockets",
-  },
-  {
-    category: "Databaser",
-    items: "PostgreSQL, MongoDB, MySQL, Prisma ORM, Supabase, Neon",
-  },
-  {
-    category: "AI & Prompt Engineering",
-    items:
-      "AI-integration i webbappar, prompt engineering, dynamisk AI-respons",
-  },
-  {
-    category: "DevOps & Testning",
-    items: "Docker, GitHub Actions, CI/CD, Jest, Mocha, Supertest, TDD",
-  },
-  {
-    category: "Språk & verktyg",
-    items: "Java, Python, C#, Git, Figma, Postman, VS Code, IntelliJ",
-  },
-  {
-    category: "GitHub",
-    link: {
-      href: "https://github.com/hejhejsanne",
-      label: "github.com/hejhejsanne ↗",
-    },
-  },
+  { category: 'Frontend',                items: 'React.js, Next.js, Vue.js, TypeScript, Tailwind CSS, SCSS' },
+  { category: 'Backend',                 items: 'Node.js, Express.js, Spring Boot, REST APIs, WebSockets' },
+  { category: 'Databases',               items: 'PostgreSQL, MongoDB, MySQL, Prisma ORM, Supabase, Neon' },
+  { category: 'AI & Prompt Engineering', items: 'AI integration in web apps, prompt engineering, dynamic AI responses' },
+  { category: 'DevOps & Testing',        items: 'Docker, GitHub Actions, CI/CD, Jest, Mocha, Supertest, TDD' },
+  { category: 'Languages & Tools',       items: 'Java, Python, C#, Git, Figma, Postman, VS Code, IntelliJ' },
+  { category: 'GitHub', link: { href: 'https://github.com/hejhejsanne', label: 'github.com/hejhejsanne ↗' } },
 ];

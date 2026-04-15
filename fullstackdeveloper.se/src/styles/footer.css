@@ -1,21 +1,23 @@
 .footer {
-  border-top: 0.5px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
   padding: 1.5rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.78rem;
   color: var(--muted);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .footer__logo {
   font-family: var(--font-serif);
   font-size: 0.95rem;
-}
-
-.footer__logo span {
-  font-style: italic;
-  color: var(--accent);
+  background: var(--chrome-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 @media (max-width: 720px) {

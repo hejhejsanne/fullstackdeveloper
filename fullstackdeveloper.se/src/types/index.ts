@@ -1,11 +1,11 @@
 export interface ProcessStep {
   label: string;
-  status: "done" | "active" | "pending";
+  status: 'done' | 'active' | 'pending';
 }
 
 export interface ProjectTag {
   label: string;
-  variant: "blue" | "green" | "gray";
+  variant: 'blue' | 'green' | 'gray';
 }
 
 export interface Project {

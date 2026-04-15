@@ -1,62 +1,48 @@
-import React from "react";
-import "../styles/about.css";
+import React from 'react';
+import '@/styles/about.css';
 
 export default function About() {
   return (
-    <section
-      id="om-mig"
-      className="section fade-in"
-      aria-labelledby="om-heading"
-    >
-      <div className="section-label" id="om-heading">
-        Om mig
-      </div>
-
+    <section id="about" className="section fade-in" aria-labelledby="about-heading">
+      <div className="section-label" id="about-heading">About me</div>
       <div className="about__grid">
         <div className="about__card about__card--full">
-          <div className="about__card-title">Kort om mig</div>
+          <div className="about__card-title">In short</div>
           <p className="about__card-text">
-            Fullstackutvecklare med stark problemlösningsförmåga och en metodisk
-            inställning till tekniska utmaningar. Erfarenhet av JavaScript- och
-            TypeScript-stacken med fokus på API-utveckling, komponentbaserad
-            frontend och databasdesign. Examensarbete inom prompt engineering
-            och stort intresse för AI-integration i webbapplikationer.
+            Full stack developer with strong problem-solving skills and a methodical approach
+            to technical challenges. Experienced in the JavaScript and TypeScript stack with
+            a focus on API development, component-based frontends and database design.
+            Thesis in prompt engineering and a genuine interest in AI integration in web applications.
           </p>
         </div>
-
         <div className="about__card">
-          <div className="about__card-title">Hur jag arbetar</div>
+          <div className="about__card-title">How I work</div>
           <p className="about__card-text">
-            Känd för uthållighet och tålamod i tekniska miljöer – jag stannar
-            kvar tills stabila och hållbara lösningar är på plats. Har
-            erfarenhet som mentor, Team Lead och teknisk projektledare, och
-            värdesätter tydlig kommunikation lika högt som bra kod.
+            Known for persistence and patience in technical environments – I stay until stable
+            and sustainable solutions are in place. Experienced as a mentor, Team Lead and
+            technical project manager, and value clear communication just as highly as good code.
           </p>
         </div>
-
         <div className="about__card">
-          <div className="about__card-title">Språk & utbildning</div>
+          <div className="about__card-title">Education & languages</div>
           <p className="about__card-text">
-            Javautvecklare – Full Stack Development, Teknikhögskolan Göteborg
-            (2023–2025). Flytande på svenska, engelska och norska.
-            Studentrepresentant 2024–2025.
+            Java Developer – Full Stack Development, Teknikhögskolan Gothenburg (2023–2025).
+            Fluent in Swedish, English and Norwegian. Student representative 2024–2025.
           </p>
         </div>
-
         <div className="about__card">
-          <div className="about__card-title">Ledarskap & mentorskap</div>
+          <div className="about__card-title">Leadership & mentoring</div>
           <p className="about__card-text">
-            Team Lead under LIA, teknisk projektledare i startupprojekt.
-            Handleder och coachar utvecklingsstudenter, och sätter upp
-            arbetsmiljöer som fungerar både på distans och på plats.
+            Team Lead during LIA, technical project manager in a startup project. Mentors and
+            coaches development students, and sets up work environments that function both
+            remotely and on-site.
           </p>
         </div>
-
         <div className="about__card">
-          <div className="about__card-title">Referenser</div>
+          <div className="about__card-title">References</div>
           <p className="about__card-text">
-            Rekommendationsbrev och referenser lämnas vid förfrågan. Kontakta
-            mig via mail så ordnar jag fram det.
+            Recommendation letters and references available on request.
+            Reach out by email and I will arrange it.
           </p>
         </div>
       </div>

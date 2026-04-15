@@ -1,10 +1,10 @@
 import React from "react";
-import "../styles/contact.css";
+import "@/styles/contact.css";
 
 const contactLinks = [
   {
     href: "mailto:sanne@fullstackdeveloper.se",
-    label: "✉ sanne@fullstackdeveloper.se",
+    label: "sanne@fullstackdeveloper.se",
     external: false,
   },
   {
@@ -12,42 +12,35 @@ const contactLinks = [
     label: "LinkedIn ↗",
     external: true,
   },
-  {
-    href: "https://github.com/hejhejsanne",
-    label: "GitHub ↗",
-    external: true,
-  },
-  {
-    href: "tel:+46737324171",
-    label: "+46 73-732 41 71",
-    external: false,
-  },
+  { href: "https://github.com/hejhejsanne", label: "GitHub ↗", external: true },
+  // { href: 'tel:+46737324171', label: '+46 73-732 41 71', external: false },
 ];
 
 export default function Contact() {
   return (
     <section
-      id="kontakt"
+      id="contact"
       className="section fade-in"
-      aria-labelledby="kontakt-heading"
+      aria-labelledby="contact-heading"
     >
-      <div className="section-label" id="kontakt-heading">
-        Tillgänglighet &amp; kontakt
+      <div className="section-label" id="contact-heading">
+        Availability &amp; contact
       </div>
-
       <div className="contact__banner">
         <div>
           <div className="contact__status">
             <span className="status-dot" aria-hidden="true" />
-            <span className="contact__status-text">Öppen för nya uppdrag</span>
+            <span className="contact__status-text">
+              Open for new opportunities
+            </span>
           </div>
-
-          <h2 className="contact__heading">Söker du en fullstackutvecklare?</h2>
+          <h2 className="contact__heading">
+            Looking for a full stack developer?
+          </h2>
           <p className="contact__desc">
-            Frilans, konsult eller heltid – hör av dig så pratar vi om vad du
-            behöver.
+            Freelance, consultant or full-time – reach out and let's talk about
+            what you need.
           </p>
-
           <div className="contact__links">
             {contactLinks.map(({ href, label, external }) => (
               <a
@@ -62,9 +55,8 @@ export default function Contact() {
             ))}
           </div>
         </div>
-
         <a href="mailto:sanne@fullstackdeveloper.se" className="btn-primary">
-          Skicka ett meddelande
+          Send a message
         </a>
       </div>
     </section>

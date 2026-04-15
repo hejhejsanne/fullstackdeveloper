@@ -5,10 +5,28 @@
 }
 
 .about__card {
-  background: var(--white);
-  border: 0.5px solid var(--border);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: transform 0.2s;
+}
+
+.about__card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--iridescent);
+  pointer-events: none;
+}
+
+.about__card:hover {
+  transform: translateY(-1px);
 }
 
 .about__card--full {
@@ -19,6 +37,8 @@
   font-size: 0.85rem;
   font-weight: 500;
   margin-bottom: 0.6rem;
+  color: var(--text);
+  position: relative;
 }
 
 .about__card-text {
@@ -26,6 +46,7 @@
   color: var(--muted);
   line-height: 1.7;
   font-weight: 300;
+  position: relative;
 }
 
 @media (max-width: 720px) {
@@ -35,5 +56,97 @@
 
   .about__card--full {
     grid-column: span 1;
+  }
+}
+
+.about__card {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 4px 16px rgba(100, 60, 160, 0.1),
+    0 1px 4px rgba(100, 60, 160, 0.06);
+}
+
+.about__card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 8px 24px rgba(100, 60, 160, 0.14),
+    0 2px 6px rgba(100, 60, 160, 0.08);
+}
+
+.about__card--profile {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.about__photo-wrap {
+  position: relative;
+  width: 140px;
+  min-width: 140px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(100, 60, 160, 0.1);
+  flex-shrink: 0;
+}
+
+.about__photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about__profile-text {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .about__card--profile {
+    flex-direction: column;
+  }
+
+  .about__photo-wrap {
+    width: 100%;
+    min-width: unset;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.about__card--profile {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.about__photo-wrap {
+  position: relative;
+  width: 140px;
+  min-width: 140px;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(100, 60, 160, 0.1);
+  flex-shrink: 0;
+}
+
+.about__photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about__profile-text {
+  flex: 1;
+}
+
+@media (max-width: 480px) {
+  .about__card--profile {
+    flex-direction: column;
+  }
+
+  .about__photo-wrap {
+    width: 100%;
+    min-width: unset;
+    aspect-ratio: 4 / 3;
   }
 }

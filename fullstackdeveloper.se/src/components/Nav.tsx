@@ -5,16 +5,15 @@ import Link from "next/link";
 export default function Nav() {
   return (
     <header>
-      <nav className="nav" aria-label="Huvudnavigation">
-        <Link href="/" className="nav__logo" aria-label="Hem">
+      <nav className="nav" aria-label="Main navigation">
+        <Link href="/" className="nav__logo" aria-label="Home">
           fullstack<span>developer</span>.se
         </Link>
-
         <ul className="nav__links" role="list">
           {[
-            { href: "#projekt", label: "Projekt" },
-            { href: "#kompetenser", label: "Kompetenser" },
-            { href: "#om-mig", label: "Om mig" },
+            { href: "#projects", label: "Projects" },
+            { href: "#skills", label: "Skills" },
+            { href: "#about", label: "About" },
             {
               href: "https://github.com/hejhejsanne",
               label: "GitHub",
@@ -32,9 +31,8 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-
-        <a href="#kontakt" className="btn-primary">
-          Kontakta mig
+        <a href="#contact" className="btn-primary">
+          Contact me
         </a>
       </nav>
     </header>

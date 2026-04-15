@@ -2,9 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  border-bottom: 0.5px solid var(--border);
-  background: var(--white);
+  padding: 1rem 2.5rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -14,11 +16,13 @@
   font-family: var(--font-serif);
   font-size: 1.05rem;
   letter-spacing: -0.02em;
-  color: var(--text);
+  background: var(--chrome-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav__logo span {
-  color: var(--accent);
   font-style: italic;
 }
 
