@@ -1,0 +1,39 @@
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.about__card {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+}
+
+.about__card--full {
+  grid-column: span 2;
+}
+
+.about__card-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+
+.about__card-text {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+@media (max-width: 720px) {
+  .about__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__card--full {
+    grid-column: span 1;
+  }
+}

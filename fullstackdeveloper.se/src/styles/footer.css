@@ -1,0 +1,27 @@
+.footer {
+  border-top: 0.5px solid var(--border);
+  padding: 1.5rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.footer__logo {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+}
+
+.footer__logo span {
+  font-style: italic;
+  color: var(--accent);
+}
+
+@media (max-width: 720px) {
+  .footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
