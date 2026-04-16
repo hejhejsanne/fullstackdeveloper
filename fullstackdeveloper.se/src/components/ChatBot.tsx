@@ -9,7 +9,7 @@ interface Message {
 }
 
 const WELCOME =
-  "Hi, I'm AiSan. I am Sanne's AI assistant. Ask me anything about Sanne, and i'll do my best trying to answere!";
+  "Ask me anything about Sanne and her work experience, and i'll do my best trying to answere!";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);

@@ -19,6 +19,7 @@ const contactLinks = [
 export default function Contact() {
   return (
     <section
+      suppressHydrationWarning
       id="contact"
       className="section fade-in"
       aria-labelledby="contact-heading"
@@ -38,8 +39,8 @@ export default function Contact() {
             Looking for a full stack developer?
           </h2>
           <p className="contact__desc">
-            Freelance, consultant or full-time – reach out and let's talk about
-            what you need.
+            Freelance, consultant or full-time – reach out and let&amp;s talk
+            about what you need.
           </p>
           <div className="contact__links">
             {contactLinks.map(({ href, label, external }) => (

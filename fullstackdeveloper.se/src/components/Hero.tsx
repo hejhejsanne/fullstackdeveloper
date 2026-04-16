@@ -1,16 +1,40 @@
+// src/components/Hero.tsx
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import "@/styles/hero.css";
-import Link from "next/link";
+import CVDownloadModal from "@/components/CVDownloadModal";
 
 export default function Hero() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section className="hero" aria-labelledby="hero-heading">
+      {/* Mobil-topp: bild + status — dold på desktop */}
+      <div className="hero__mobile-top">
+        <div className="hero__photo-wrap">
+          <Image
+            src="/sanne.jpg"
+            alt="Sanne Delin"
+            fill
+            className="hero__photo"
+            priority
+            sizes="(max-width: 480px) 50vw, (max-width: 720px) 55vw"
+          />
+        </div>
+        <div className="hero__mobile-status">
+          <span className="hero__status-dot" aria-hidden="true" />
+          Available for work
+        </div>
+      </div>
+
       <div className="hero__left">
         <div className="hero__tag" aria-hidden="true">
           Full Stack Developer · Gothenburg
         </div>
         <h1 className="hero__heading" id="hero-heading">
-          Where others see <em>problems</em> I build solutions.
+          Where others see <em>problems</em>, I build solutions.
         </h1>
         <p className="hero__desc">
           I take on complex challenges across technology and leadership - from
@@ -21,12 +45,13 @@ export default function Hero() {
           <a href="#projects" className="btn-primary">
             See my projects
           </a>
-          <Link href="/cv.pdf" className="btn-secondary" download>
+          <button className="btn-secondary" onClick={() => setShowModal(true)}>
             Download CV
-          </Link>
+          </button>
         </div>
       </div>
 
+      {/* Desktop-bild — dold på mobil */}
       <div className="hero__right">
         <div className="hero__photo-wrap">
           <Image
@@ -35,36 +60,12 @@ export default function Hero() {
             fill
             className="hero__photo"
             priority
+            sizes="(max-width: 920px) 45vw, 400px"
           />
         </div>
       </div>
-      <div className="hero__bottom">
-        <div className="hero__cards" aria-label="Quick facts">
-          <div className="hero__mini-card">
-            <div className="hero__mini-label">Status</div>
-            <div className="hero__mini-value">
-              <span className="status-dot" aria-hidden="true" />
-              Available for work
-            </div>
-          </div>
-          {/* <div className="hero__mini-card">
-            <div className="hero__mini-label">Focusing on</div>
-            <div className="hero__mini-value">
-              Fullstack Development · AI · Tech Lead
-            </div>
-          </div> */}
-          {/* <div className="hero__mini-card">
-            <div className="hero__mini-label">Stack</div>
-            <div className="hero__mini-value">TypeScript · React · Node.js</div>
-          </div> */}
-          {/* <div className="hero__mini-card">
-            <div className="hero__mini-label">Education</div>
-            <div className="hero__mini-value">
-              Java Developer – Full Stack, Teknikhögskolan 2025
-            </div>
-          </div> */}
-        </div>
-      </div>
+
+      {showModal && <CVDownloadModal onClose={() => setShowModal(false)} />}
     </section>
   );
 }

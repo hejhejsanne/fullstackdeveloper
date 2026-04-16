@@ -1,3 +1,4 @@
+/* ── Base ── */
 .nav {
   display: flex;
   align-items: center;
@@ -12,6 +13,7 @@
   z-index: 100;
 }
 
+/* ── Logo ── */
 .nav__logo {
   font-family: var(--font-serif);
   font-size: 1.05rem;
@@ -26,6 +28,7 @@
   font-style: italic;
 }
 
+/* ── Desktop länkar ── */
 .nav__links {
   display: flex;
   gap: 2rem;
@@ -41,12 +44,125 @@
   color: var(--text);
 }
 
+/* ── Höger sektion (status + knapp) ── */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ── Status badge ── */
+.nav__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ── Den blinkande gröna pricken ── */
+.nav__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ── Hamburger-knapp (dold på desktop) ── */
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm, 6px);
+}
+
+.nav__burger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  border-radius: 2px;
+  transition:
+    transform 0.25s,
+    opacity 0.25s;
+  transform-origin: center;
+}
+
+.nav__burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav__burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav__burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ── Mobil (≤ 720px) ── */
 @media (max-width: 720px) {
+  .nav {
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+  }
+
   .nav__links {
     display: none;
   }
 
-  .nav {
-    padding: 1rem 1.25rem;
+  .nav__burger {
+    display: flex;
+  }
+
+  .nav__status {
+    display: none;
+  }
+
+  .nav__links--mobile {
+    display: none;
+    width: 100%;
+    order: 99;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    padding: 0.5rem 0 0.75rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+  }
+
+  .nav__links--mobile.nav__links--open {
+    display: flex;
+  }
+
+  .nav__links--mobile li a {
+    display: block;
+    font-size: 0.95rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--text);
+  }
+
+  .nav__links--mobile li:last-child a {
+    border-bottom: none;
   }
 }

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Project, ProjectTag, ProcessStep } from '@/types';
-import '@/styles/projectcard.css';
+import React from "react";
+import { Project, ProjectTag, ProcessStep } from "@/types";
+import "@/styles/projectcard.css";
 
 function Tag({ label, variant }: ProjectTag) {
   return <span className={`tag tag--${variant}`}>{label}</span>;
@@ -10,7 +10,11 @@ function ProcessStrip({ steps }: { steps: ProcessStep[] }) {
   return (
     <div className="process-strip" role="list" aria-label="Processsteg">
       {steps.map((step) => (
-        <div key={step.label} role="listitem" className={`process-strip__step process-strip__step--${step.status}`}>
+        <div
+          key={step.label}
+          role="listitem"
+          className={`process-strip__step process-strip__step--${step.status}`}
+        >
           {step.label}
         </div>
       ))}
@@ -28,32 +32,81 @@ function ReflectionBox({ label, text }: { label: string; text: string }) {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
-  const { id, title, impact, tags, processSteps, reflectionLabel, reflectionText, tech, liveUrl, githubUrl, thumbSrc, thumbAlt } = project;
+  const {
+    id,
+    title,
+    impact,
+    tags,
+    processSteps,
+    reflectionLabel,
+    reflectionText,
+    tech,
+    liveUrl,
+    githubUrl,
+    thumbSrc,
+    thumbAlt,
+  } = project;
   return (
-    <article className="project-card fade-in" aria-labelledby={`${id}-title`}>
+    <article
+      suppressHydrationWarning
+      className="project-card fade-in"
+      aria-labelledby={`${id}-title`}
+    >
       <div className="project-card__header">
         <div>
           <div className="project-card__meta">
-            {tags.map((tag) => <Tag key={tag.label} {...tag} />)}
+            {tags.map((tag) => (
+              <Tag key={tag.label} {...tag} />
+            ))}
           </div>
-          <h2 className="project-card__title" id={`${id}-title`}>{title}</h2>
+          <h2 className="project-card__title" id={`${id}-title`}>
+            {title}
+          </h2>
           <p className="project-card__impact">{impact}</p>
         </div>
         {thumbSrc ? (
-          <img src={thumbSrc} alt={thumbAlt ?? title} className="project-card__thumb" />
+          <img
+            src={thumbSrc}
+            alt={thumbAlt ?? title}
+            className="project-card__thumb"
+          />
         ) : (
-          <div className="project-card__thumb" aria-hidden="true">Preview</div>
+          <div className="project-card__thumb" aria-hidden="true">
+            Preview
+          </div>
         )}
       </div>
       {processSteps && <ProcessStrip steps={processSteps} />}
       <ReflectionBox label={reflectionLabel} text={reflectionText} />
       <div className="project-card__footer">
         <div className="project-card__tech">
-          {tech.map((t) => <span key={t} className="tech-pill">{t}</span>)}
+          {tech.map((t) => (
+            <span key={t} className="tech-pill">
+              {t}
+            </span>
+          ))}
         </div>
         <div className="project-card__links">
-          {liveUrl && <a href={liveUrl} className="project-card__link" target="_blank" rel="noopener noreferrer">Live demo ↗</a>}
-          {githubUrl && <a href={githubUrl} className="project-card__link project-card__link--muted" target="_blank" rel="noopener noreferrer">GitHub ↗</a>}
+          {liveUrl && (
+            <a
+              href={liveUrl}
+              className="project-card__link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live demo ↗
+            </a>
+          )}
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              className="project-card__link project-card__link--muted"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub ↗
+            </a>
+          )}
         </div>
       </div>
     </article>

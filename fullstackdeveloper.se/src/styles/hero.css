@@ -147,21 +147,67 @@
   position: relative;
 }
 
+/* ── Mobil-topp: dold på desktop ── */
+.hero__mobile-top {
+  display: none;
+}
+
+.hero__mobile-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ── Tablet (≤ 720px) ── */
 @media (max-width: 720px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-rows: auto auto;
+    gap: 1.75rem;
     padding: 3rem 1.5rem 2.5rem;
   }
 
-  .hero__right {
+  /* Visa mobil-topp (bild + status) */
+  .hero__mobile-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
   }
 
-  .hero__cards-row {
+  /* Dölj desktop-bilden */
+  .hero__right {
+    display: none;
+  }
+
+  /* Flytta text-innehåll till rad 2 */
+  .hero__left {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
   }
 
   .hero__heading {
@@ -169,7 +215,8 @@
   }
 
   .hero__photo-wrap {
-    width: 60%;
+    width: 55%;
+    margin: 0 auto;
   }
 
   .hero__cards {
@@ -177,12 +224,41 @@
   }
 }
 
-.hero__bottom {
-  grid-column: 1 / -1;
-  grid-row: 2;
-}
+/* ── Mobil (≤ 480px) ── */
+@media (max-width: 480px) {
+  .hero {
+    padding: 2.25rem 1.25rem 2rem;
+    gap: 1.5rem;
+  }
 
-.hero__bottom .hero__cards {
-  grid-template-columns: repeat(4, 1fr);
-  width: 100%;
+  .hero__heading {
+    font-size: 1.9rem;
+    letter-spacing: -0.025em;
+  }
+
+  .hero__desc {
+    font-size: 0.925rem;
+  }
+
+  .hero__photo-wrap {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .hero__actions > * {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero__mini-card {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .hero__mini-value {
+    font-size: 0.8rem;
+  }
 }

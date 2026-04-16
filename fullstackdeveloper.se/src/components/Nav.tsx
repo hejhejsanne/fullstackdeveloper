@@ -14,6 +14,7 @@ export default function Nav() {
             { href: "#projects", label: "Projects" },
             { href: "#skills", label: "Skills" },
             { href: "#about", label: "About" },
+            { href: "#education", label: "Education" },
             {
               href: "https://github.com/hejhejsanne",
               label: "GitHub",
@@ -31,9 +32,17 @@ export default function Nav() {
             </li>
           ))}
         </ul>
-        <a href="#contact" className="btn-primary">
-          Contact me
-        </a>
+
+        {/* Status badge + Contact me grupperade till höger */}
+        <div className="nav__right">
+          <div className="nav__status">
+            <span className="nav__status-dot" aria-hidden="true" />
+            Available for work
+          </div>
+          <Link href="#contact" className="btn-primary">
+            Contact me
+          </Link>
+        </div>
       </nav>
     </header>
   );
