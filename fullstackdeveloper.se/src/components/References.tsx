@@ -60,7 +60,7 @@ export default function References() {
             <div className="references__inner">
               <div className="references__front">
                 {person.img ? (
-                  <img
+                  <image
                     src={person.img}
                     alt={person.name}
                     className="references__avatar"
