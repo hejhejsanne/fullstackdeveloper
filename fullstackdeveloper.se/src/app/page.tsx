@@ -1,12 +1,13 @@
-import React from 'react';
-import Nav from '@/components/Nav';
-import Hero from '@/components/Hero';
-import ProjectCard from '@/components/ProjectCard';
-import Skills from '@/components/Skills';
-import About from '@/components/About';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import { projects, skills } from '@/data';
+import React from "react";
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
+import ProjectCard from "@/components/ProjectCard";
+import Skills from "@/components/Skills";
+import About from "@/components/About";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import { projects, skills } from "@/data";
+import References from "@/components/References";
 
 export default function Home() {
   return (
@@ -15,8 +16,14 @@ export default function Home() {
       <main>
         <Hero />
         <hr className="divider" />
-        <section id="projects" className="section" aria-labelledby="projects-heading">
-          <div className="section-label" id="projects-heading">Selected projects – with process</div>
+        <section
+          id="projects"
+          className="section"
+          aria-labelledby="projects-heading"
+        >
+          <div className="section-label" id="projects-heading">
+            Selected projects – with process
+          </div>
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -25,6 +32,8 @@ export default function Home() {
         <Skills skills={skills} />
         <hr className="divider" />
         <About />
+        <hr className="divider" />
+        <References />
         <hr className="divider" />
         <Contact />
       </main>

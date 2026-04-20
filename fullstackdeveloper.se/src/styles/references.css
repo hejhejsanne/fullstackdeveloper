@@ -1,0 +1,129 @@
+.references__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.references__scene {
+  height: 280px;
+  perspective: 900px;
+  cursor: pointer;
+}
+
+.references__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.references__scene--flipped .references__inner {
+  transform: rotateY(180deg);
+}
+
+.references__front,
+.references__back {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.references__front {
+  background: var(--color-card, #ffffff);
+  border: 1px solid var(--color-border, #e5e5e5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px;
+  text-align: center;
+}
+
+.references__avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.references__initials {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #eeedfe;
+  color: #3c3489;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.references__name {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.references__role {
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+}
+
+.references__quote {
+  font-size: 13px;
+  color: #666;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.references__hint {
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 4px;
+}
+
+.references__back {
+  background: #26215c;
+  color: #eeedfe;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.references__back-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #cecbf6;
+  flex: 1;
+  overflow: hidden;
+  margin: 0;
+}
+
+.references__back-footer {
+  border-top: 1px solid #534ab7;
+  padding-top: 12px;
+  margin-top: 14px;
+}
+
+.references__back-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #eeedfe;
+  margin: 0;
+}
+
+.references__back-role {
+  font-size: 11px;
+  color: #afa9ec;
+  margin: 2px 0 0;
+}

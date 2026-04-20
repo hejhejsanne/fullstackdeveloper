@@ -14,7 +14,7 @@ export default function Nav() {
             { href: "#projects", label: "Projects" },
             { href: "#skills", label: "Skills" },
             { href: "#about", label: "About" },
-            { href: "#education", label: "Education" },
+            { href: "#references", label: "References" },
             {
               href: "https://github.com/hejhejsanne",
               label: "GitHub",
