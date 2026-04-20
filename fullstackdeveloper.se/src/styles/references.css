@@ -127,3 +127,17 @@
   color: #afa9ec;
   margin: 2px 0 0;
 }
+.references__back-linkedin {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #afa9ec;
+  text-decoration: none;
+  border-bottom: 1px solid #534ab7;
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+
+.references__back-linkedin:hover {
+  color: #eeedfe;
+}
