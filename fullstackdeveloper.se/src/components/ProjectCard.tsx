@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Project, ProjectTag, ProcessStep } from "@/types";
 import "@/styles/projectcard.css";
@@ -42,16 +43,14 @@ export default function ProjectCard({ project }: { project: Project }) {
     reflectionText,
     tech,
     liveUrl,
+    liveLabel,
     githubUrl,
     thumbSrc,
     thumbAlt,
   } = project;
+
   return (
-    <article
-      suppressHydrationWarning
-      className="project-card fade-in"
-      aria-labelledby={`${id}-title`}
-    >
+    <article className="project-card fade-in" aria-labelledby={`${id}-title`}>
       <div className="project-card__header">
         <div>
           <div className="project-card__meta">
@@ -87,16 +86,25 @@ export default function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
         <div className="project-card__links">
-          {liveUrl && (
-            <a
-              href={liveUrl}
-              className="project-card__link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Live demo ↗
-            </a>
-          )}
+          {liveUrl &&
+            (liveUrl === "#chatbot" ? (
+              <button
+                type="button"
+                className="project-card__link"
+                onClick={() => window.dispatchEvent(new Event("open-aisan"))}
+              >
+                Öppna AiSan ↗
+              </button>
+            ) : (
+              <a
+                href={liveUrl}
+                className="project-card__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {liveLabel ?? "Live demo"} ↗
+              </a>
+            ))}
           {githubUrl && (
             <a
               href={githubUrl}

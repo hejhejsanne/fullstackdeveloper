@@ -9,7 +9,7 @@ interface Message {
 }
 
 const WELCOME =
-  "Ask me anything about Sanne and her work experience, and i'll do my best trying to answere!";
+  "Ask me anything about Sanne and her work experience, and I'll do my best to answer!";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -27,7 +27,13 @@ export default function ChatBot() {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 100);
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
+
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener("open-aisan", handler);
+    return () => window.removeEventListener("open-aisan", handler);
+  }, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });

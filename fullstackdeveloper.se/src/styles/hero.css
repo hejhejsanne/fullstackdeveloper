@@ -1,3 +1,5 @@
+/* hero.css */
+
 .hero {
   padding: 5rem 2.5rem 4rem;
   max-width: 920px;
@@ -147,7 +149,17 @@
   position: relative;
 }
 
-/* ── Mobil-topp: dold på desktop ── */
+/* Status-dot (används i hero__mobile-top) */
+.hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  flex-shrink: 0;
+  animation: pulse 2s infinite;
+}
+
+/* Mobil-topp: dold på desktop */
 .hero__mobile-top {
   display: none;
 }
@@ -159,15 +171,6 @@
   font-size: 0.78rem;
   font-weight: 500;
   color: var(--muted);
-}
-
-.hero__status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #22c55e;
-  flex-shrink: 0;
-  animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
@@ -184,30 +187,30 @@
 @media (max-width: 720px) {
   .hero {
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto auto auto;
     gap: 1.75rem;
     padding: 3rem 1.5rem 2.5rem;
   }
 
-  /* Visa mobil-topp (bild + status) */
-  .hero__mobile-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  /* Bilden flyttas till toppen via grid-row */
+  .hero__right {
     grid-column: 1;
     grid-row: 1;
+    display: block;
   }
 
-  /* Dölj desktop-bilden */
-  .hero__right {
-    display: none;
-  }
-
-  /* Flytta text-innehåll till rad 2 */
-  .hero__left {
+  /* Status-raden visas under bilden */
+  .hero__mobile-top {
+    display: flex;
+    justify-content: center;
     grid-column: 1;
     grid-row: 2;
+  }
+
+  /* Text hamnar sist */
+  .hero__left {
+    grid-column: 1;
+    grid-row: 3;
   }
 
   .hero__heading {
@@ -261,4 +264,13 @@
   .hero__mini-value {
     font-size: 0.8rem;
   }
+}
+.site-banner {
+  background: rgba(196, 176, 255, 0.2);
+  border-bottom: 1px solid rgba(196, 176, 255, 0.4);
+  text-align: center;
+  padding: 0.5rem 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: var(--muted);
 }

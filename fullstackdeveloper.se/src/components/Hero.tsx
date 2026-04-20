@@ -11,18 +11,8 @@ export default function Hero() {
 
   return (
     <section className="hero" aria-labelledby="hero-heading">
-      {/* Mobil-topp: bild + status — dold på desktop */}
+      {/* Mobil-topp: status — dold på desktop */}
       <div className="hero__mobile-top">
-        <div className="hero__photo-wrap">
-          <Image
-            src="/sanne.jpg"
-            alt="Sanne Delin"
-            fill
-            className="hero__photo"
-            priority
-            sizes="(max-width: 480px) 50vw, (max-width: 720px) 55vw"
-          />
-        </div>
         <div className="hero__mobile-status">
           <span className="hero__status-dot" aria-hidden="true" />
           Available for work
@@ -30,6 +20,9 @@ export default function Hero() {
       </div>
 
       <div className="hero__left">
+        <div className="site-banner">
+          🚧 This site is still a work in progress – some things may change.
+        </div>
         <div className="hero__tag" aria-hidden="true">
           Full Stack Developer · Gothenburg
         </div>
@@ -51,7 +44,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Desktop-bild — dold på mobil */}
+      {/* EN bild — flyttas med CSS mellan mobil och desktop */}
       <div className="hero__right">
         <div className="hero__photo-wrap">
           <Image
@@ -59,8 +52,9 @@ export default function Hero() {
             alt="Sanne Delin"
             fill
             className="hero__photo"
-            priority
-            sizes="(max-width: 920px) 45vw, 400px"
+            loading="eager"
+            fetchPriority="high"
+            sizes="(max-width: 480px) 50vw, (max-width: 720px) 55vw, 400px"
           />
         </div>
       </div>

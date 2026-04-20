@@ -50,7 +50,13 @@ Sanne Delin is a full stack developer based in central Gothenburg, Sweden.
 - Always respond in the same language the user writes in
 - End responses with a relevant follow-up question when appropriate
 - Never share salary expectations – defer to a direct conversation with Sanne
-- Contact: sanne@fullstackdeveloper.se`;
+- Contact: sanne@fullstackdeveloper.se
+
+## FORMATTING
+- Never use markdown formatting (no **, ##, bullet points, or backticks)
+- Write in plain, conversational prose only
+- Use short paragraphs instead of bullet points
+- Never use headers or bold text in responses`;
 
 export async function POST(req: Request) {
   const { messages } = await req.json();

@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: "proj-chatbot",
     title: "Portfolio Chatbot",
     impact:
-      "An AI-powered chatbot built for a previous portfolio – answers questions about me, my projects and my experience in real time.",
+      "An AI-powered chatbot built for my first job-seeking portfolio – answers questions about me, my projects and my experience in real time.",
     tags: [
       { label: "AI / Chatbot", variant: "blue" },
       { label: "Portfolio", variant: "green" },
@@ -13,9 +13,10 @@ export const projects: Project[] = [
     ],
     reflectionLabel: "How it works",
     reflectionText:
-      "Update this with your stack and what you are proud of – which AI API did you use, how did you handle context, and what would you do differently next time?",
+      "The idea came while building my first portfolio during my job search – I wanted a chatbot that could answer questions specifically about me. Working on my thesis at the same time sparked a broader curiosity about AI integration, and this project became my first step into building with AI APIs.",
     tech: ["TypeScript", "React", "Node.js"],
-    githubUrl: "https://github.com/hejhejsanne",
+    liveUrl: "#chatbot",
+    liveLabel: "Open AiSan",
   },
   {
     id: "proj-tarot",
@@ -27,13 +28,7 @@ export const projects: Project[] = [
       { label: "Deployed", variant: "green" },
       { label: "2025", variant: "gray" },
     ],
-    processSteps: [
-      { label: "1. Data model", status: "done" },
-      { label: "2. Learn pages", status: "done" },
-      { label: "3. Training game", status: "done" },
-      { label: "4. Auth", status: "done" },
-      { label: "5. Challenge mode", status: "active" },
-    ],
+
     reflectionLabel: "Architecture & decisions",
     reflectionText:
       "I built a custom data layer with all 78 cards and 25+ fields per card (archetype, element, chakra, crystals etc.) rather than fetching external data – this gave full control and faster renders. Auth is implemented but intentionally disabled until there is something worth locking in. Next steps are detail pages per card and an active challenge mode.",
@@ -45,7 +40,8 @@ export const projects: Project[] = [
       "Drizzle ORM",
       "Vercel",
     ],
-    githubUrl: "https://github.com/hejhejsanne",
+    liveUrl: "https://kortensbudskap.se",
+    liveLabel: "kortensbudskap.se",
   },
   {
     id: "proj-grading",
@@ -57,18 +53,18 @@ export const projects: Project[] = [
       { label: "Thesis", variant: "green" },
       { label: "2025", variant: "gray" },
     ],
-    processSteps: [
-      { label: "1. Problem", status: "done" },
-      { label: "2. Research", status: "done" },
-      { label: "3. Prompt design", status: "done" },
-      { label: "4. Integration", status: "done" },
-      { label: "5. Evaluation", status: "active" },
-    ],
+    // processSteps: [
+    //   { label: "1. Problem", status: "done" },
+    //   { label: "2. Research", status: "done" },
+    //   { label: "3. Prompt design", status: "done" },
+    //   { label: "4. Integration", status: "done" },
+    //   { label: "5. Evaluation", status: "active" },
+    // ],
     reflectionLabel: "Why these decisions?",
     reflectionText:
       "I chose prompt engineering over fine-tuning because it allowed faster iteration at lower cost for the prototype. The key insight was how much context within the prompt affects grading quality – small phrasing changes produced drastically different results.",
     tech: ["TypeScript", "Node.js", "AI API", "Prompt Engineering", "REST API"],
-    githubUrl: "https://github.com/hejhejsanne",
+    // githubUrl: "https://github.com/hejhejsanne",
   },
   // {
   //   id: 'proj-platform',
@@ -113,7 +109,7 @@ export const projects: Project[] = [
       "Mocha",
       "Supertest",
     ],
-    githubUrl: "https://github.com/hejhejsanne",
+    // githubUrl: "https://github.com/hejhejsanne",
   },
 ];
 
