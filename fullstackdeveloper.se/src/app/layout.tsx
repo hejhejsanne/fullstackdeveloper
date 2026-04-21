@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import "@/styles/globals.css";
 import ChatBot from "@/components/ChatBot";
+import BackToTop from "@/components/BackToTop";
 import FadeInObserver from "@/components/FadeInObserver";
 import Script from "next/script";
 import type { Metadata } from "next";
@@ -59,7 +60,9 @@ export default function RootLayout({
       <body>
         {children}
         <ChatBot />
+
         <FadeInObserver />
+        <BackToTop />
 
         {/* Google Analytics 4 */}
         <Script

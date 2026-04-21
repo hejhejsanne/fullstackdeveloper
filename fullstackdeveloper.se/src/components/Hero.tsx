@@ -20,9 +20,9 @@ export default function Hero() {
       </div>
 
       <div className="hero__left">
-        <div className="site-banner">
+        {/* <div className="site-banner">
           🚧 This site is still a work in progress – some things may change.
-        </div>
+        </div> */}
         <div className="hero__tag" aria-hidden="true">
           Full Stack Developer · Gothenburg
         </div>
@@ -43,8 +43,6 @@ export default function Hero() {
           </button>
         </div>
       </div>
-
-      {/* EN bild — flyttas med CSS mellan mobil och desktop */}
       <div className="hero__right">
         <div className="hero__photo-wrap">
           <Image

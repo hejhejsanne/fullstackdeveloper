@@ -1,7 +1,7 @@
 /* hero.css */
 
 .hero {
-  padding: 5rem 2.5rem 4rem;
+  padding: 8rem 2.5rem 4rem;
   max-width: 920px;
   margin: 0 auto;
   display: grid;
@@ -188,8 +188,9 @@
   .hero {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    gap: 1.75rem;
-    padding: 3rem 1.5rem 2.5rem;
+    margin-top: 2rem;
+    gap: 2.75rem;
+    padding: 8rem 1.5rem 2.5rem;
   }
 
   /* Bilden flyttas till toppen via grid-row */
@@ -214,7 +215,8 @@
   }
 
   .hero__heading {
-    font-size: 2.2rem;
+    text-align: center;
+    font-size: 2.5rem;
   }
 
   .hero__photo-wrap {

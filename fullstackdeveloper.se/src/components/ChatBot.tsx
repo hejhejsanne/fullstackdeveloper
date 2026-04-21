@@ -19,6 +19,7 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const windowRef = useRef<HTMLDivElement>(null); // ← ny
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -29,11 +30,29 @@ export default function ChatBot() {
     }
   }, [isOpen, messages.length]);
 
+  // Lyssna på open-aisan event (från nav "Ai Assistans" länk)
   useEffect(() => {
     const handler = () => setIsOpen(true);
     window.addEventListener("open-aisan", handler);
     return () => window.removeEventListener("open-aisan", handler);
   }, []);
+
+  // Stäng vid klick utanför
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const toggle = document.querySelector(".chat-toggle");
+      if (
+        windowRef.current &&
+        !windowRef.current.contains(e.target as Node) &&
+        !toggle?.contains(e.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -116,17 +135,36 @@ export default function ChatBot() {
             />
           </svg>
         )}
-        {!isOpen && <span className="chat-toggle__label">AiSan</span>}
+        {!isOpen && <span className="chat-toggle__label"></span>}
       </button>
 
       {isOpen && (
-        <div className="chat-window" role="dialog" aria-label="Chat with AiSan">
+        <div
+          className="chat-window"
+          role="dialog"
+          aria-label="Chat with AiSan"
+          ref={windowRef}
+        >
           <div className="chat-window__header">
             <div className="chat-window__avatar">A</div>
             <div className="chat-window__info">
               <div className="chat-window__name">AiSan</div>
               <div className="chat-window__sub">Sanne&apos;s AI assistant</div>
             </div>
+            <button
+              className="chat-window__close"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close chat"
+            >
+              <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+                <path
+                  d="M4 4L16 16M16 4L4 16"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
           </div>
 
           <div className="chat-window__messages">
