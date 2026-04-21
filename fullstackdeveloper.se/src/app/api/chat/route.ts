@@ -45,7 +45,7 @@ Sanne Delin is a full stack developer based in central Gothenburg, Sweden.
 ## RULES
 - Only answer based on the information above
 - Never invent or hallucinate information about Sanne
-- If you don't know something, say so honestly and offer related information you do have
+- If you don't know something, respond with EXACTLY this trigger phrase on its own line: [MISSING_INFO] followed by your normal honest response to the user
 - Be professional but personable, direct and concise
 - Always respond in the same language the user writes in
 - End responses with a relevant follow-up question when appropriate
@@ -56,10 +56,57 @@ Sanne Delin is a full stack developer based in central Gothenburg, Sweden.
 - Never use markdown formatting (no **, ##, bullet points, or backticks)
 - Write in plain, conversational prose only
 - Use short paragraphs instead of bullet points
-- Never use headers or bold text in responses`;
+- Never use headers or bold text in responses
+- Never include [MISSING_INFO] in the visible response to the user — it is a system signal only`;
+
+// Phrases that indicate Claude doesn't have the information
+const UNKNOWN_PHRASES = [
+  "[MISSING_INFO]",
+  "i don't have that information",
+  "i don't have information about",
+  "that's not something i have details on",
+  "i'm not sure about that",
+  "i don't know",
+  "ingen information om",
+  "har inte den informationen",
+  "vet inte",
+  "saknar information",
+];
+
+function containsUnknownSignal(text: string): boolean {
+  const lower = text.toLowerCase();
+  return UNKNOWN_PHRASES.some((phrase) => lower.includes(phrase.toLowerCase()));
+}
+
+async function sendMissingInfoEmail(question: string): Promise<void> {
+  // Fire-and-forget: call our own email API route
+  try {
+    await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/notify-missing-info`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
+      },
+    );
+  } catch (err) {
+    // Never let email failure break the chat response
+    console.error("Failed to send missing-info email:", err);
+  }
+}
 
 export async function POST(req: Request) {
   const { messages } = await req.json();
+
+  // Extract the last user message for potential email notification
+  const lastUserRaw = [...messages]
+    .reverse()
+    .find((m: { role: string }) => m.role === "user")?.content;
+  const lastUserMessage = Array.isArray(lastUserRaw)
+    ? lastUserRaw.map((b: { text?: string }) => b.text ?? "").join(" ")
+    : lastUserRaw || "";
+
+  console.log("👤 lastUserMessage:", lastUserMessage);
 
   const stream = await client.messages.stream({
     model: "claude-opus-4-5",
@@ -69,6 +116,8 @@ export async function POST(req: Request) {
   });
 
   const encoder = new TextEncoder();
+  let fullResponse = "";
+  let emailTriggered = false;
 
   const readable = new ReadableStream({
     async start(controller) {
@@ -77,7 +126,27 @@ export async function POST(req: Request) {
           chunk.type === "content_block_delta" &&
           chunk.delta.type === "text_delta"
         ) {
-          controller.enqueue(encoder.encode(chunk.delta.text));
+          const text = chunk.delta.text;
+          fullResponse += text;
+
+          console.log("📦 chunk:", JSON.stringify(text));
+
+          // Strip the [MISSING_INFO] signal before sending to the client
+          const cleanText = text.replace(/\[MISSING_INFO\]/g, "");
+          if (cleanText) {
+            controller.enqueue(encoder.encode(cleanText));
+          }
+
+          // Trigger email once we have enough text to detect unknown signal
+          if (
+            !emailTriggered &&
+            fullResponse.length > 50 &&
+            containsUnknownSignal(fullResponse)
+          ) {
+            emailTriggered = true;
+            console.log("📧 Triggering email for:", lastUserMessage);
+            sendMissingInfoEmail(lastUserMessage);
+          }
         }
       }
       controller.close();

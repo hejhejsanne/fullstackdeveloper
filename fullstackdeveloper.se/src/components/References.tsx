@@ -17,8 +17,9 @@ const data: Person[] = [
   {
     name: "Michael Baggelin",
     title: "CEO, Clever Click",
-    short: "En naturlig ledare med en väldigt imponerande utvecklingskurva.",
-    full: "Sanne är en naturlig ledare, vilket märks tydligt. Hennes AI-kunskaper är grymma – och hennes utvecklingskurva det senaste 6 månaderna är riktigt imponerande. Kan varmt rekomendera Sanne.",
+    short:
+      "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks.",
+    full: "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks. Under de senaste sex månaderna har hennes utveckling som fullstackutvecklare tagit stora kliv framåt, och hennes sätt att snabbt sätta sig in i både SEO och AI är imponerande.",
     initials: "MB",
     linkedin: "https://www.linkedin.com/in/michael-baggelin/",
   },

@@ -101,12 +101,18 @@
 }
 
 .references__back-text {
-  font-size: 13px;
-  line-height: 1.65;
-  color: #cecbf6;
+  font-size: 0.78rem;
+  font-weight: 300;
+  line-height: 1.72;
+  color: rgba(235, 220, 255, 0.82);
   flex: 1;
-  overflow: hidden;
   margin: 0;
+  padding: 4px 0 12px;
+  position: relative;
+  overflow-y: auto;
+  min-height: 0; /* krävs för att flex + overflow ska funka */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(140, 80, 220, 0.35) transparent;
 }
 
 .references__back-footer {
