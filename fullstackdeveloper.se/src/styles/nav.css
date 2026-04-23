@@ -135,9 +135,31 @@
 .nav__ai-link:hover {
   color: var(--text);
 }
+/* ── Tablet (721px – 1079px) ── */
+@media (min-width: 721px) and (max-width: 1066px) {
+  .nav {
+    padding: 1rem 1.25rem;
+  }
 
+  .nav__links {
+    gap: 1rem;
+  }
+
+  .nav__links a,
+  .nav__ai-link {
+    font-size: 0.6rem;
+  }
+
+  .nav__status {
+    font-size: 0.7rem;
+  }
+
+  .nav__right {
+    gap: 0.5rem;
+  }
+}
 /* ── Mobil (≤ 720px) ── */
-@media (max-width: 720px) {
+@media (max-width: 796px) {
   .nav {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;
