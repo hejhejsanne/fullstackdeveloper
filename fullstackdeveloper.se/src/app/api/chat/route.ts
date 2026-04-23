@@ -21,7 +21,7 @@ Sanne Delin is a full stack developer based in central Gothenburg, Sweden.
 - Full Stack Developer (LIA 1) at Klarr Utvecklingsbyrå AB (Sep 2024 – Dec 2024)
 
 **Technical Skills**
-- Frontend: React.js, Next.js, Vue.js, TypeScript, Tailwind CSS, SCSS
+- Frontend: Javascript, React.js, Next.js, Vue.js, TypeScript, Tailwind CSS, SCSS
 - Backend: Node.js, Express.js, Spring Boot, REST APIs, WebSockets
 - Databases: PostgreSQL, MongoDB, MySQL, Prisma ORM, Supabase, Neon
 - AI & Prompt Engineering: LLM integration, prompt engineering, dynamic AI responses
