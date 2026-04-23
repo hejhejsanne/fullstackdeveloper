@@ -3,7 +3,7 @@
 import { useState } from "react";
 import "@/styles/nav.css";
 import Link from "next/link";
-import ChatBot from "./ChatBot";
+import ChatBot from "../components/ChatBot";
 
 interface NavLink {
   href: string;
@@ -15,6 +15,7 @@ const navLinks: NavLink[] = [
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
   { href: "#about", label: "About" },
+  { href: "#ats", label: "ATS" },
   { href: "#references", label: "References" },
   { href: "https://github.com/hejhejsanne", label: "GitHub", external: true },
 ];

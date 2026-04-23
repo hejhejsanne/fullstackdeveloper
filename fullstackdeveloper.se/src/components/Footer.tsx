@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="footer__logo">
         fullstack<span>developer</span>.se
       </div>
-      <div>Built with TypeScript &amp; care</div>
+      {/* <div>Built with TypeScript &amp; care</div> */}
       <div>© {new Date().getFullYear()}</div>
     </footer>
   );

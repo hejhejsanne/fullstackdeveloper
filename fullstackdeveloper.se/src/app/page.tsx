@@ -6,8 +6,10 @@ import Skills from "@/components/Skills";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+
 import { projects, skills } from "@/data";
 import References from "@/components/References";
+import ATS from "@/components/Ats";
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
         <Skills skills={skills} />
         <hr className="divider" />
         <About />
+        <hr className="divider" />
+        <ATS />
         <hr className="divider" />
         <References />
         <hr className="divider" />

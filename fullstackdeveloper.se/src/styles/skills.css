@@ -1,7 +1,33 @@
 .skills__grid {
   display: grid;
+  /*  background-color: #a8d8c01f; */
   grid-template-columns: repeat(3, 1fr);
+  /* gap: 0.75rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 4px 16px rgba(100, 60, 160, 0.06); */
+  background: rgba(255, 255, 255, 0.334);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
   gap: 0.75rem;
+  margin-bottom: 1rem;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+  color: inherit;
+  /* display: block; */
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 4px 16px rgba(100, 60, 160, 0.06);
 }
 
 .skills__item {

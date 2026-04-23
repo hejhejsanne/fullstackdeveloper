@@ -56,7 +56,7 @@
   height: 72px;
   border-radius: 50%;
   background: #eeedfe;
-  color: #3c3489;
+  color: #a8d8c0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,7 @@
 }
 
 .references__back {
-  background: #26215c;
+  background: #a8d8c01f;
   color: #eeedfe;
   transform: rotateY(180deg);
   display: flex;
@@ -104,7 +104,7 @@
   font-size: 0.78rem;
   font-weight: 300;
   line-height: 1.72;
-  color: rgba(235, 220, 255, 0.82);
+  color: #475a51;
   flex: 1;
   margin: 0;
   padding: 4px 0 12px;
@@ -116,7 +116,7 @@
 }
 
 .references__back-footer {
-  border-top: 1px solid #534ab7;
+  border-top: 1px solid #475a51;
   padding-top: 12px;
   margin-top: 14px;
 }
@@ -124,22 +124,22 @@
 .references__back-name {
   font-size: 13px;
   font-weight: 500;
-  color: #eeedfe;
+  color: #4a866a;
   margin: 0;
 }
 
 .references__back-role {
   font-size: 11px;
-  color: #afa9ec;
+  color: #69668f;
   margin: 2px 0 0;
 }
 .references__back-linkedin {
   display: inline-block;
   margin-top: 8px;
   font-size: 11px;
-  color: #afa9ec;
+  color: #69668f;
   text-decoration: none;
-  border-bottom: 1px solid #534ab7;
+  border-bottom: 1px solid #69668f;
   padding-bottom: 1px;
   transition: color 0.2s;
 }
