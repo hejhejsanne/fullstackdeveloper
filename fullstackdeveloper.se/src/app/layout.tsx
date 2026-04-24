@@ -5,6 +5,8 @@ import BackToTop from "@/components/BackToTop";
 import FadeInObserver from "@/components/FadeInObserver";
 import Script from "next/script";
 import type { Metadata } from "next";
+//import dynamic from "next/dynamic";
+import ShaderBackgroundLoader from "@/components/ShaderBackgroundLoader";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fullstackdeveloper.se"),
@@ -58,6 +60,7 @@ export default function RootLayout({
         <PersonJsonLd />
       </head>
       <body>
+        <ShaderBackgroundLoader />
         {children}
         <ChatBot />
 
