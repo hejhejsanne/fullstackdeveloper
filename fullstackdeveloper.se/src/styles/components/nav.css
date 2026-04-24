@@ -1,4 +1,5 @@
-/* ── Base ── */
+/* nav.css */
+
 .nav {
   display: flex;
   align-items: center;
@@ -15,60 +16,60 @@
   box-sizing: border-box;
 }
 
-/* ── Logo ── */
-.nav__logo {
+/* logo */
+.nav-logo {
   font-family: var(--font-serif);
   font-size: 1.05rem;
   letter-spacing: -0.02em;
-  background: var(--chrome-text);
+  background: var(--aurora-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.nav__logo span {
+.nav-logo span {
   font-style: italic;
 }
 
-/* ── Desktop länkar ── */
-.nav__links {
+/* desktop links */
+.nav-links {
   display: flex;
   gap: 2rem;
 }
 
-.nav__links a {
-  color: var(--muted);
+.nav-links a {
+  color: var(--color-muted);
   font-size: 0.875rem;
   transition: color 0.2s;
 }
 
-.nav__links a:hover {
-  color: var(--text);
+.nav-links a:hover {
+  color: var(--color-text);
 }
 
-/* ── Höger sektion (status + knapp) ── */
-.nav__right {
+/* right section */
+.nav-right {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-/* ── Status badge ── */
-.nav__status {
+/* status badge */
+.nav-status {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 0.78rem;
-  color: var(--muted);
+  color: var(--color-muted);
   white-space: nowrap;
 }
 
-/* ── Den blinkande gröna pricken ── */
-.nav__status-dot {
+/* status dot */
+.nav-status-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #22c55e;
+  background-color: var(--signal-green);
   flex-shrink: 0;
   animation: pulse 2s infinite;
 }
@@ -83,12 +84,20 @@
   }
 }
 
-.nav__links--mobile {
-  display: none;
+/* ai link */
+.nav-ai-link {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color 0.2s;
 }
 
-/* ── Hamburger-knapp (dold på desktop) ── */
-.nav__burger {
+.nav-ai-link:hover {
+  color: var(--color-text);
+}
+
+/* hamburger */
+.nav-burger {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -99,14 +108,14 @@
   border: none;
   cursor: pointer;
   padding: 4px;
-  border-radius: var(--radius-sm, 6px);
+  border-radius: var(--radius-sm);
 }
 
-.nav__burger span {
+.nav-burger span {
   display: block;
   width: 22px;
   height: 1.5px;
-  background: var(--text);
+  background: var(--color-text);
   border-radius: 2px;
   transition:
     transform 0.25s,
@@ -114,76 +123,72 @@
   transform-origin: center;
 }
 
-.nav__burger[aria-expanded="true"] span:nth-child(1) {
+.nav-burger[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(6.5px) rotate(45deg);
 }
-.nav__burger[aria-expanded="true"] span:nth-child(2) {
+.nav-burger[aria-expanded="true"] span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
-.nav__burger[aria-expanded="true"] span:nth-child(3) {
+.nav-burger[aria-expanded="true"] span:nth-child(3) {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
-.nav__ai-link {
-  color: var(--muted);
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: color 0.2s;
+/* mobile links */
+.nav-links-mobile {
+  display: none;
 }
 
-.nav__ai-link:hover {
-  color: var(--text);
-}
-/* ── Tablet (721px – 1079px) ── */
-@media (min-width: 721px) and (max-width: 1066px) {
+/* small desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
   .nav {
     padding: 1rem 1.25rem;
   }
 
-  .nav__links {
+  .nav-links {
     gap: 1rem;
   }
 
-  .nav__links a,
-  .nav__ai-link {
-    font-size: 0.6rem;
+  .nav-links a,
+  .nav-ai-link {
+    font-size: 0.75rem;
   }
 
-  .nav__status {
+  .nav-status {
     font-size: 0.7rem;
   }
 
-  .nav__right {
+  .nav-right {
     gap: 0.5rem;
   }
 }
-/* ── Mobil (≤ 720px) ── */
-@media (max-width: 796px) {
+
+/* mobile */
+@media (max-width: 768px) {
   .nav {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;
     max-width: 100%;
-    overflow: hidden;
+    overflow: clip;
   }
 
-  .nav__links {
+  .nav-links {
     display: none;
   }
 
-  .nav__right {
+  .nav-right {
     display: none;
   }
 
-  .nav__burger {
+  .nav-burger {
     display: flex;
   }
 
-  .nav__status {
+  .nav-status {
     display: flex;
   }
 
-  .nav__links--mobile {
+  .nav-links-mobile {
     display: none;
     width: 100%;
     order: 99;
@@ -195,19 +200,19 @@
     border-top: 1px solid rgba(0, 0, 0, 0.07);
   }
 
-  .nav__links--mobile.nav__links--open {
+  .nav-links-mobile.nav-links-open {
     display: flex;
   }
 
-  .nav__links--mobile li a {
+  .nav-links-mobile li a {
     display: block;
     font-size: 0.95rem;
     padding: 0.65rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    color: var(--text);
+    color: var(--color-text);
   }
 
-  .nav__links--mobile li:last-child a {
+  .nav-links-mobile li:last-child a {
     border-bottom: none;
   }
 }

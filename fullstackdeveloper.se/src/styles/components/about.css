@@ -14,7 +14,7 @@
   border-radius: var(--radius-lg);
   padding: 1.5rem;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   box-shadow:
     inset 0 1px 0 var(--starlight-white),
     0 4px 16px rgba(100, 60, 160, 0.1),

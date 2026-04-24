@@ -30,7 +30,7 @@ export async function POST(req: Request) {
       to: process.env.NOTIFY_EMAIL,
       subject: `AiSan saknar info – uppdatering behövs`,
       html: `
-        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 560px; margin: 0 auto; background: #f9f9f9; border-radius: 12px; overflow: hidden; border: 1px solid #e8e8e8;">
+        <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 560px; margin: 0 auto; background: #f9f9f9; border-radius: 12px; overflow: clip; border: 1px solid #e8e8e8;">
           <div style="background: #0f0f0f; padding: 28px 32px;">
             <p style="margin: 0; font-size: 13px; color: #888; letter-spacing: 2px; text-transform: uppercase;">AiSan · AI Assistant</p>
             <h2 style="margin: 8px 0 0; font-size: 22px; color: #ffffff; font-weight: 600;">Kunskapslucka upptäckt</h2>

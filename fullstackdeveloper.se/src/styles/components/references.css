@@ -29,7 +29,7 @@
   border-radius: 14px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  overflow: hidden;
+  overflow: clip;
 }
 
 .references__front {
