@@ -2,6 +2,7 @@
 import React from "react";
 import { Project, ProjectTag, ProcessStep } from "@/types";
 import "@/styles/components/projectcard.css";
+import Image from "next/image";
 
 function Tag({ label, variant }: ProjectTag) {
   return <span className={`tag tag--${variant}`}>{label}</span>;
@@ -14,7 +15,7 @@ function ProcessStrip({ steps }: { steps: ProcessStep[] }) {
         <div
           key={step.label}
           role="listitem"
-          className={`process-strip__step process-strip__step--${step.status}`}
+          className={`process-step process-step-${step.status}`}
         >
           {step.label}
         </div>
@@ -26,8 +27,8 @@ function ProcessStrip({ steps }: { steps: ProcessStep[] }) {
 function ReflectionBox({ label, text }: { label: string; text: string }) {
   return (
     <div className="reflection-box">
-      <div className="reflection-box__label">{label}</div>
-      <p className="reflection-box__text">{text}</p>
+      <div className="reflection-label">{label}</div>
+      <p className="reflection-text">{text}</p>
     </div>
   );
 }
@@ -51,46 +52,46 @@ export default function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article className="project-card fade-in" aria-labelledby={`${id}-title`}>
-      <div className="project-card__header">
+      <div className="project-card-header">
         <div>
-          <div className="project-card__meta">
+          <div className="project-card-meta">
             {tags.map((tag) => (
               <Tag key={tag.label} {...tag} />
             ))}
           </div>
-          <h2 className="project-card__title" id={`${id}-title`}>
+          <h2 className="project-card-title" id={`${id}-title`}>
             {title}
           </h2>
-          <p className="project-card__impact">{impact}</p>
+          <p className="project-card-impact">{impact}</p>
         </div>
-        {thumbSrc ? (
-          <img
+        {/* {thumbSrc ? (
+          <Image
             src={thumbSrc}
             alt={thumbAlt ?? title}
-            className="project-card__thumb"
+            className="project-card-thumb"
           />
         ) : (
-          <div className="project-card__thumb" aria-hidden="true">
+          <div className="project-card-thumb" aria-hidden="true">
             Preview
           </div>
-        )}
+        )} */}
       </div>
       {processSteps && <ProcessStrip steps={processSteps} />}
       <ReflectionBox label={reflectionLabel} text={reflectionText} />
-      <div className="project-card__footer">
-        <div className="project-card__tech">
+      <div className="project-card-footer">
+        <div className="project-card-tech">
           {tech.map((t) => (
             <span key={t} className="tech-pill">
               {t}
             </span>
           ))}
         </div>
-        <div className="project-card__links">
+        <div className="project-card-links">
           {liveUrl &&
             (liveUrl === "#chatbot" ? (
               <button
                 type="button"
-                className="project-card__link"
+                className="project-card-link"
                 onClick={() => window.dispatchEvent(new Event("open-aisan"))}
               >
                 Öppna AiSan ↗
@@ -98,7 +99,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             ) : (
               <a
                 href={liveUrl}
-                className="project-card__link"
+                className="project-card-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -108,7 +109,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {githubUrl && (
             <a
               href={githubUrl}
-              className="project-card__link project-card__link--muted"
+              className="project-card-link project-card-link-muted"
               target="_blank"
               rel="noopener noreferrer"
             >

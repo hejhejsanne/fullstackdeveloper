@@ -18,6 +18,10 @@ export default function Home() {
       <main>
         <Hero />
         <hr className="divider" />
+        <About />
+        <hr className="divider" />
+        <Skills skills={skills} />
+        <hr className="divider" />
         <section
           id="projects"
           className="section"
@@ -31,10 +35,7 @@ export default function Home() {
           ))}
         </section>
         <hr className="divider" />
-        <Skills skills={skills} />
-        <hr className="divider" />
-        <About />
-        <hr className="divider" />
+
         <ATS />
         <hr className="divider" />
         <References />

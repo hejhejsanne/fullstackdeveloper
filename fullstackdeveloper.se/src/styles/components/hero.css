@@ -218,6 +218,10 @@
     width: 55%;
     margin: 0 auto;
   }
+  .hero-tag {
+    display: none;
+    justify-content: center;
+  }
 
   .hero-cards {
     grid-template-columns: repeat(2, 1fr);
