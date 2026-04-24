@@ -1,7 +1,7 @@
 // src/app/fullstackdeveloper/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
-import "@/styles/seo.css";
+// import "@/styles/seo.css";
 
 export const metadata: Metadata = {
   title: "Hire a Full Stack Developer in Sweden | Sanne Delin",
