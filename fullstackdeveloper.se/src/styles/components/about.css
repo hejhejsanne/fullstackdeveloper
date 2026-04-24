@@ -1,0 +1,120 @@
+/* about.css */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--starlight-white);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 var(--starlight-white),
+    0 4px 16px rgba(100, 60, 160, 0.1),
+    0 1px 4px rgba(100, 60, 160, 0.06);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.about-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--aurora);
+  pointer-events: none;
+}
+
+.about-card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 var(--starlight-white),
+    0 8px 24px rgba(100, 60, 160, 0.14),
+    0 2px 6px rgba(100, 60, 160, 0.08);
+}
+
+.about-card-wide {
+  grid-column: span 2;
+}
+
+.about-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+  color: var(--color-text);
+  position: relative;
+}
+
+.about-text {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  position: relative;
+}
+
+.about-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  transition:
+    color 0.2s,
+    gap 0.2s;
+}
+
+.about-link:hover {
+  color: var(--color-text);
+}
+
+/* tablet */
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-card-wide {
+    grid-column: span 1;
+  }
+
+  .about-card {
+    padding: 1.25rem;
+  }
+}
+
+/* mobile */
+@media (max-width: 600px) {
+  .about-grid {
+    gap: 0.75rem;
+  }
+
+  .about-card {
+    padding: 1rem;
+  }
+
+  .about-title {
+    font-size: 0.8rem;
+  }
+
+  .about-text {
+    font-size: 0.85rem;
+  }
+
+  .about-card--profile {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .about-photo-wrap {
+    width: 100%;
+    min-width: unset;
+    aspect-ratio: 4 / 3;
+  }
+}

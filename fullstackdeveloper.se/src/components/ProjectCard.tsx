@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Project, ProjectTag, ProcessStep } from "@/types";
-import "@/styles/projectcard.css";
+import "@/styles/components/projectcard.css";
 
 function Tag({ label, variant }: ProjectTag) {
   return <span className={`tag tag--${variant}`}>{label}</span>;

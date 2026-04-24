@@ -1,0 +1,70 @@
+/* tokens.css
+   think of this file as the "source of truth" for how the site looks.
+   every color, font, and radius used anywhere on the site is defined here as a variable.
+   instead of writing #1a0f2e in ten different files, you write --deep-space-purple once here.
+   if the brand color changes, you update it in one place and it updates everywhere. */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap");
+
+:root {
+  /* colors */
+  --deep-space-purple: #1a0f2e;
+  --stardust-purple: #6a5a7a;
+  --moonrise-white: #f8f4ff;
+  --amethyst-purple: #7b5ea7;
+  --aventurin-green: #4eaf8bc7;
+  --starlight-white: #ffffff;
+  --signal-green: #52c487;
+
+  /* shader colors */
+  --frost-blue: #ebedffc5;
+  --glacier-blue: #dbf8ff;
+
+  /* semantic */
+  --color-text: var(--deep-space-purple);
+  --color-muted: var(--stardust-purple);
+  --color-bg: var(--moonrise-white);
+
+  /* tags */
+  --tag-purple-bg: rgba(196, 176, 255, 0.2);
+  --tag-purple-text: #4a3580;
+  --tag-green-bg: rgba(168, 216, 192, 0.3);
+  --tag-green-text: #2d6b4a;
+  --tag-gray-bg: rgba(200, 190, 220, 0.2);
+  --tag-gray-text: #5a4f6a;
+
+  /* gradients */
+  --aurora: linear-gradient(
+    135deg,
+    rgba(196, 176, 255, 0.18) 0%,
+    rgba(168, 216, 192, 0.14) 50%,
+    rgba(255, 200, 160, 0.12) 100%
+  );
+  --aurora-strong: linear-gradient(
+    135deg,
+    rgba(196, 176, 255, 0.35) 0%,
+    rgba(168, 216, 192, 0.25) 50%,
+    rgba(255, 200, 160, 0.2) 100%
+  );
+  --aurora-text: linear-gradient(
+    135deg,
+    var(--amethyst-purple),
+    var(--aventurin-green)
+  );
+
+  /* type */
+  --font-serif: "DM Serif Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  /* radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* breakpoints
+   xs:  320px   — small phones
+   sm:  768px   — tablets
+   md:  1024px  — small desktops
+   lg:  1200px  — desktops
+   xl:  1920px  — large screens */
+}

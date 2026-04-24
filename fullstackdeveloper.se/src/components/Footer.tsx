@@ -1,13 +1,12 @@
 import React from "react";
-import "@/styles/footer.css";
+import "@/styles/components/footer.css";
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__logo">
+      <div className="footer-logo">
         fullstack<span>developer</span>.se
       </div>
-      {/* <div>Built with TypeScript &amp; care</div> */}
       <div>© {new Date().getFullYear()}</div>
     </footer>
   );

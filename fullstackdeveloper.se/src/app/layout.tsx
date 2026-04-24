@@ -1,5 +1,7 @@
 // src/app/layout.tsx
+import "@/styles/tokens.css";
 import "@/styles/globals.css";
+import "@/styles/utilities.css";
 import ChatBot from "@/components/ChatBot";
 import BackToTop from "@/components/BackToTop";
 import FadeInObserver from "@/components/FadeInObserver";

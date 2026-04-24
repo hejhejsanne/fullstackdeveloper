@@ -1,6 +1,6 @@
 import React from "react";
 import { Skill } from "@/types";
-import "@/styles/skills.css";
+import "@/styles/components/skills.css";
 
 export default function Skills({ skills }: { skills: Skill[] }) {
   return (

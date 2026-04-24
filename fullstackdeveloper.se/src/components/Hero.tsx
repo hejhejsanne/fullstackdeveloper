@@ -1,9 +1,8 @@
-// src/components/Hero.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
-import "@/styles/hero.css";
+import "@/styles/components/hero.css";
 import CVDownloadModal from "@/components/CVDownloadModal";
 
 export default function Hero() {
@@ -11,48 +10,52 @@ export default function Hero() {
 
   return (
     <section className="hero" aria-labelledby="hero-heading">
-      {/* Mobil-topp: status — dold på desktop */}
-      <div className="hero__mobile-top">
-        <div className="hero__mobile-status">
-          <span className="hero__status-dot" aria-hidden="true" />
+      <div className="hero-mobile-top">
+        <div className="hero-mobile-status">
+          <span className="hero-status-dot" aria-hidden="true" />
           Available for work
         </div>
       </div>
 
-      <div className="hero__left">
-        {/* <div className="site-banner">
-          🚧 This site is still a work in progress – some things may change.
-        </div> */}
-        <div className="hero__tag" aria-hidden="true">
+      <div className="hero-left">
+        <div className="hero-tag" aria-hidden="true">
           Full Stack Developer · Gothenburg
         </div>
-        <h1 className="hero__heading" id="hero-heading">
+        <h1 className="hero-heading" id="hero-heading">
           Where others see <em>problems</em>, I build solutions.
         </h1>
-        <p className="hero__desc">
-          I take on complex challenges across technology and leadership - from
+        <p className="hero-desc">
+          I take on complex challenges across technology and leadership — from
           building systems and structuring processes to mentoring, teaching, and
           guiding startups from idea to execution.
         </p>
-        <div className="hero__actions">
-          <a href="#projects" className="btn-primary">
+        <div className="hero-actions">
+          <button
+            className="btn-primary"
+            onClick={() => {
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             See my projects
-          </a>
-          <button className="btn-secondary" onClick={() => setShowModal(true)}>
+          </button>
+          <button className="btn-primary-2" onClick={() => setShowModal(true)}>
             Download CV
           </button>
         </div>
       </div>
-      <div className="hero__right">
-        <div className="hero__photo-wrap">
+
+      <div className="hero-right">
+        <div className="hero-photo">
           <Image
             src="/sanne.jpg"
             alt="Sanne Delin"
             fill
-            className="hero__photo"
+            className="hero-photo-img"
             loading="eager"
             fetchPriority="high"
-            sizes="(max-width: 480px) 50vw, (max-width: 720px) 55vw, 400px"
+            sizes="(max-width: 600px) 50vw, (max-width: 768px) 55vw, 400px"
           />
         </div>
       </div>

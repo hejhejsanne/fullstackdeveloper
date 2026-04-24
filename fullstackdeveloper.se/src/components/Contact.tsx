@@ -1,5 +1,5 @@
 import React from "react";
-import "@/styles/contact.css";
+import "@/styles/components/contact.css";
 
 const contactLinks = [
   {
@@ -12,8 +12,11 @@ const contactLinks = [
     label: "LinkedIn ↗",
     external: true,
   },
-  { href: "https://github.com/hejhejsanne", label: "GitHub ↗", external: true },
-  // { href: 'tel:+46737324171', label: '+46 73-732 41 71', external: false },
+  {
+    href: "https://github.com/hejhejsanne",
+    label: "GitHub ↗",
+    external: true,
+  },
 ];
 
 export default function Contact() {
@@ -27,27 +30,27 @@ export default function Contact() {
       <div className="section-label" id="contact-heading">
         Availability &amp; contact
       </div>
-      <div className="contact__banner">
+      <div className="contact-banner">
         <div>
-          <div className="contact__status">
+          <div className="contact-status">
             <span className="status-dot" aria-hidden="true" />
-            <span className="contact__status-text">
+            <span className="contact-status-text">
               Open for new opportunities
             </span>
           </div>
-          <h2 className="contact__heading">
+          <h2 className="contact-heading">
             Looking for a full stack developer?
           </h2>
-          <p className="contact__desc">
-            Freelance, consultant or full-time – reach out and let&amp;s talk
+          <p className="contact-desc">
+            Freelance, consultant or full-time - reach out and let&rsquo;s talk
             about what you need.
           </p>
-          <div className="contact__links">
+          <div className="contact-links">
             {contactLinks.map(({ href, label, external }) => (
               <a
                 key={href}
                 href={href}
-                className="contact__link"
+                className="contact-link"
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
               >

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import "@/styles/nav.css";
+import "@/styles/components/nav.css";
 import Link from "next/link";
-import ChatBot from "../components/ChatBot";
+import ChatBot from "./ChatBot";
 
 interface NavLink {
   href: string;

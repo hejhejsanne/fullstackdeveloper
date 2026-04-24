@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import "@/styles/chatbot.css";
+import "@/styles/components/chatbot.css";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,7 +9,7 @@ interface Message {
 }
 
 const WELCOME =
-  "Ask me anything about Sanne and her work experience, and I'll do my best to answer!";
+  "Ask me anything about Sanne and her work experience, and I&rsquo;ll do my best to answer!";
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -19,7 +19,7 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const windowRef = useRef<HTMLDivElement>(null); // ← ny
+  const windowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -30,14 +30,12 @@ export default function ChatBot() {
     }
   }, [isOpen, messages.length]);
 
-  // Lyssna på open-aisan event (från nav "Ai Assistans" länk)
   useEffect(() => {
     const handler = () => setIsOpen(true);
     window.addEventListener("open-aisan", handler);
     return () => window.removeEventListener("open-aisan", handler);
   }, []);
 
-  // Stäng vid klick utanför
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
@@ -117,7 +115,7 @@ export default function ChatBot() {
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? (
-          <svg className="chat-toggle__icon" viewBox="0 0 20 20" fill="none">
+          <svg className="chat-toggle-icon" viewBox="0 0 20 20" fill="none">
             <path
               d="M4 4L16 16M16 4L4 16"
               stroke="currentColor"
@@ -126,7 +124,7 @@ export default function ChatBot() {
             />
           </svg>
         ) : (
-          <svg className="chat-toggle__icon" viewBox="0 0 22 22" fill="none">
+          <svg className="chat-toggle-icon" viewBox="0 0 22 22" fill="none">
             <path
               d="M11 2C6.03 2 2 5.8 2 10.5c0 2.1.82 4 2.16 5.5L3 20l4.3-1.12A9.3 9.3 0 0011 19c4.97 0 9-3.8 9-8.5S15.97 2 11 2z"
               stroke="currentColor"
@@ -135,7 +133,7 @@ export default function ChatBot() {
             />
           </svg>
         )}
-        {!isOpen && <span className="chat-toggle__label"></span>}
+        {!isOpen && <span className="chat-toggle-label"></span>}
       </button>
 
       {isOpen && (
@@ -145,14 +143,14 @@ export default function ChatBot() {
           aria-label="Chat with AiSan"
           ref={windowRef}
         >
-          <div className="chat-window__header">
-            <div className="chat-window__avatar">A</div>
-            <div className="chat-window__info">
-              <div className="chat-window__name">AiSan</div>
-              <div className="chat-window__sub">Sanne&apos;s AI assistant</div>
+          <div className="chat-header">
+            <div className="chat-avatar">A</div>
+            <div className="chat-info">
+              <div className="chat-name">AiSan</div>
+              <div className="chat-sub">Sanne&rsquo;s AI assistant</div>
             </div>
             <button
-              className="chat-window__close"
+              className="chat-close"
               onClick={() => setIsOpen(false)}
               aria-label="Close chat"
             >
@@ -167,14 +165,14 @@ export default function ChatBot() {
             </button>
           </div>
 
-          <div className="chat-window__messages">
+          <div className="chat-messages">
             {messages.map((msg, i) => (
-              <div key={i} className={`chat-msg chat-msg--${msg.role}`}>
+              <div key={i} className={`chat-msg chat-msg-${msg.role}`}>
                 {msg.content}
               </div>
             ))}
             {(loading || streamingMessage) && (
-              <div className="chat-msg chat-msg--assistant">
+              <div className="chat-msg chat-msg-assistant">
                 {streamingMessage || (
                   <span className="chat-typing">
                     <span />
@@ -187,7 +185,7 @@ export default function ChatBot() {
             <div ref={chatEndRef} />
           </div>
 
-          <div className="chat-window__input">
+          <div className="chat-input">
             <input
               ref={inputRef}
               value={input}
@@ -198,12 +196,12 @@ export default function ChatBot() {
               aria-label="Message input"
             />
             <button
-              className="chat-window__send"
+              className="chat-send"
               onClick={sendMessage}
               disabled={loading || !input.trim()}
               aria-label="Send message"
             >
-              <svg className="chat-send__icon" viewBox="0 0 18 18" fill="none">
+              <svg className="chat-send-icon" viewBox="0 0 18 18" fill="none">
                 <path
                   d="M2 9L16 2L9 16L8 10L2 9Z"
                   stroke="currentColor"

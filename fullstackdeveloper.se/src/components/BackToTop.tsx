@@ -1,5 +1,5 @@
 "use client";
-import "@/styles/backtotop.css";
+import "@/styles/components/backtotop.css";
 import { useEffect, useState } from "react";
 
 export default function BackToTop() {

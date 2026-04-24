@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import "@/styles/references.css";
+import "@/styles/components/references.css";
 
 interface Person {
   name: string;
