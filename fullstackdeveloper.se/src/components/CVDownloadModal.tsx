@@ -2,16 +2,26 @@
 import "@/styles/components/cvmodal.css";
 
 import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface CVDownloadModalProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function CVDownloadModal({ onClose }: CVDownloadModalProps) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
+    } else {
+      router.back();
+    }
+  };
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -19,7 +29,7 @@ export default function CVDownloadModal({ onClose }: CVDownloadModalProps) {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
@@ -47,7 +57,7 @@ export default function CVDownloadModal({ onClose }: CVDownloadModalProps) {
       link.download = "Sanne_Delin_CV.pdf";
       link.click();
 
-      onClose();
+      handleClose();
     } catch (err) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong");
@@ -57,13 +67,13 @@ export default function CVDownloadModal({ onClose }: CVDownloadModalProps) {
   return (
     <div
       className="cv-backdrop"
-      onClick={onClose}
+      onClick={handleClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="cv-modal-title"
     >
       <div className="cv-box" onClick={(e) => e.stopPropagation()}>
-        <button className="cv-close" onClick={onClose} aria-label="Close">
+        <button className="cv-close" onClick={handleClose} aria-label="Close">
           ✕
         </button>
 

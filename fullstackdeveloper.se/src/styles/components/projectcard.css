@@ -136,6 +136,10 @@
   color: var(--amethyst-purple);
   font-weight: 500;
 }
+a.project-card-links {
+  display: flex;
+  justify-content: flex-end;
+}
 
 /* reflection */
 .reflection-box {
@@ -185,6 +189,7 @@
 .project-card-links {
   display: flex;
   gap: 1rem;
+  margin-left: auto;
 }
 
 .project-card-link {

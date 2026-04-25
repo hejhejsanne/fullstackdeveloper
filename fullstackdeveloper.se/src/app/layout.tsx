@@ -9,6 +9,7 @@ import Script from "next/script";
 import type { Metadata } from "next";
 //import dynamic from "next/dynamic";
 import ShaderBackgroundLoader from "@/components/ShaderBackgroundLoader";
+import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fullstackdeveloper.se"),
@@ -63,6 +64,7 @@ export default function RootLayout({
       </head>
       <body>
         <ShaderBackgroundLoader />
+        <Nav />
         {children}
         <ChatBot />
 

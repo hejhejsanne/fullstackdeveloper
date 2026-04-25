@@ -14,7 +14,7 @@ import ATS from "@/components/Ats";
 export default function Home() {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <main>
         <Hero />
         <hr className="divider" />

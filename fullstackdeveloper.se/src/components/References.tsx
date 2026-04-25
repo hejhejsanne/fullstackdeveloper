@@ -76,7 +76,7 @@ export default function References() {
                 <p className="references__role">{person.title}</p>
                 <p className="references__quote">{person.short}</p>
                 <span className="references__hint">
-                  Klicka för att läsa mer
+                  Click here to read more →
                 </span>
               </div>
 

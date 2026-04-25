@@ -1,8 +1,7 @@
 "use client";
-import React from "react";
+
 import { Project, ProjectTag, ProcessStep } from "@/types";
 import "@/styles/components/projectcard.css";
-import Image from "next/image";
 
 function Tag({ label, variant }: ProjectTag) {
   return <span className={`tag tag--${variant}`}>{label}</span>;
@@ -42,6 +41,8 @@ export default function ProjectCard({ project }: { project: Project }) {
     processSteps,
     reflectionLabel,
     reflectionText,
+    reflectionLabel2,
+    reflectionText2,
     tech,
     liveUrl,
     liveLabel,
@@ -78,6 +79,9 @@ export default function ProjectCard({ project }: { project: Project }) {
       </div>
       {processSteps && <ProcessStrip steps={processSteps} />}
       <ReflectionBox label={reflectionLabel} text={reflectionText} />
+      {reflectionLabel2 && reflectionText2 && (
+        <ReflectionBox label={reflectionLabel2} text={reflectionText2} />
+      )}
       <div className="project-card-footer">
         <div className="project-card-tech">
           {tech.map((t) => (
@@ -94,7 +98,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 className="project-card-link"
                 onClick={() => window.dispatchEvent(new Event("open-aisan"))}
               >
-                Öppna AiSan ↗
+                Open AiSan ↗
               </button>
             ) : (
               <a

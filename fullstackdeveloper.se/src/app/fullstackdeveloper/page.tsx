@@ -1,6 +1,7 @@
 // src/app/fullstackdeveloper/page.tsx
 import type { Metadata } from "next";
 import Link from "next/link";
+import Nav from "@/components/Nav";
 // import "@/styles/seo.css";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 export default function FullStackDeveloperPage() {
   return (
     <main className="seo-page">
+      <Nav />
       {/* Hero */}
       <section className="seo-hero">
         <div className="seo-hero__inner">

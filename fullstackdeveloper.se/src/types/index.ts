@@ -16,6 +16,8 @@ export interface Project {
   processSteps?: ProcessStep[];
   reflectionLabel: string;
   reflectionText: string;
+  reflectionLabel2?: string;
+  reflectionText2?: string;
   tech: string[];
   liveUrl?: string;
   githubUrl?: string;
