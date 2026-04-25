@@ -3,18 +3,29 @@ import { Project, Skill } from "@/types";
 export const projects: Project[] = [
   {
     id: "proj-chatbot",
-    title: "Portfolio Chatbot",
+    title: "AiSan – Personal AI Career Assistant",
     impact:
-      "An AI-powered chatbot built for my first job-seeking portfolio – answers questions about me, my projects and my experience in real time.",
+      "A chatbot built into the portfolio that answers questions about Me and my work. Powered by Claude Opus with a detailed system prompt defining my profile, rules and boundaries. Responses stream in real time. When a question falls outside what AiSan knows, it tells the user honestly – and simultaneously fires an email via Nodemailer so the knowledge base can be updated.",
     tags: [
-      { label: "AI / Chatbot", variant: "blue" },
-      { label: "Portfolio", variant: "green" },
-      { label: "2024", variant: "gray" },
+      { label: "AI / Prompt Engineering", variant: "blue" },
+      { label: "Solo Project", variant: "green" },
+      { label: "2025", variant: "gray" },
     ],
-    reflectionLabel: "How it works",
+    reflectionLabel: "The interesting part",
+
     reflectionText:
-      "The idea came while building my first portfolio during my job search – I wanted a chatbot that could answer questions specifically about me. Working on my thesis at the same time sparked a broader curiosity about AI integration, and this project became my first step into building with AI APIs.",
-    tech: ["TypeScript", "React", "Node.js"],
+      "Prompt engineering was the core challenge – keeping AiSan on-topic, prompt-injection resistant and naturally multilingual required a lot of iteration. One thing that became clear early was that without clear boundaries, Claude tends to oversell – responses felt generic and exaggerated rather than genuine. Getting the tone right, accurate and direct without being flat, took more work than the technical implementation.",
+    reflectionLabel2: "Why it matters",
+    reflectionText2:
+      "A static portfolio tells employers what you've done. AiSan lets them have a conversation about it – and the self-updating feedback loop means the knowledge base improves every time a question goes unanswered.",
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Claude API",
+      "Nodemailer",
+      "Streaming API",
+    ],
+
     liveUrl: "#chatbot",
     liveLabel: "Open AiSan",
   },
