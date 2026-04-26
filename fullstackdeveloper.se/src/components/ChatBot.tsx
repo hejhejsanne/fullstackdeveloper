@@ -45,6 +45,7 @@ export default function ChatBot() {
   }, []);
 
   const [isMinimized, setIsMinimized] = useState(false);
+
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
@@ -55,12 +56,13 @@ export default function ChatBot() {
         !toggle?.contains(e.target as Node)
       ) {
         if (isMinimized) return;
-        setIsOpen(false);
+        setIsMinimized(true);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen, isMinimized]);
+
   useEffect(() => {
     if (isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
