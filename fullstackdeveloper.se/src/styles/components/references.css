@@ -91,7 +91,12 @@
 }
 
 .references__back {
-  background: #a8d8c01f;
+  background: #a8d8c060;
+  border: 1px solid #b8d7c8c3;
+  /* background: rgba(255, 255, 255, 0.65); */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   color: #eeedfe;
   transform: rotateY(180deg);
   display: flex;
@@ -145,5 +150,5 @@
 }
 
 .references__back-linkedin:hover {
-  color: #eeedfe;
+  color: #69668f95;
 }
