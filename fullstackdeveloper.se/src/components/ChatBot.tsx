@@ -40,7 +40,7 @@ export default function ChatBot() {
     window.addEventListener("open-aisan", handler);
     return () => window.removeEventListener("open-aisan", handler);
   }, []);
-
+  const [isMinimized, setIsMinimized] = useState(false);
   useEffect(() => {
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
@@ -50,12 +50,29 @@ export default function ChatBot() {
         !windowRef.current.contains(e.target as Node) &&
         !toggle?.contains(e.target as Node)
       ) {
+        if (isMinimized) return;
         setIsOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, isMinimized]);
+  useEffect(() => {
+    if (isOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      const toggle = document.querySelector(".chat-toggle");
+      if (
+        windowRef.current &&
+        !windowRef.current.contains(e.target as Node) &&
+        !toggle?.contains(e.target as Node)
+      ) {
+        if (isMinimized) return;
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen, isMinimized]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -126,7 +143,10 @@ export default function ChatBot() {
     <>
       <button
         className="chat-toggle"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          setIsMinimized(false);
+        }}
         aria-label={isOpen ? "Close chat" : "Open chat"}
       >
         {isOpen ? (
@@ -151,7 +171,24 @@ export default function ChatBot() {
         {!isOpen && <span className="chat-toggle-label"></span>}
       </button>
 
-      {isOpen && (
+      {isOpen && isMinimized && (
+        <button
+          className="chat-bubble"
+          onClick={() => setIsMinimized(false)}
+          aria-label="Open chat"
+        >
+          <svg viewBox="0 0 22 22" fill="none" width="18" height="18">
+            <path
+              d="M11 2C6.03 2 2 5.8 2 10.5c0 2.1.82 4 2.16 5.5L3 20l4.3-1.12A9.3 9.3 0 0011 19c4.97 0 9-3.8 9-8.5S15.97 2 11 2z"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+      )}
+
+      {isOpen && !isMinimized && (
         <div
           className="chat-window"
           role="dialog"
@@ -164,20 +201,36 @@ export default function ChatBot() {
               <div className="chat-name">AiSan</div>
               <div className="chat-sub">Sanne&rsquo;s AI assistant</div>
             </div>
-            <button
-              className="chat-close"
-              onClick={() => setIsOpen(false)}
-              aria-label="Close chat"
-            >
-              <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
-                <path
-                  d="M4 4L16 16M16 4L4 16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
+            <div className="chat-header-actions">
+              <button
+                className="chat-minimize"
+                onClick={() => setIsMinimized(true)}
+                aria-label="Minimize chat"
+              >
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+                  <path
+                    d="M4 10H16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+              <button
+                className="chat-close"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close chat"
+              >
+                <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+                  <path
+                    d="M4 4L16 16M16 4L4 16"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <div className="chat-messages">

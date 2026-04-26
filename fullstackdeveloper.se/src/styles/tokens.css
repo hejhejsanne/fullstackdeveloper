@@ -12,8 +12,9 @@
   --stardust-purple: #6a5a7a;
   --moonrise-white: #f8f4ff;
   --amethyst-purple: #7b5ea7;
-  --aventurin-green: #2a9d90d5;
+  --aventurin-green: rgba(115, 208, 188, 0.912);
   --starlight-white: #ffffff;
+  --starlight-white-glassie: #ffffff93;
   --signal-green: #52c487;
 
   /* shader colors */
