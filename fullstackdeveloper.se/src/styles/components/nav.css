@@ -140,7 +140,7 @@
 }
 
 /* small desktop */
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 857px) and (max-width: 1024px) {
   .nav {
     padding: 1rem 1.25rem;
   }
@@ -164,7 +164,7 @@
 }
 
 /* mobile */
-@media (max-width: 768px) {
+@media (max-width: 856px) {
   .nav {
     padding: 1rem 1.25rem;
     flex-wrap: wrap;
