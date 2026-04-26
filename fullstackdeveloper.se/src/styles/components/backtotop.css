@@ -42,7 +42,7 @@
 /* mobile */
 @media (max-width: 600px) {
   .back-to-top {
-    bottom: 1.25rem;
+    bottom: 4.25rem;
     right: 1.25rem;
   }
 }

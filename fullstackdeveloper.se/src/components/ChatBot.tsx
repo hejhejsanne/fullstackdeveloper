@@ -36,10 +36,14 @@ export default function ChatBot() {
   }, [isOpen, messages.length]);
 
   useEffect(() => {
-    const handler = () => setIsOpen(true);
+    const handler = () => {
+      setIsOpen(true);
+      setIsMinimized(false);
+    };
     window.addEventListener("open-aisan", handler);
     return () => window.removeEventListener("open-aisan", handler);
   }, []);
+
   const [isMinimized, setIsMinimized] = useState(false);
   useEffect(() => {
     if (!isOpen) return;

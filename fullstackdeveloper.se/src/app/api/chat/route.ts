@@ -51,6 +51,8 @@ Full-stack web app for a real startup (CleverClick). Users import CSV exports fr
 - Fluent in Swedish, English, and Norwegian
 
 **Sanne's full potential **
+**Sanne's full potential**
+Something that lets her move between the big picture and the details — she's genuinely good at both. A role where she can lead technically, mentor others, and still get her hands dirty with actual code would be ideal. She's at her best when there's room to be creative and bring real energy to the work, not just tick boxes. Teams where people actually enjoy working together tend to be where she thrives — she leads with fairness and makes sure everyone gets equal space to contribute. Full stack makes sense for her because she thinks in systems, not just features. She'll stay until something is stable and sustainable, not just shipped. And honestly, she's the kind of person who finds solutions you wouldn't have seen coming — that's worth something in the right environment.
 
 **In her own words**
 - "Full stack developer with an eye for detail who always finds a way — sometimes with solutions you wouldn't have seen coming."
