@@ -9,11 +9,16 @@ interface Message {
 }
 
 const WELCOME =
-  "Ask me anything about Sanne and her work experience, and I&rsquo;ll do my best to answer!";
+  "Hi! I'm AiSan - Sanne's AI assistant. Ask me anything about her work, projects or experience, and I'll answer in whatever language you write in.";
+
+const QUICK_REPLIES = [
+  "What's her tech stack?",
+  "Tell me about one of her projects",
+  "What kind of role would put Sanne's full potential to use?",
+];
 
 export default function ChatBot() {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [streamingMessage, setStreamingMessage] = useState("");
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -54,17 +59,17 @@ export default function ChatBot() {
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, streamingMessage]);
+  }, [messages]);
 
-  const sendMessage = async () => {
-    if (!input.trim() || loading) return;
+  const sendMessage = async (overrideInput?: string) => {
+    const messageText = overrideInput ?? input;
+    if (!messageText.trim() || loading) return;
 
-    const userMessage: Message = { role: "user", content: input };
+    const userMessage: Message = { role: "user", content: messageText };
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
-    setStreamingMessage("");
 
     try {
       const res = await fetch("/api/chat", {
@@ -73,19 +78,21 @@ export default function ChatBot() {
         body: JSON.stringify({ messages: updatedMessages }),
       });
 
-      const reader = res.body!.getReader();
-      const decoder = new TextDecoder("utf-8");
-      let result = "";
+      const data = await res.json();
 
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value, { stream: true });
-        result += chunk;
-        setStreamingMessage(result);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: data.main },
+      ]);
+
+      if (data.followup) {
+        setTimeout(() => {
+          setMessages((prev) => [
+            ...prev,
+            { role: "assistant", content: data.followup },
+          ]);
+        }, 600);
       }
-
-      setMessages((prev) => [...prev, { role: "assistant", content: result }]);
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -96,7 +103,6 @@ export default function ChatBot() {
       ]);
     } finally {
       setLoading(false);
-      setStreamingMessage("");
     }
   };
 
@@ -105,6 +111,15 @@ export default function ChatBot() {
       e.preventDefault();
       sendMessage();
     }
+  };
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setInput(e.target.value);
+    const el = e.target;
+    el.style.height = "12px";
+    el.style.height = `${el.scrollHeight}px`;
   };
 
   return (
@@ -169,35 +184,47 @@ export default function ChatBot() {
             {messages.map((msg, i) => (
               <div key={i} className={`chat-msg chat-msg-${msg.role}`}>
                 {msg.content}
+                {msg.role === "assistant" && i === 0 && !loading && (
+                  <div className="chat-quick-replies">
+                    {QUICK_REPLIES.map((q) => (
+                      <button
+                        key={q}
+                        className="chat-quick-reply"
+                        onClick={() => sendMessage(q)}
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
-            {(loading || streamingMessage) && (
+            {loading && (
               <div className="chat-msg chat-msg-assistant">
-                {streamingMessage || (
-                  <span className="chat-typing">
-                    <span />
-                    <span />
-                    <span />
-                  </span>
-                )}
+                <span className="chat-typing">
+                  <span />
+                  <span />
+                  <span />
+                </span>
               </div>
             )}
             <div ref={chatEndRef} />
           </div>
 
           <div className="chat-input">
-            <input
-              ref={inputRef}
+            <textarea
+              ref={textareaRef}
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={handleInput}
               onKeyDown={handleKeyDown}
               placeholder="Ask something..."
               disabled={loading}
               aria-label="Message input"
+              rows={1}
             />
             <button
               className="chat-send"
-              onClick={sendMessage}
+              onClick={() => sendMessage()}
               disabled={loading || !input.trim()}
               aria-label="Send message"
             >
