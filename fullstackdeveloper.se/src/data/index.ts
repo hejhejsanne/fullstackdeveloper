@@ -3,21 +3,20 @@ import { Project, Skill } from "@/types";
 export const projects: Project[] = [
   {
     id: "proj-chatbot",
-    title: "AiSan – Personal AI Career Assistant",
+    title: "AiSan - Personal AI Career Assistant",
     impact:
-      "A chatbot built into the portfolio that answers questions about Me and my work. Powered by Claude Opus with a detailed system prompt defining my profile, rules and boundaries. Responses stream in real time. When a question falls outside what AiSan knows, it tells the user honestly – and simultaneously fires an email via Nodemailer so the knowledge base can be updated.",
+      "Most portfolios just sit there. AiSan talks back. It's a chatbot built directly into this portfolio - powered by Claude Opus - that answers questions about me, my work, my process. Responses stream in real time. And when something comes up that AiSan genuinely doesn't know? It says so honestly, and simultaneously fires off an email via Nodemailer so I can update the knowledge base. Self-improving, essentially.",
     tags: [
       { label: "AI / Prompt Engineering", variant: "blue" },
       { label: "Solo Project", variant: "green" },
       { label: "2025", variant: "gray" },
     ],
-    reflectionLabel: "The interesting part",
-
+    reflectionLabel: "The part that actually took work",
     reflectionText:
-      "Prompt engineering was the core challenge – keeping AiSan on-topic, prompt-injection resistant and naturally multilingual required a lot of iteration. One thing that became clear early was that without clear boundaries, Claude tends to oversell – responses felt generic and exaggerated rather than genuine. Getting the tone right, accurate and direct without being flat, took more work than the technical implementation.",
+      "The technical build was straightforward enough. Prompt engineering was not. Keeping AiSan on-topic, resistant to prompt injection, and naturally multilingual across Swedish, English and Norwegian required a lot of iteration - more than I initially expected. One thing that became obvious pretty fast: without tight boundaries, Claude oversells. Responses started sounding generic, slightly exaggerated, like a LinkedIn bio written by someone who'd never met me. Getting the tone right - accurate and direct, but not flat - ended up being more work than anything on the technical side.",
     reflectionLabel2: "Why it matters",
     reflectionText2:
-      "A static portfolio tells employers what you've done. AiSan lets them have a conversation about it – and the self-updating feedback loop means the knowledge base improves every time a question goes unanswered.",
+      "A static portfolio tells employers what you've done. AiSan lets them actually ask about it. And every unanswered question makes the next version better.",
     tech: [
       "Next.js",
       "TypeScript",
@@ -25,26 +24,25 @@ export const projects: Project[] = [
       "Nodemailer",
       "Streaming API",
     ],
-
     liveUrl: "#chatbot",
     liveLabel: "Open AiSan",
   },
   {
     id: "proj-tarot",
-    title: "Kortens Budskap – Tarot Memory App",
+    title: "Kortens Budskap - Tarot Memory App",
     impact:
-      "A solo fullstack project built to learn all 78 Rider-Waite tarot cards. Users can study cards in lesson mode, then test themselves in a multiple choice game mode where every answer is saved. After each game, Claude API will analyse the session history and generate personalised study tips based on which cards the user struggles with most. Built with Next.js App Router, Drizzle ORM and Auth.js v5 – deployed to kortensbudskap.se via Vercel.",
+      "A personal project that started with a simple problem: I wanted to actually learn all 78 Rider-Waite tarot cards, and nothing out there quite worked the way I wanted. So I built it. Users study cards in lesson mode, then test themselves in a multiple choice game. Every answer gets saved. After each session, Claude will analyse the full history - which cards you're nailing, which ones keep tripping you up - and generate study tips that actually reflect your patterns, not just generic advice.",
     tags: [
       { label: "Full Stack", variant: "blue" },
       { label: "Solo Project", variant: "green" },
-      { label: "2025–ongoing", variant: "gray" },
+      { label: "2025-ongoing", variant: "gray" },
     ],
-    reflectionLabel: "The interesting part",
+    reflectionLabel: "The part that actually took work",
     reflectionText:
-      "The CSS architecture became a project in itself: Tailwind v4 with @apply in separate component files, strict import order in globals.css, no inline styles anywhere in JSX. Auth.js v5 was also newer than most documentation covers – figuring out the credentials provider and protected routes with the renamed proxy.ts took some digging. The AI integration is planned as the core feature – Claude will receive the user's full game history and hardest cards and return feedback that actually feels personal.",
-    reflectionLabel2: "What's left",
+      "Two things fought back harder than expected. First: the CSS architecture. Tailwind v4 with @apply in separate component files, strict import order in globals.css, zero inline styles anywhere in JSX. What sounds like a stylistic preference turns into a real system when you're maintaining it alone - and it paid off. Second: Auth.js v5. It's newer than most of the documentation covers. Figuring out the credentials provider and protected routes with the renamed proxy.ts involved a lot of digging through source code and GitHub issues rather than clean tutorials.",
+    reflectionLabel2: "What's still in progress",
     reflectionText2:
-      "Game mode saving, results page, Claude integration and a statistics view. The foundation is solid – auth, database schema, lesson mode, multiple choice and the auto-scrolling card carousel on the landing page are all done.",
+      "Game mode saving, results page, Claude integration, statistics view. The foundation is genuinely solid - auth, database schema, lesson mode, multiple choice, and the auto-scrolling card carousel on the landing page are all done. The interesting part is coming.",
     tech: [
       "Next.js",
       "TypeScript",
@@ -63,18 +61,18 @@ export const projects: Project[] = [
     id: "proj-grading",
     title: "AI-Assisted Programming Assignment Grading System",
     impact:
-      "A Node.js/Express backend integrated with Anthropic's Claude API that lets teachers upload student Java code and receive structured, pedagogically valuable feedback – output as JSON for further processing. The prompts were built around examples of the teacher's own previous feedback to preserve their tone and voice. Frontend was deliberately deprioritised to go deeper on the AI integration, which turned out to be the right call.",
+      "Teachers spend a disproportionate amount of time writing feedback on student code. This project asked: what if Claude could do it in their voice? A Node.js/Express backend integrated with the Claude API - teachers upload student Java submissions and receive structured, pedagogically grounded feedback, output as JSON for further processing. The prompts were built around examples of the teacher's own previous feedback, so the tone and priorities actually sounded like them. Frontend was deliberately deprioritised. Going deeper on the AI integration was the right call.",
     tags: [
       { label: "AI / Prompt Engineering", variant: "blue" },
       { label: "Thesis", variant: "green" },
       { label: "2025", variant: "gray" },
     ],
-    reflectionLabel: "The interesting part",
+    reflectionLabel: "The part that actually took work",
     reflectionText:
-      "Four prompt architectures were systematically tested – from naive one-liners to role-based chain-of-thought prompts – against the same Java code samples at three quality levels. Stage 1 produced identical feedback regardless of code quality. By Stage 4, the model correctly differentiated between them, flagged specific issues with severity ratings, and preserved the teacher's voice in the feedback. The biggest discovery was how context-sensitive LLMs are: a single sentence emphasising beginner-level context could shift a FAIL (35/100) to a PASS (85/100). Prompt engineering turned out to be a design problem, not a technical one.",
-    reflectionLabel2: "Key takeaway",
+      "Four prompt architectures were tested systematically - from naive one-liners all the way to role-based chain-of-thought prompts - against the same Java samples at three quality levels: strong, average, weak. Stage 1 produced identical feedback regardless of code quality. Completely flat. By Stage 4, the model correctly differentiated between all three, flagged specific issues with severity ratings, and preserved the teacher's voice throughout. The most striking discovery: a single sentence adding beginner-level context shifted a FAIL (35/100) to a PASS (85/100). Same code. One sentence of context. That's how sensitive these models are to framing - and it reframed the whole project. Prompt engineering isn't a technical problem. It's a design problem.",
+    reflectionLabel2: "The takeaway",
     reflectionText2:
-      "Clear role definition and structured instructions dramatically improve feedback relevance and precision. Well-designed prompts can balance technical code analysis with pedagogical aspects – without any fine-tuning.",
+      "Clear role definition and structured instructions dramatically improve both relevance and precision. You don't need fine-tuning to get feedback that balances technical analysis with genuine pedagogical value. You need a well-designed prompt.",
     tech: [
       "JavaScript",
       "Node.js",
@@ -87,20 +85,20 @@ export const projects: Project[] = [
   },
   {
     id: "proj-startup",
-    title: "Pengasplitten – Personal Finance App",
+    title: "Pengasplitten - Personal Finance App",
     impact:
-      "Full-stack web app built for a real startup (CleverClick) that helps people get a clear picture of their everyday finances. Users import CSV exports from their bank, transactions are automatically categorised by rules, and spending is broken down by category and time period. The backend handles auth with JWT and bcrypt, CSV parsing with column mapping, and a categorisation service – all built on Node.js/Express 5 with Prisma 7 and PostgreSQL hosted on Neon. Frontend is Next.js 16 with SCSS. API requests are version-controlled in Git using Bruno, replacing Postman entirely.",
+      "Built for a real startup - CleverClick - to solve a genuinely common problem: most people have no clear picture of where their money actually goes. Pengasplitten lets users import CSV exports from their bank, automatically categorises transactions by rules, and breaks spending down by category and time period. The backend handles auth with JWT and bcrypt, CSV parsing with column mapping, and a full categorisation service - all on Node.js/Express 5 with Prisma 7 and PostgreSQL on Neon. Frontend is Next.js 16 with SCSS. API requests are version-controlled in Git using Bruno, which replaced Postman entirely and honestly I'm not going back.",
     tags: [
       { label: "Full Stack", variant: "blue" },
       { label: "Tech Lead", variant: "green" },
-      { label: "2025–ongoing", variant: "gray" },
+      { label: "2025-ongoing", variant: "gray" },
     ],
     reflectionLabel: "The role",
     reflectionText:
-      "Tech lead in a team of five developers plus a product owner and CEO. Set up the full technical foundation from scratch – repo structure, branching strategy, coding standards and the entire backend architecture. Defined sprints, scoped what went into each one, and created the daily workflow the team followed. Built out a Canva documentation hub with cheat sheets, guides and process docs so developers could find answers themselves before asking – which kept interruptions low and momentum high. Also handled code reviews and the gap between what product wanted and what was actually buildable in time.",
+      "Tech lead in a team of five developers, plus a product owner and CEO. Set up everything from scratch - repo structure, branching strategy, coding standards, backend architecture. Defined sprints, scoped each one, and built the daily workflow the team ran on. Also built a Canva documentation hub: cheat sheets, guides, process docs - the kind of thing that means developers can find answers themselves before interrupting someone. Kept momentum high. Kept interruptions low. Also handled code reviews and the constant, very real tension between what product wanted and what was actually buildable in the time available.",
     reflectionLabel2: "The hard part",
     reflectionText2:
-      "Unclear ownership slows things down more than technical debt ever does. Getting the structure right early – who owns what, how PRs work, when to sync – made the actual development significantly smoother.",
+      "Technical debt is manageable. Unclear ownership is not. Getting the structure right early - who owns what, how PRs flow, when to actually sync - made everything downstream significantly smoother. That lesson was worth more than any line of code written on the project.",
     tech: [
       "Next.js",
       "JavaScript",
