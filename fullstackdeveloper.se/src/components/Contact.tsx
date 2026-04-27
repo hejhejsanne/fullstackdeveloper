@@ -38,11 +38,13 @@ export default function Contact() {
             </span>
           </div>
           <h2 className="contact-heading">
-            Looking for a full stack developer?
+            Got a project that needs building?
+            <br /> A team that needs a tech lead? Something in between?
           </h2>
           <p className="contact-desc">
-            Freelance, consultant or full-time - reach out and let&rsquo;s talk
-            about what you need.
+            I&rsquo;m your full stack developer. Freelance, consultant,
+            full-time — I&rsquo;m open to the conversation. <br />
+            Tell me what you&rsquo;re working on.
           </p>
           <div className="contact-links">
             {contactLinks.map(({ href, label, external }) => (
