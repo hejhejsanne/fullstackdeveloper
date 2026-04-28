@@ -31,3 +31,4 @@ export interface Skill {
   items?: string;
   link?: { href: string; label: string };
 }
+declare module '*.css';

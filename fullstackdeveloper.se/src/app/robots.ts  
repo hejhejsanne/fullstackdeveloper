@@ -1,0 +1,19 @@
+import { MetadataRoute } from "next";
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/api/",
+          "/api/chat",
+          "/api/cv-download",
+          "/api/notify-missing-info",
+        ],
+      },
+    ],
+    sitemap: "https://fullstackdeveloper.se/sitemap.xml",
+  };
+}

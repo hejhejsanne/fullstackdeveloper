@@ -55,10 +55,10 @@ export default function Hero() {
           <div className="hero-photo">
             <Image
               src="/sanne.jpg"
-              alt="Sanne Delin"
+              alt="Sanne Delin — Full Stack Developer Gothenburg"
               fill
               className="hero-photo-img"
-              loading="eager"
+              priority
               fetchPriority="high"
               sizes="(max-width: 600px) 50vw, (max-width: 768px) 55vw, 400px"
             />

@@ -1,5 +1,3 @@
-import React from "react";
-import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import Skills from "@/components/Skills";

@@ -18,10 +18,27 @@ export const metadata: Metadata = {
     template: "%s | Sanne Delin",
   },
   description:
-    "Full Stack Developer based in Gothenburg. I build scalable web applications, mentor teams, and guide startups from idea to execution.",
-  robots: {
-    index: true,
-    follow: true,
+    "Full stack developer in Gothenburg. I build scalable web apps, lead technical teams, and take startups from idea to shipped product.",
+  robots: { index: true, follow: true },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-US": "/",
+      "sv-SE": "/fullstackutvecklare",
+    },
+  },
+  openGraph: {
+    siteName: "Sanne Delin",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sanne Delin — Full Stack Developer Gothenburg",
+      },
+    ],
   },
 };
 
@@ -59,12 +76,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <PersonJsonLd />
-      </head>
+      <head />
       <body>
         <ShaderBackgroundLoader />
         <Nav />
+        <PersonJsonLd />
         {children}
         <ChatBot />
 
