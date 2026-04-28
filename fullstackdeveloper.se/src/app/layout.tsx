@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description:
     "Full stack developer in Gothenburg. I build scalable web apps, lead technical teams, and take startups from idea to shipped product.",
   robots: { index: true, follow: true },
+  verification: {
+    google: "Vq8rfGLksVqXN5iC45VMFnzzBK1GAon5xJSg4LaIFdo",
+  },
   alternates: {
     canonical: "/",
     languages: {
