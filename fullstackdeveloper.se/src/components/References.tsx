@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "@/styles/components/references.css";
 import Image from "next/image";
 
@@ -25,7 +25,6 @@ const data: Person[] = [
     initials: "MB",
     linkedin: "https://www.linkedin.com/in/michael-baggelin/",
   },
-
   {
     name: "Zana Kadir",
     title: "LIA-studerande, Teknikhögskolan",
@@ -36,14 +35,6 @@ const data: Person[] = [
     initials: "ZK",
     linkedin: "https://www.linkedin.com/in/zana-kadir-233b54b2/",
   },
-  // {
-  //   name: "Mia Stefansdotter",
-  //   title: "Klasskamrat, Teknikhögskolan",
-  //   short: "Referens text kommer snart",
-  //   full: "Referens text kommer snart",
-  //   initials: "MS",
-  //   linkedin: "https://www.linkedin.com/in/mia-stefansdotter-8930b2226/",
-  // },
   {
     name: "Helena Johansson",
     title: "CEO, Klarr Utvecklingsbyrå AB",
@@ -57,6 +48,22 @@ const data: Person[] = [
 
 export default function References() {
   const [flipped, setFlipped] = useState<number | null>(null);
+  const isDragging = useRef(false);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      if (flipped === null) return;
+      const activeCard = cardRefs.current[flipped];
+      if (activeCard && !activeCard.contains(e.target as Node)) {
+        setFlipped(null);
+      }
+    }
+
+    document.addEventListener("pointerdown", handleClickOutside);
+    return () =>
+      document.removeEventListener("pointerdown", handleClickOutside);
+  }, [flipped]);
 
   return (
     <section
@@ -72,8 +79,21 @@ export default function References() {
         {data.map((person, i) => (
           <div
             key={i}
+            ref={(el) => {
+              cardRefs.current[i] = el;
+            }}
             className={`references__scene${flipped === i ? " references__scene--flipped" : ""}`}
-            onClick={() => setFlipped(flipped === i ? null : i)}
+            onPointerDown={() => {
+              isDragging.current = false;
+            }}
+            onPointerMove={() => {
+              isDragging.current = true;
+            }}
+            onPointerUp={() => {
+              if (!isDragging.current) {
+                setFlipped(flipped === i ? null : i);
+              }
+            }}
           >
             <div className="references__inner">
               <div className="references__front">
@@ -110,7 +130,7 @@ export default function References() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="references__back-linkedin"
-                      onClick={(e) => e.stopPropagation()}
+                      onPointerUp={(e) => e.stopPropagation()}
                     >
                       LinkedIn →
                     </a>

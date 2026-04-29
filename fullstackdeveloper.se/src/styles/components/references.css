@@ -114,9 +114,11 @@
   padding: 4px 0 12px;
   position: relative;
   overflow-y: auto;
-  min-height: 0; /* krävs för att flex + overflow ska funka */
+  min-height: 0;
   scrollbar-width: thin;
   scrollbar-color: rgba(140, 80, 220, 0.35) transparent;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 
 .references__back-footer {
