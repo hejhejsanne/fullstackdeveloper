@@ -120,11 +120,14 @@ export const projects: Project[] = [
     ],
   },
 ];
-
 export const skills: Skill[] = [
   {
+    category: "Languages",
+    items: "Java, JavaScript, TypeScript, Python, C#",
+  },
+  {
     category: "Frontend",
-    items: "React.js, Next.js, Vue.js, TypeScript, Tailwind CSS, SCSS",
+    items: "React.js, Next.js, Vue.js, HTML, CSS, SCSS, Tailwind CSS",
   },
   {
     category: "Backend",
@@ -132,20 +135,43 @@ export const skills: Skill[] = [
   },
   {
     category: "Databases",
-    items: "PostgreSQL, MongoDB, MySQL, Prisma ORM, Supabase, Neon",
+    items: "MongoDB, PostgreSQL, MySQL, Prisma ORM, Supabase, Neon",
   },
   {
     category: "AI & Prompt Engineering",
     items:
-      "AI integration in web apps, prompt engineering, dynamic AI responses",
+      "AI integration in web applications, prompt engineering, dynamic AI-based responses via API",
   },
   {
-    category: "DevOps & Testing",
-    items: "Docker, GitHub Actions, CI/CD, Jest, Mocha, Supertest, TDD",
+    category: "DevOps & Cloud",
+    items: "AWS, Docker, GitHub Actions, CI/CD, Vercel",
   },
   {
-    category: "Languages & Tools",
-    items: "Java, Python, C#, Git, Figma, Postman, VS Code, IntelliJ",
+    category: "Testing",
+    items: "JUnit, Jest, Mocha, Supertest, TDD",
+  },
+  {
+    category: "Tools",
+    items: "Git, GitHub, VS Code, IntelliJ IDEA, Postman, Bruno, Figma, Canva",
+  },
+  {
+    category: "Security",
+    items: "JWT, bcrypt, authentication and authorization",
+  },
+  {
+    category: "Methodology",
+    items:
+      "Scrum, Kanban, code reviews, technical leadership, mentoring, process development",
+  },
+  {
+    category: "SEO",
+    items:
+      "Metadata, canonical, sitemap, robots.txt, hreflang, JSON-LD, Google Analytics, Google Search Console",
+  },
+  {
+    category: "AEO",
+    items:
+      "AI Engine Optimization: structured content for AI search, FAQ JSON-LD for Google SGE, Gemini, ChatGPT Search, Perplexity",
   },
   {
     category: "GitHub",

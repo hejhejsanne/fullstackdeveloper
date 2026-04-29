@@ -82,7 +82,7 @@
   font-weight: 500;
   background: var(--chrome-text);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--text);
   background-clip: text;
 }
 
