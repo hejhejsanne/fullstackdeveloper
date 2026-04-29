@@ -53,8 +53,8 @@ export default function CVDownloadModal({ onClose }: CVDownloadModalProps) {
       }
 
       const link = document.createElement("a");
-      link.href = "/cv.pdf";
-      link.download = "Sanne_Delin_CV.pdf";
+      link.href = "/sannedelin-ats-en.docx";
+      link.download = "sannedelin-ats-en.docx";
       link.click();
 
       handleClose();
