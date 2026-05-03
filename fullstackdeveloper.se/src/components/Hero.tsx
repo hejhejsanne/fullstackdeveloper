@@ -56,7 +56,7 @@ export default function Hero() {
               className="btn-primary-2"
               onClick={() => setShowModal(true)}
             >
-              Check my ATS-CV
+              Download my ATS-CV
             </button>
           </div>
         </div>
