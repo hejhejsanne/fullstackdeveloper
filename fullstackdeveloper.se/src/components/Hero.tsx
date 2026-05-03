@@ -1,13 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import "@/styles/components/hero.css";
 import CVDownloadModal from "@/components/CVDownloadModal";
+import { useSearchParams } from "next/navigation";
 
 export default function Hero() {
   const [showModal, setShowModal] = useState(false);
+  const searchParams = useSearchParams();
 
+  useEffect(() => {
+    if (searchParams.get("cv_download") === "true") {
+      const link = document.createElement("a");
+      link.href = "/sannedelin-ats-en.docx";
+      link.download = "sannedelin-ats-en.docx";
+      link.click();
+    }
+  }, [searchParams]);
   return (
     <>
       <section className="hero" aria-labelledby="hero-heading">
@@ -46,7 +56,7 @@ export default function Hero() {
               className="btn-primary-2"
               onClick={() => setShowModal(true)}
             >
-              Download CV
+              Check my ATS-CV
             </button>
           </div>
         </div>
