@@ -5,7 +5,7 @@
 }
 
 .references__scene {
-  height: 340px;
+  height: 400px;
   perspective: 900px;
   cursor: pointer;
 }
@@ -38,9 +38,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 24px;
+  padding: 30px;
   text-align: center;
 }
 
@@ -81,12 +81,13 @@
   font-style: italic;
   line-height: 1.5;
   margin: 0;
+  flex: 1;
 }
 
 .references__hint {
   font-size: 11px;
   color: #aaa;
-  margin-top: 4px;
+  margin-top: auto;
 }
 
 .references__back {
@@ -152,4 +153,27 @@
 
 .references__back-linkedin:hover {
   color: #69668f95;
+}
+
+@media (max-width: 600px) {
+  .references__avatar {
+    width: 110px;
+    height: 110px;
+  }
+
+  .references__name {
+    font-size: 17px;
+  }
+
+  .references__role {
+    font-size: 14px;
+  }
+
+  .references__quote {
+    font-size: 15px;
+  }
+
+  .references__hint {
+    font-size: 13px;
+  }
 }

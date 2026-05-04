@@ -19,8 +19,8 @@ const data: Person[] = [
     name: "Michael Baggelin",
     title: "CEO, Clever Click",
     short:
-      "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks.",
-    full: "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks. Under de senaste sex månaderna har hennes utveckling som fullstackutvecklare tagit stora kliv framåt, och hennes sätt att snabbt sätta sig in i både SEO och AI är imponerande.",
+      "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks. Hennes förmåga att kombinera sina tekniska kunskaper med ett genuint öga för affären är något man sällan stöter på. ",
+    full: "Sanne har en naturlig ledarförmåga och ett driv som verkligen märks. Under de senaste sex månaderna har hennes utveckling som fullstackutvecklare tagit stora kliv framåt, och hennes sätt att snabbt sätta sig in i både SEO och AI är imponerande.<br /><br /> Hon har också en förmåga att strukturera upp projekt på ett sätt som känns tryggt – man vet alltid var man står och vart man är på väg.<br /><br />  Det som verkligen sticker ut är hur hon kombinerar det tekniska med ett genuint öga för mig som kund – hon förstår inte bara hur något fungerar, utan varför det spelar roll.",
     img: "/MichaelB.jpeg",
     initials: "MB",
     linkedin: "https://www.linkedin.com/in/michael-baggelin/",
@@ -37,9 +37,10 @@ const data: Person[] = [
   },
   {
     name: "Helena Johansson",
-    title: "CEO, Klarr Utvecklingsbyrå AB",
-    short: "Referens text kommer snart",
-    full: "Referens text kommer snart",
+    title: "Senior Software Engineer / CEO, Klarr Utvecklingsbyrå AB",
+    short:
+      "Hon kommer ofta med lösningar som känns självklara i efterhand – hennes förmåga att se helheten och koppla samman detaljer är en av hennes starkaste egenskaper.",
+    full: "Jag lärde känna Sanne först som student i två år och därefter som kollega i mitt team i sex månader. Som ledare för det tekniska teamet har jag haft möjlighet att följa hennes utveckling på nära håll, och i båda rollerna har hon gjort ett starkt intryck. <br /><br /> Sanne har en naturlig närvaro och tar plats på ett respektfullt sätt. Hon leder genom att lyssna och visa omtanke, samtidigt som hon vågar vara tydlig när det behövs. Balansen mellan omtanke och ärlighet, även i utmanande situationer, är mycket värdefull och bidrar till en miljö präglad av genuin respekt.<br /><br /> Något som tidigt blev tydligt i arbetet med Sanne är hennes förmåga att se det som andra missar. Hon kommer ofta med lösningar som känns självklara i efterhand, även inom områden där hon inte har full teknisk erfarenhet. Hennes naturliga förmåga att se helheten och koppla samman detaljer till konkreta lösningar är en av hennes starkaste egenskaper och något som konsekvent har bidragit med värde i teamets arbete. Flexibilitet präglar både Sannes sätt att tänka och att arbeta. Hon anpassar sig snabbt, tar till sig nya idéer och hittar sin roll även när förutsättningarna förändras. Det gör henne till någon man kan lita på, oavsett situation. <br /><br />Jag rekommenderar Sanne varmt. Den som får arbeta med henne får inte bara en flexibel och lösningsorienterad kollega, utan också någon som verkligen gör skillnad i teamet.",
     img: "/HelenaJ.jpeg",
     initials: "HJ",
     linkedin: "https://www.linkedin.com/in/helena-johansson-b3216384/",
