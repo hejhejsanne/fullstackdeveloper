@@ -1,19 +1,10 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
-  console.log("📨 notify-missing-info called");
-
   try {
     const { question } = await req.json();
-    console.log("📨 question:", question);
 
     if (!question) {
       return new Response(JSON.stringify({ error: "question is required" }), {
@@ -25,9 +16,9 @@ export async function POST(req: Request) {
       timeZone: "Europe/Stockholm",
     });
 
-    await transporter.sendMail({
-      from: `"AiSan Chatbot" <${process.env.GMAIL_USER}>`,
-      to: process.env.NOTIFY_EMAIL,
+    await resend.emails.send({
+      from: "AiSan <onboarding@resend.dev>",
+      to: process.env.NOTIFY_EMAIL!,
       subject: `AiSan saknar info – uppdatering behövs`,
       html: `
         <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 560px; margin: 0 auto; background: #f9f9f9; border-radius: 12px; overflow: clip; border: 1px solid #e8e8e8;">
@@ -50,9 +41,6 @@ export async function POST(req: Request) {
     return new Response(JSON.stringify({ success: true }), { status: 200 });
   } catch (error) {
     console.error("Email error:", error);
-    console.error("GMAIL_USER:", process.env.GMAIL_USER);
-    console.error("NOTIFY_EMAIL:", process.env.NOTIFY_EMAIL);
-    console.error("HAS_PASSWORD:", !!process.env.GMAIL_APP_PASSWORD);
     return new Response(JSON.stringify({ error: "Failed to send email" }), {
       status: 500,
     });
