@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import "@/styles/components/about.css";
 
@@ -9,12 +10,12 @@ export default function About() {
       className="section fade-in"
       aria-labelledby="about-heading"
     >
-      <div className="section-label" id="about-heading">
+      <h2 className="section-label" id="about-heading">
         About me
-      </div>
+      </h2>
       <div className="about-grid">
         <div className="about-card about-card-wide">
-          <div className="about-title">In short</div>
+          <h3 className="about-title">In short</h3>
           <p className="about-text">
             Full stack developer who finds a way — sometimes through routes you
             wouldn&rsquo;t have thought to look. That&rsquo;s not a boast,
@@ -26,7 +27,7 @@ export default function About() {
           </p>
         </div>
         <div className="about-card">
-          <div className="about-title">How I work</div>
+          <h3 className="about-title">How I work</h3>
           <p className="about-text">
             People tend to describe me as persistent. Patient. The kind of
             person who stays until something is actually right — not just
@@ -50,7 +51,7 @@ export default function About() {
           </p>
         </div>
         <div className="about-card">
-          <div className="about-title">Education &amp; languages</div>
+          <h3 className="about-title">Education &amp; languages</h3>
           <p className="about-text">
             Object Oriented Programming — AI focus
             <br />
@@ -68,7 +69,7 @@ export default function About() {
           </p>
         </div>
         <div className="about-card">
-          <div className="about-title">Leadership &amp; mentoring</div>
+          <h3 className="about-title">Leadership &amp; mentoring</h3>
           <p className="about-text">
             Led both backend and frontend teams during LIA. Stepped into a
             technical project manager role at a startup and figured it out as
@@ -84,15 +85,15 @@ export default function About() {
           </p>
         </div>
         <div className="about-card">
-          <div className="about-title">References</div>
+          <h3 className="about-title">References</h3>
           <p className="about-text">
             Available on request. Happy to share contact details directly. In
             the meantime, feel free to browse what&rsquo;s already there.
           </p>
           <br />
-          <a href="#references" className="about-link">
+          <Link href="/#references" className="about-link">
             Go to references →
-          </a>
+          </Link>
         </div>
       </div>
     </section>

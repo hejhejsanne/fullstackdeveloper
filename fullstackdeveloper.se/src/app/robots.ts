@@ -1,42 +1,11 @@
-import { MetadataRoute } from "next";
-
+import type { MetadataRoute } from "next";
+import { profile } from "@/data/profile";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/_next/"],
-      },
-      {
-        userAgent: "GPTBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
-        userAgent: "ClaudeBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        disallow: "/",
-      },
-      {
-        userAgent: "CCBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "Google-Extended", // Googles AI-träningsbot (Gemini)
-        disallow: "/",
-      },
-      {
-        userAgent: "Bytespider", // TikTok/ByteDance AI-crawler
-        disallow: "/",
-      },
+      { userAgent: "*", allow: "/", disallow: ["/api/"] },
+      { userAgent: ["GPTBot", "ClaudeBot", "anthropic-ai", "CCBot", "Google-Extended", "Bytespider"], disallow: "/" },
     ],
-    sitemap: "https://fullstackdeveloper.se/sitemap.xml",
+    sitemap: `${profile.url}/sitemap.xml`,
   };
 }

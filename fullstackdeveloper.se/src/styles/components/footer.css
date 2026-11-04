@@ -1,45 +1,11 @@
-/* footer.css */
-
-.footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.7);
-  padding: 1.5rem 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.78rem;
-  color: var(--color-muted);
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.footer-logo {
-  font-family: var(--font-serif);
-  font-size: 1rem;
-  background: var(--aurora-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* tablet */
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-    padding: 1.25rem 1.5rem;
-  }
-}
-
-/* mobile */
-@media (max-width: 600px) {
-  .footer {
-    padding: 1rem 1.25rem;
-    font-size: 0.72rem;
-  }
-
-  .footer-logo {
-    font-size: 0.85rem;
-  }
-}
+.footer { background:var(--accent); color:var(--on-accent); }
+.footer-inner { width:min(calc(100% - 2 * var(--gutter)),var(--container)); margin-inline:auto; padding-block:2.25rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.5rem 3rem; }
+.footer a,.footer a:hover { color:var(--on-accent); }
+.footer a:hover { opacity:.8; }
+/* Blue focus ring has too little contrast on dark green, so the footer uses white */
+.footer :focus-visible { outline-color:var(--on-accent); }
+.footer-logo { font-size:1.0625rem; font-weight:600; }
+.footer-desc { margin-top:.25rem; font-size:.9375rem; opacity:.85; }
+.footer-links { display:flex; flex-wrap:wrap; gap:.25rem 1.75rem; list-style:none; margin:0; padding:0; }
+.footer-links a { display:inline-flex; align-items:center; gap:.25em; min-height:44px; font-size:.9375rem; font-weight:500; }
+@media(max-width:767px) { .footer-inner { flex-direction:column; align-items:flex-start; } .footer-links { flex-direction:column; gap:0; } }

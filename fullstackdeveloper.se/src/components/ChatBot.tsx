@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import "@/styles/components/chatbot.css";
+import { boundedHistory } from "@/lib/chat-history";
 
 interface Message {
   role: "user" | "assistant";
@@ -9,32 +10,30 @@ interface Message {
 }
 
 const WELCOME =
-  "Hi! I'm AiSan - Sanne's AI assistant. Ask me anything about her work, projects or experience, and I'll answer in whatever language you write in.";
+  "Hi! I'm AiSan - Sanne's AI assistant. Ask me anything about her work, skills or experience, and I'll answer in whatever language you write in.";
 
 const QUICK_REPLIES = [
   "What's her tech stack?",
-  "Tell me about one of her projects",
-  "What kind of role would put Sanne's full potential to use?",
+  "What is an ATS?",
+  "Where does Sanne work now?",
 ];
 
 export default function ChatBot() {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>(() => [{ role: "assistant", content: WELCOME }]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const pending = useRef<Message[] | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [size, setSize] = useState({ width: 360, height: 560 });
 
+  const toggleRef = useRef<HTMLButtonElement>(null);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const windowRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const isDragging = useRef(false);
   const dragOffset = useRef({ x: 0, y: 0 });
 
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      setMessages([{ role: "assistant", content: WELCOME }]);
-    }
-  }, [isOpen, messages.length]);
 
   useEffect(() => {
     const handler = () => setIsOpen(true);
@@ -43,8 +42,13 @@ export default function ChatBot() {
   }, []);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    chatEndRef.current?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    if (isOpen) textareaRef.current?.focus();
+  }, [isOpen]);
+  const closeChat = () => { setIsOpen(false); toggleRef.current?.focus(); };
 
   const handleDragStart = (e: React.MouseEvent) => {
     if (window.matchMedia("(max-width: 600px)").matches) return;
@@ -129,49 +133,22 @@ export default function ChatBot() {
     window.addEventListener("mouseup", onUp);
   };
 
-  const sendMessage = async (overrideInput?: string) => {
-    const messageText = overrideInput ?? input;
-    if (!messageText.trim() || loading) return;
-
-    const userMessage: Message = { role: "user", content: messageText };
-    const updatedMessages = [...messages, userMessage];
-    setMessages(updatedMessages);
-    setInput("");
-    setLoading(true);
-
+  const sendMessage = async (overrideInput?: string, retry = false) => {
+    const messageText = (overrideInput ?? input).trim();
+    if (loading || (!retry && !messageText)) return;
+    const updatedMessages = retry && pending.current ? pending.current : [...messages, {role: "user" as const, content: messageText}];
+    if (!retry) {setMessages(updatedMessages);setInput("");}
+    pending.current=updatedMessages; setLoading(true); setError("");
     try {
-      const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: updatedMessages }),
-      });
-
+      const history = boundedHistory(updatedMessages.filter(m => m.content !== WELCOME));
+      const res = await fetch("/api/chat", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history}),signal:AbortSignal.timeout(35000)});
       const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: data.main },
-      ]);
-
-      if (data.followup) {
-        setTimeout(() => {
-          setMessages((prev) => [
-            ...prev,
-            { role: "assistant", content: data.followup },
-          ]);
-        }, 600);
-      }
-    } catch {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Something went wrong. Please try again.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+      if(!res.ok) throw new Error(data.error?.message || "AiSan is unavailable. Please try again later.");
+      if(typeof data.main!=="string") throw new Error("AiSan could not answer. Please try again.");
+      const reply = [data.main,data.followup, data.notification==='sent' ? "Your unanswered question was sent to Sanne." : data.notification==='failed' ? "The notification could not be sent. You can contact Sanne directly." : null].filter(Boolean).join("\n\n");
+      setMessages(prev=>[...prev,{role:"assistant",content:reply}]); pending.current=null;
+    } catch(error) {setError(error instanceof Error && error.name!=='TimeoutError' ? error.message : "AiSan took too long to respond. Please try again.");}
+    finally {setLoading(false);}
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -191,9 +168,12 @@ export default function ChatBot() {
   return (
     <>
       <button
+        ref={toggleRef}
         className="chat-toggle"
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-label={isOpen ? "Close chat" : "Open chat"}
+        aria-label={isOpen ? "Close AiSan chat" : "Open AiSan chat"}
+        aria-expanded={isOpen}
+        aria-controls="aisan-chat"
       >
         {isOpen ? (
           <svg className="chat-toggle-icon" viewBox="0 0 20 20" fill="none">
@@ -214,10 +194,13 @@ export default function ChatBot() {
             />
           </svg>
         )}
+        <span className="chat-toggle-label" aria-hidden="true">AiSan</span>
       </button>
 
       <div
+        id="aisan-chat"
         className="chat-window"
+        onKeyDown={e => {if(e.key==="Escape") closeChat();}}
         role="dialog"
         aria-label="Chat with AiSan"
         ref={windowRef}
@@ -236,7 +219,7 @@ export default function ChatBot() {
           <div className="chat-header-actions">
             <button
               className="chat-close"
-              onClick={() => setIsOpen(false)}
+              onClick={closeChat}
               aria-label="Close chat"
             >
               <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
@@ -251,7 +234,8 @@ export default function ChatBot() {
           </div>
         </div>
 
-        <div className="chat-messages">
+        <div className="chat-messages" aria-live="polite" aria-relevant="additions">
+          <p className="chat-msg">Messages are sent to Anthropic. Unanswered questions may be emailed to Sanne through Resend. Please avoid sensitive information.</p>
           {messages.map((msg, i) => (
             <div key={i} className={`chat-msg chat-msg-${msg.role}`}>
               {msg.content}
@@ -279,6 +263,7 @@ export default function ChatBot() {
               </span>
             </div>
           )}
+          {error && <div className="chat-msg" role="alert">{error} <button className="chat-quick-reply" disabled={loading} onClick={() => sendMessage(undefined, true)}>Try again</button></div>}
           <div ref={chatEndRef} />
         </div>
 
@@ -292,6 +277,7 @@ export default function ChatBot() {
             disabled={loading}
             aria-label="Message input"
             rows={1}
+            maxLength={2000}
           />
           <button
             className="chat-send"

@@ -1,6 +1,5 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
 import "@/styles/components/references.css";
 import Image from "next/image";
 
@@ -48,98 +47,25 @@ const data: Person[] = [
 ];
 
 export default function References() {
-  const [flipped, setFlipped] = useState<number | null>(null);
-  const isDragging = useRef(false);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent | TouchEvent) {
-      if (flipped === null) return;
-      const activeCard = cardRefs.current[flipped];
-      if (activeCard && !activeCard.contains(e.target as Node)) {
-        setFlipped(null);
-      }
-    }
-
-    document.addEventListener("pointerdown", handleClickOutside);
-    return () =>
-      document.removeEventListener("pointerdown", handleClickOutside);
-  }, [flipped]);
-
   return (
-    <section
-      suppressHydrationWarning
-      id="references"
-      className="section fade-in"
-      aria-labelledby="references-heading"
-    >
-      <div className="section-label" id="references-heading">
-        References
-      </div>
+    <section id="references" className="section" aria-labelledby="references-heading">
+      <h2 className="section-title" id="references-heading">References</h2>
       <div className="references__grid">
-        {data.map((person, i) => (
-          <div
-            key={i}
-            ref={(el) => {
-              cardRefs.current[i] = el;
-            }}
-            className={`references__scene${flipped === i ? " references__scene--flipped" : ""}`}
-            onPointerDown={() => {
-              isDragging.current = false;
-            }}
-            onPointerMove={() => {
-              isDragging.current = true;
-            }}
-            onPointerUp={() => {
-              if (!isDragging.current) {
-                setFlipped(flipped === i ? null : i);
-              }
-            }}
-          >
-            <div className="references__inner">
-              <div className="references__front">
-                {person.img ? (
-                  <Image
-                    src={person.img}
-                    alt={person.name}
-                    width={92}
-                    height={92}
-                    className="references__avatar"
-                  />
-                ) : (
-                  <div className="references__initials">{person.initials}</div>
-                )}
-                <p className="references__name">{person.name}</p>
-                <p className="references__role">{person.title}</p>
-                <p className="references__quote">{person.short}</p>
-                <span className="references__hint">
-                  Click here to read more →
-                </span>
-              </div>
-
-              <div className="references__back">
-                <p
-                  className="references__back-text"
-                  dangerouslySetInnerHTML={{ __html: person.full }}
-                />
-                <div className="references__back-footer">
-                  <p className="references__back-name">{person.name}</p>
-                  <p className="references__back-role">{person.title}</p>
-                  {person.linkedin && (
-                    <a
-                      href={person.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="references__back-linkedin"
-                      onPointerUp={(e) => e.stopPropagation()}
-                    >
-                      LinkedIn →
-                    </a>
-                  )}
-                </div>
-              </div>
+        {data.map((person) => (
+          <article key={person.name} className="references__scene" lang="sv">
+            <div className="references__identity">
+              {person.img && <Image src={person.img} alt={person.name} width={76} height={76} className="references__avatar" />}
+              <div><h3 className="references__name">{person.name}</h3><p className="references__role">{person.title}</p></div>
             </div>
-          </div>
+            <blockquote className="references__quote">{person.short}</blockquote>
+            <details className="references__details">
+              <summary lang="en">Read the full reference</summary>
+              <blockquote className="references__back-text">
+                {person.full.split(/<br \/>\s*<br \/>/).map((paragraph, index) => <p key={index}>{paragraph.trim()}</p>)}
+              </blockquote>
+              {person.linkedin && <a href={person.linkedin} target="_blank" rel="noopener noreferrer" className="references__back-linkedin">LinkedIn ↗</a>}
+            </details>
+          </article>
         ))}
       </div>
     </section>

@@ -1,17 +1,18 @@
+import { profile } from "@/data/profile";
 import type { Metadata } from "next";
 import "@/styles/components/contact.css";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Sanne Delin — full stack developer in Gothenburg. Available for freelance, consultant, and full-time roles across Sweden.",
+    "Get in touch with Sanne Delin — full stack developer in Gothenburg. Developer at Understandit since June 2026. Connect about technology and development.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact | Sanne Delin",
     description:
-      "Get in touch with Sanne Delin — full stack developer in Gothenburg. Available for freelance, consultant, and full-time roles across Sweden.",
+      "Get in touch with Sanne Delin — full stack developer in Gothenburg. Developer at Understandit since June 2026. Connect about technology and development.",
     url: "/contact",
     type: "website",
     images: [{ url: "/og-default.jpg", width: 1200, height: 630 }],
@@ -38,11 +39,10 @@ const contactLinks = [
 
 export default function ContactPage() {
   return (
-    <div className="contact-page">
+    <main id="main-content" className="contact-page">
       <section
-        suppressHydrationWarning
         id="contact"
-        className="section fade-in"
+        className="section"
         aria-labelledby="contact-heading"
       >
         <div className="section-label" id="contact-heading">
@@ -53,15 +53,12 @@ export default function ContactPage() {
             <div className="contact-status">
               <span className="status-dot" aria-hidden="true" />
               <span className="contact-status-text">
-                Open for new opportunities
+                Developer at Understandit
               </span>
             </div>
-            <h2 className="contact-heading">
-              Looking for a full stack developer?
-            </h2>
+            <h1 className="contact-heading">Let’s connect</h1>
             <p className="contact-desc">
-              Freelance, consultant or full-time - reach out and let&rsquo;s
-              talk about what you need.
+              {profile.en.contact}
             </p>
             <div className="contact-links">
               {contactLinks.map(({ href, label, external }) => (
@@ -82,6 +79,6 @@ export default function ContactPage() {
           </a>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
