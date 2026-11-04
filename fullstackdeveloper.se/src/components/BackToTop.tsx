@@ -11,15 +11,16 @@ export default function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
 
   return (
     <button
       onClick={scrollToTop}
-      aria-label="Tillbaka upp"
+      aria-label="Back to top"
       className={`back-to-top ${visible ? "visible" : ""}`}
     >
       <svg
+        aria-hidden="true"
         width="20"
         height="20"
         viewBox="0 0 16 16"

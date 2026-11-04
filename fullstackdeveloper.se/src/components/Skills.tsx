@@ -10,13 +10,13 @@ export default function Skills({ skills }: { skills: Skill[] }) {
       className="section fade-in"
       aria-labelledby="skills-heading"
     >
-      <div className="section-label" id="skills-heading">
+      <h2 className="section-title" id="skills-heading">
         Skills
-      </div>
+      </h2>
       <div className="skills__grid">
         {skills.map((skill) => (
           <div key={skill.category} className="skills__item">
-            <div className="skills__category">{skill.category}</div>
+            <h3 className="skills__category">{skill.category}</h3>
             <div className="skills__list">
               {skill.link ? (
                 <a

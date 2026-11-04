@@ -1,4 +1,9 @@
+import Link from "next/link";
+import { profile } from "@/data/profile";
 import type { Metadata } from "next";
+import Skills from "@/components/Skills";
+import References from "@/components/References";
+import { skills } from "@/data";
 import "@/styles/components/about.css";
 
 export const metadata: Metadata = {
@@ -20,15 +25,13 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <section
-      suppressHydrationWarning
+    <main id="main-content"><section
       id="about"
-      className="section fade-in"
+      className="section"
       aria-labelledby="about-heading"
     >
-      <div className="section-label" id="about-heading">
-        About me
-      </div>
+      <h1 className="page-title" id="about-heading">About me</h1>
+      <p className="body-large">{profile.en.currentWork} <a className="text-link text-link--external" href={profile.employer.url} target="_blank" rel="noopener noreferrer">Understandit</a> is a technology strategy and digital agency in Gothenburg, working with web and mobile projects.</p>
       <div className="about-grid">
         <div className="about-card about-card-wide">
           <div className="about-title">The short version</div>
@@ -41,6 +44,26 @@ export default function About() {
             something genuinely difficult — real stakes, real people, something
             worth the effort — and honestly? That&rsquo;s where I do my best
             work.
+          </p>
+        </div>
+        <div className="about-card about-card-wide">
+          <div className="about-title">What I do</div>
+          <p className="about-text">
+            My work cuts across a lot of territory. Technology, leadership,
+            mentoring, teaching — not because I couldn&rsquo;t pick a lane,
+            but because these things are genuinely connected. A well-built
+            system still fails if the people running it aren&rsquo;t led well.
+            A startup with great tech still dies if the execution isn&rsquo;t
+            there. I care about the whole picture, not just my corner of it.
+          </p>
+          <p className="about-text">
+            I&rsquo;ve helped teams get structured when everything felt
+            chaotic. Guided startups from &ldquo;we have an idea&rdquo; all
+            the way through to actually shipping something real. Mentored
+            people who needed someone to believe in their potential before
+            they believed in it themselves. And built things — actual, working
+            things — when the brief was basically just &ldquo;figure it
+            out.&rdquo; That&rsquo;s what I do. I figure it out.
           </p>
         </div>
         <div className="about-card">
@@ -108,14 +131,17 @@ export default function About() {
           <div className="about-title">References</div>
           <p className="about-text">
             Available on request — happy to share contact details directly. In
-            the meantime, there&rsquo;s already plenty to look through below.
+            the meantime, three of them are further down this page.
           </p>
           <br />
-          <a href="#references" className="about-link">
-            Go to references →
-          </a>
+          <Link href="#references" className="text-link about-link">
+            Go to references
+          </Link>
         </div>
       </div>
     </section>
+    <Skills skills={skills} />
+    <References />
+    </main>
   );
 }

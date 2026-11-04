@@ -1,113 +1,96 @@
 "use client";
 
-import { useState } from "react";
-import "@/styles/components/nav.css";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import "@/styles/components/nav.css";
+import { profile } from "@/data/profile";
+import { siteNav, type NavItem } from "@/data/navigation";
 
-interface NavLink {
-  href: string;
-  label: string;
-  external?: boolean;
+const links = siteNav.filter((item) => item.href !== "/contact");
+const contact = siteNav.find((item) => item.href === "/contact")!;
+
+function isCurrent(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-const navLinks: NavLink[] = [
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
-  { href: "#about", label: "About" },
-  { href: "#ats", label: "ATS" },
-  { href: "#references", label: "References" },
-  { href: "https://github.com/hejhejsanne", label: "GitHub", external: true },
-];
+function NavLinkItem({ item, pathname, onNavigate }: { item: NavItem; pathname: string; onNavigate?: () => void }) {
+  if (item.external) {
+    return (
+      <a href={item.href} target="_blank" rel="noopener noreferrer" onClick={onNavigate}>
+        {item.label} <span aria-hidden="true">↗</span>
+        <span className="visually-hidden"> (opens in a new tab)</span>
+      </a>
+    );
+  }
+  const current = isCurrent(pathname, item.href);
+  return (
+    <Link href={item.href} aria-current={current ? "page" : undefined} onClick={onNavigate}>
+      {item.label}
+    </Link>
+  );
+}
 
 export default function Nav() {
-  const [open, setOpen] = useState<boolean>(false);
+  const pathname = usePathname() ?? "/";
+  const [open, setOpen] = useState(false);
+  const burgerRef = useRef<HTMLButtonElement>(null);
 
-  const openChat = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.dispatchEvent(new Event("open-aisan"));
-  };
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        burgerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
+  const close = () => setOpen(false);
 
   return (
-    <header>
+    <header className="site-header">
       <nav className="nav" aria-label="Main navigation">
-        <Link href="/" className="nav-logo" aria-label="Home">
-          fullstack<span>developer</span>.se
+        <Link href="/" className="nav-logo">
+          {profile.domain}
         </Link>
 
         <ul className="nav-links" role="list">
-          {navLinks.map(({ href, label, external }: NavLink) => (
-            <li key={href}>
-              <a
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-              >
-                {label}
-              </a>
-            </li>
+          {links.map((item) => (
+            <li key={item.href}><NavLinkItem item={item} pathname={pathname} /></li>
           ))}
-          <li key="chatbot">
-            <a href="#" className="nav-ai-link" onClick={openChat}>
-              Ai Assistans
-            </a>
-          </li>
-        </ul>
-
-        <div className="nav-right">
-          <div className="nav-status">
-            <span className="nav-status-dot" aria-hidden="true" />
-            Available for work
-          </div>
-          <Link href="#contact" className="btn-primary">
-            Contact me
-          </Link>
-        </div>
-
-        <button
-          className="nav-burger"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-          onClick={() => setOpen(!open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
-
-        <ul
-          className={`nav-links-mobile ${open ? "nav-links-open" : ""}`}
-          role="list"
-        >
-          {navLinks.map(({ href, label, external }: NavLink) => (
-            <li key={href}>
-              <a
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-          <li key="chatbot-mobile">
-            <a
-              href="#"
-              onClick={(e) => {
-                openChat(e);
-                setOpen(false);
-              }}
-            >
-              Ai Assistans
-            </a>
-          </li>
           <li>
-            <Link href="#contact" onClick={() => setOpen(false)}>
-              Contact me
+            <Link href={contact.href} className="btn-primary nav-cta" aria-current={isCurrent(pathname, contact.href) ? "page" : undefined}>
+              {contact.label}
             </Link>
           </li>
         </ul>
+
+        <button
+          type="button"
+          className="nav-burger"
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          ref={burgerRef}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span className="visually-hidden">Menu</span>
+          <span className="nav-burger-lines" aria-hidden="true"><span /><span /><span /></span>
+        </button>
       </nav>
+
+      <ul
+        id="mobile-navigation"
+        className="nav-mobile"
+        role="list"
+        hidden={!open}
+      >
+        {siteNav.map((item) => (
+          <li key={item.href}><NavLinkItem item={item} pathname={pathname} onNavigate={close} /></li>
+        ))}
+      </ul>
     </header>
   );
 }

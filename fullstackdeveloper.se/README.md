@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fullstackdeveloper.se
 
-## Getting Started
+Sanne Delin’s personal portfolio, built with Next.js App Router, React and TypeScript.
 
-First, run the development server:
+## Local development
 
-```bash
+```sh
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next.js uses http://localhost:3000 by default. If that port is occupied, use the address printed by the server.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+npm run lint
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Content and styling
 
-## Learn More
+- `src/data/profile.ts` is the source of truth for current employment and contact information.
+- `src/data/home.ts` contains all home page copy (English and Swedish): intro, the full stack FAQ, the ATS summary and contact.
+- `src/data/navigation.ts` is the single list of pages used by header and footer.
+- `src/data/index.ts` contains technical skills (shown on /about).
+- Project pages were removed in November 2026; `/projects` and `/projects/*` redirect permanently to `/about` (see `next.config.ts`).
+- `src/styles/tokens.css` defines the design system; shared rules and component styles are separate files.
+- English and Swedish routes have separate root layouts, so their language is present in server-rendered HTML. Route groups do not change public URLs.
 
-To learn more about Next.js, take a look at the following resources:
+## Search and privacy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Public content is rendered in HTML. Each page has its own canonical URL. Only the English and Swedish landing pages advertise language alternates. The sitemap includes all public pages and project details; no synthetic modification dates are published.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Search and user-requested AI retrieval are allowed. Training crawlers remain blocked in `robots.ts`, including Google-Extended. Robots directives are crawler instructions, not access controls. API responses are marked noindex and no-store.
 
-## Deploy on Vercel
+Visitor analytics and WebGL background rendering are not loaded by the site layouts. Person structured data uses the same profile as visible current-employment content. No search or AI-answer placement is guaranteed.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Integrations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Chat requires an Anthropic API key. The optional missing-information notification requires Resend credentials. Review `.env.example` and the API routes before configuring these services. Do not commit credentials.
+
+The CV download flow (LinkedIn sign-in, `/api/cv-download` and the CV files) has been removed. The ATS section is kept as content about writing a CV, not as a download.

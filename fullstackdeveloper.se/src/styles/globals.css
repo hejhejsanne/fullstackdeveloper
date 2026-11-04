@@ -1,53 +1,22 @@
-/* globals.css
-   this file sets the bare minimum for every page to look consistent.
-   it resets browser defaults (margins, padding, box-sizing) so that
-   chrome, safari and firefox all start from the same blank slate.
-   it also applies the tokens from tokens.css to the actual html elements —
-   setting the base font on body, color on text, and so on.
-   nothing visual or component-specific lives here — just the foundation
-   that everything else builds on top of. */
-
 @import "./tokens.css";
+*,*::before,*::after { box-sizing:border-box; }
+html { scroll-behavior:smooth; overflow-y:scroll; scroll-padding-top:calc(var(--header-height) + 1rem); }
+body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--font-sans); font-size:var(--text-body); line-height:1.6; -webkit-font-smoothing:antialiased; }
+h1,h2,h3,p,blockquote { margin:0; }
+h1,h2,h3 { text-wrap:balance; line-height:1.15; font-weight:600; }
+p { overflow-wrap:break-word; }
 
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Links are never underlined (design decision). In-content links get a visible marker instead, see .text-link. */
+a,a:hover,a:focus { color:inherit; text-decoration:none; }
+a:hover { color:var(--accent); }
 
-/* base */
-html {
-  scroll-behavior: smooth;
-  overflow-y: scroll;
-}
-/*om den skall vara fast när man scrollar*/
-/* header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-} */
+button,input,textarea { font:inherit; }
+button { cursor:pointer; }
+img { display:block; max-width:100%; }
+:focus-visible { outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
+[id] { scroll-margin-top:calc(var(--header-height) + 1rem); }
+::selection { background:var(--accent); color:var(--on-accent); }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; animation-iteration-count:1!important; } }
 
-body {
-  min-height: 100vh;
-  color: var(--color-text);
-  font-family: var(--font-sans);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
+.skip-link { position:absolute; top:1rem; left:1rem; z-index:1001; padding:.75rem 1rem; background:var(--accent); color:var(--on-accent); border-radius:var(--radius-md); transform:translateY(-200%); }
+.skip-link:focus { transform:translateY(0); color:var(--on-accent); }
