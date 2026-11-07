@@ -1,96 +1,47 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "@/styles/components/nav.css";
-import { profile } from "@/data/profile";
-import { siteNav, type NavItem } from "@/data/navigation";
+import { pathFor, type Lang, type PageKey } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const links = siteNav.filter((item) => item.href !== "/contact");
-const contact = siteNav.find((item) => item.href === "/contact")!;
+const pages: PageKey[] = ["home", "fullstack", "ats"];
 
-function isCurrent(pathname: string, href: string) {
-  return pathname === href || pathname.startsWith(`${href}/`);
-}
-
-function NavLinkItem({ item, pathname, onNavigate }: { item: NavItem; pathname: string; onNavigate?: () => void }) {
-  if (item.external) {
-    return (
-      <a href={item.href} target="_blank" rel="noopener noreferrer" onClick={onNavigate}>
-        {item.label} <span aria-hidden="true">↗</span>
-        <span className="visually-hidden"> (opens in a new tab)</span>
-      </a>
-    );
-  }
-  const current = isCurrent(pathname, item.href);
-  return (
-    <Link href={item.href} aria-current={current ? "page" : undefined} onClick={onNavigate}>
-      {item.label}
-    </Link>
-  );
-}
-
-export default function Nav() {
+/** Glass pill navigation. Client component only to mark the current page with aria-current. */
+export default function Nav({ lang }: { lang: Lang }) {
   const pathname = usePathname() ?? "/";
-  const [open, setOpen] = useState(false);
-  const burgerRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        burgerRef.current?.focus();
-      }
-    };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [open]);
-
-  const close = () => setOpen(false);
+  const t = getDictionary(lang);
+  const home = pathFor("home", lang);
+  const labels: Record<PageKey, string> = { home: t.nav.home, fullstack: t.nav.fullstack, ats: t.nav.ats };
 
   return (
     <header className="site-header">
-      <nav className="nav" aria-label="Main navigation">
-        <Link href="/" className="nav-logo">
-          {profile.domain}
+      <div className="container site-header-inner">
+        <Link href={home} className="logo">
+          fullstackdeveloper<span className="logo-dot">.se</span>
+          <span className="visually-hidden">, {t.nav.homeLogo}</span>
         </Link>
-
-        <ul className="nav-links" role="list">
-          {links.map((item) => (
-            <li key={item.href}><NavLinkItem item={item} pathname={pathname} /></li>
-          ))}
-          <li>
-            <Link href={contact.href} className="btn-primary nav-cta" aria-current={isCurrent(pathname, contact.href) ? "page" : undefined}>
-              {contact.label}
-            </Link>
-          </li>
-        </ul>
-
-        <button
-          type="button"
-          className="nav-burger"
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          ref={burgerRef}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span className="visually-hidden">Menu</span>
-          <span className="nav-burger-lines" aria-hidden="true"><span /><span /><span /></span>
-        </button>
-      </nav>
-
-      <ul
-        id="mobile-navigation"
-        className="nav-mobile"
-        role="list"
-        hidden={!open}
-      >
-        {siteNav.map((item) => (
-          <li key={item.href}><NavLinkItem item={item} pathname={pathname} onNavigate={close} /></li>
-        ))}
-      </ul>
+        <nav className="site-nav glass" aria-label={t.nav.label}>
+          <ul className="nav-links" role="list">
+            {pages.map((page) => {
+              const href = pathFor(page, lang);
+              return (
+                <li key={page}>
+                  <Link className="nav-link" href={href} aria-current={pathname === href ? "page" : undefined}>
+                    {labels[page]}
+                  </Link>
+                </li>
+              );
+            })}
+            <li>
+              <Link className="nav-link" href={`${home}#kontakt`}>{t.nav.contact}</Link>
+            </li>
+          </ul>
+          <LanguageSwitcher pathname={pathname} label={t.languageSwitcher} />
+        </nav>
+      </div>
     </header>
   );
 }

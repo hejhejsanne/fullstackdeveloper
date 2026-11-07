@@ -1,0 +1,74 @@
+/* Home: name, role, employer, contact and portrait, fitting about one desktop screen. */
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+  min-height: calc(100svh - var(--header-height) - 120px);
+  padding-block: clamp(24px, 4vw, 48px);
+}
+.home-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; min-width: 0; }
+
+.home-title { display: flex; flex-direction: column; gap: 14px; font-weight: 400; }
+.home-role {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.home-lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: var(--ink); }
+
+.home-contact { margin-top: 8px; }
+.contact-pill { max-width: 100%; }
+.contact-icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--accent-ink);
+  background: radial-gradient(circle at 35% 30%, #fff 0%, var(--accent-soft) 70%);
+  box-shadow: inset 0 1px 0 #fff, 0 6px 16px rgba(215, 127, 110, 0.25);
+}
+.contact-email { font-size: clamp(1rem, 1.5vw, 1.125rem); font-weight: 500; overflow-wrap: anywhere; }
+.contact-arrow { font-size: 1.25rem; transition: transform var(--duration) var(--ease); }
+.contact-pill:hover .contact-arrow { transform: translateX(4px); }
+
+.home-more { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.home-more a { display: inline-flex; align-items: center; min-height: 44px; }
+
+.portrait-frame {
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 38px 38px 96px 38px;
+  isolation: isolate;
+  box-shadow: 0 30px 75px rgba(55, 40, 35, 0.14);
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+/* Glass rim: a light edge and top reflection on top of the sharp photo. */
+.portrait-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: inherit;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.22) 0%, transparent 28%);
+}
+
+@media (max-width: 768px) {
+  .home-hero { grid-template-columns: minmax(0, 1fr); min-height: auto; gap: 40px; }
+  .portrait-frame { justify-self: start; max-width: 420px; order: -1; aspect-ratio: 1 / 1; border-radius: 32px 32px 72px 32px; }
+  .portrait-frame img { object-position: 50% 18%; }
+}
+@media (max-width: 380px) {
+  .glass-button { padding-right: 16px; gap: 10px; }
+  .contact-icon { width: 40px; height: 40px; }
+}
