@@ -45,7 +45,7 @@ test('FAQ answers are filled in and every source is an https link', () => {
   for (const item of [...fullstack.faq, ...ats.faq]) {
     assert.ok(item.q.trim().endsWith('?'), `not a question: ${item.q}`);
     assert.ok(item.a.length > 0 && item.a.every(p => p.trim()), `empty answer: ${item.q}`);
-    if (item.source) assert.match(item.source.href, /^https:\/\//);
+    for (const src of item.sources ?? []) assert.match(src.href, /^https:\/\//);
   }
   for (const s of Object.values(ats.sources)) assert.match(s.href, /^https:\/\//);
 });

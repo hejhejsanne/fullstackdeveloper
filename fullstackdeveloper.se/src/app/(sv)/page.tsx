@@ -35,7 +35,7 @@ const structuredData = {
       worksFor: { "@type": "Organization", name: profile.employer.name, url: profile.employer.url },
       address: { "@type": "PostalAddress", addressLocality: profile.locality, addressCountry: "SE" },
       knowsLanguage: ["sv", "en", "no"],
-      sameAs: [profile.github, profile.linkedin],
+      sameAs: [profile.linkedin],
     },
     {
       "@type": "WebSite",
@@ -74,7 +74,10 @@ export default function Home() {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
               </span>
               <span className="contact-email">{profile.email}</span>
-              <span className="contact-arrow" aria-hidden="true">→</span>
+            </a>
+            <a className="glass-button linkedin-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              LinkedIn
+              <span className="visually-hidden"> {t.newTab}</span>
             </a>
           </div>
 

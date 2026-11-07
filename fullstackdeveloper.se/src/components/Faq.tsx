@@ -18,12 +18,17 @@ export default function Faq({ items, newTab }: { items: FaqItem[]; newTab: strin
           </summary>
           <div className="faq-answer">
             {item.a.map((p) => <p key={p}>{p}</p>)}
-            {item.source && (
+            {item.sources && item.sources.length > 0 && (
               <p className="faq-source">
-                Källa:{" "}
-                <a className="text-link" href={item.source.href} target="_blank" rel="noopener noreferrer">
-                  {item.source.label} <span aria-hidden="true">↗</span><span className="visually-hidden"> {newTab}</span>
-                </a>
+                {item.sources.length === 1 ? "Källa: " : "Källor: "}
+                {item.sources.map((src, i) => (
+                  <span key={src.href}>
+                    {i > 0 && ", "}
+                    <a className="text-link" href={src.href} target="_blank" rel="noopener noreferrer">
+                      {src.label}<span className="visually-hidden"> {newTab}</span>
+                    </a>
+                  </span>
+                ))}
               </p>
             )}
           </div>

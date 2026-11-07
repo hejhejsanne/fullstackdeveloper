@@ -31,6 +31,7 @@
   letter-spacing: -0.02em;
 }
 .article-content h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+.article-subheading { margin: 2rem 0 0.75rem; }
 .article-content p + p, .article-content p + ul, .article-content ul + p, .article-content ol + p { margin-top: 1rem; }
 .article-content p { color: var(--ink); }
 
@@ -56,6 +57,17 @@
   font-size: 1.25rem;
 }
 .steps h3 { margin-bottom: 4px; align-self: center; }
+
+.checklist { margin: 24px 0 0; padding: 0; list-style: none; counter-reset: check; display: grid; gap: 16px; }
+.checklist li { counter-increment: check; position: relative; padding-left: 44px; }
+.checklist li::before {
+  content: counter(check);
+  position: absolute; left: 0; top: 0.1em;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--glass-bg-strong); border: 1px solid var(--glass-border); box-shadow: var(--shadow-glass);
+  font-size: 0.875rem; font-weight: 600;
+}
 
 .definition-list { display: grid; gap: 20px; }
 .definition-list > div { padding: 20px 24px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.8); }

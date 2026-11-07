@@ -19,7 +19,8 @@
 }
 .home-lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: var(--ink); }
 
-.home-contact { margin-top: 8px; }
+.home-contact { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.linkedin-link { padding: 8px 24px; font-weight: 500; }
 .contact-pill { max-width: 100%; }
 .contact-icon {
   flex: none;
@@ -34,8 +35,6 @@
   box-shadow: inset 0 1px 0 #fff, 0 6px 16px rgba(215, 127, 110, 0.25);
 }
 .contact-email { font-size: clamp(1rem, 1.5vw, 1.125rem); font-weight: 500; overflow-wrap: anywhere; }
-.contact-arrow { font-size: 1.25rem; transition: transform var(--duration) var(--ease); }
-.contact-pill:hover .contact-arrow { transform: translateX(4px); }
 
 .home-more { display: flex; flex-wrap: wrap; gap: 4px 24px; }
 .home-more a { display: inline-flex; align-items: center; min-height: 44px; }
