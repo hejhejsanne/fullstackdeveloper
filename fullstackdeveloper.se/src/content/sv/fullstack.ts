@@ -3,7 +3,7 @@
  * Personal facts come only from Sanne: education, LIA, startup role and languages from her earlier
  * About page; the skills list as she supplied it on 2026-11-07. Do not add experience that is not confirmed by Sanne.
  */
-import type { FaqItem, Source } from "../types";
+import type { FaqItem } from "../types";
 
 export const skills: { category: string; items: string }[] = [
   { category: "Språk", items: "TypeScript, JavaScript, Java, Python, C#, PHP, YAML (konfigurationsdriven utveckling)" },
@@ -21,13 +21,6 @@ export const skills: { category: string; items: string }[] = [
   { category: "Integrationer och verktyg", items: "Salesforce/Pardot, Figma (plugin och design till kod)" },
   { category: "Arbetssätt", items: "Scrum, Kanban, kodgranskning, teknisk ledning, mentorskap, konventionella commits, sajtmigrering med paritetskontroll, teknisk dokumentation och beslutsdokument (ADR)" },
 ];
-
-export const sources = {
-  scbLon: {
-    href: "https://www.scb.se/hitta-statistik/sverige-i-siffror/lonesok/Search/?lon=systemutvecklare",
-    label: "SCB lönestatistik: mjukvaru- och systemutvecklare m.fl. (2024)",
-  },
-} satisfies Record<string, Source>;
 
 /**
  * FAQ chosen from what people search for and ask AI assistants about the role.
@@ -52,7 +45,7 @@ export const faq: FaqItem[] = [
   {
     q: "Vad är skillnaden mellan en fullstackutvecklare och en systemutvecklare?",
     a: [
-      "Systemutvecklare är den bredare yrkestiteln för den som bygger mjukvara. Fullstackutvecklare beskriver vilka delar man arbetar med: både gränssnittet och servern bakom. En fullstackutvecklare är alltså en sorts systemutvecklare, och i SCB:s statistik räknas båda till samma yrkesgrupp.",
+      "Systemutvecklare är den bredare yrkestiteln för den som bygger mjukvara. Fullstackutvecklare beskriver vilka delar man arbetar med: både gränssnittet och servern bakom. En fullstackutvecklare är alltså en sorts systemutvecklare.",
     ],
   },
   {
@@ -67,14 +60,6 @@ export const faq: FaqItem[] = [
     a: [
       "Ja. Yrket kräver ingen legitimation eller examen, och många arbetsgivare tittar mer på vad du kan bygga än på vilken utbildning du har. En yrkeshögskoleutbildning med praktik på en arbetsplats är en vanlig väg in.",
     ],
-  },
-  {
-    q: "Vad tjänar en fullstackutvecklare i Sverige?",
-    a: [
-      "SCB har ingen egen kategori för fullstackutvecklare. De räknas till mjukvaru- och systemutvecklare, där den genomsnittliga månadslönen 2024 var 55 500 kronor före skatt, omräknat till heltid.",
-      "Siffran tar inte hänsyn till ålder, erfarenhet eller ansvar, så den säger lite om vad just du kan räkna med som ny i yrket.",
-    ],
-    source: sources.scbLon,
   },
   {
     q: "Vilka tekniker använder du oftast?",
