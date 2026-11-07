@@ -14,7 +14,7 @@ const t = getDictionary(lang);
 const path = pathFor("fullstack", lang);
 const title = "Vad gör en fullstackutvecklare? – Sanne Delin";
 const description =
-  "Vad en fullstackutvecklare är och gör, skillnaden mellan frontend, backend och fullstack, hur man blir det och vad det är att jobba med, från en som arbetar i rollen.";
+  "Vad en fullstackutvecklare är och gör, skillnaden mellan frontend, backend och fullstack, hur man blir det och hur jag själv blev det.";
 
 export const metadata: Metadata = {
   title: { absolute: title },
@@ -28,7 +28,7 @@ const toc = [
   { id: "vad-ar", label: "Vad är en fullstackutvecklare?" },
   { id: "skillnaden", label: "Frontend, backend och fullstack" },
   { id: "vad-gor", label: "Vad gör en fullstackutvecklare?" },
-  { id: "att-arbeta", label: "Hur är det att arbeta som fullstackutvecklare?" },
+  { id: "min-vag", label: "Hur jag blev fullstackutvecklare" },
   { id: "tekniker", label: "Tekniker jag arbetar med / har arbetat med" },
   { id: "faq", label: "Vanliga frågor" },
 ];
@@ -126,15 +126,22 @@ export default function FullstackPage() {
             </p>
           </section>
 
-          <section aria-labelledby="att-arbeta">
-            <h2 id="att-arbeta">Hur är det att arbeta som fullstackutvecklare?</h2>
+          <section aria-labelledby="min-vag">
+            <h2 id="min-vag">Hur jag blev fullstackutvecklare</h2>
             <p>
-              Sedan juni 2026 arbetar jag som utvecklare på{" "}
+              Jag började med objektorienterad programmering med AI-inriktning på NBI Handelsakademin (2022–2023)
+              och utbildade mig sedan till Javautvecklare med inriktning fullstack på Teknikhögskolan i Göteborg
+              (2023–2025), där jag var studentrepresentant under det sista året.
+            </p>
+            <p>
+              Under praktiken ledde jag både backend- och frontendteam, och efter det arbetade jag som teknisk
+              projektledare på ett startupbolag. Sedan juni 2026 arbetar jag som utvecklare på{" "}
               <a className="text-link" href={profile.employer.url} target="_blank" rel="noopener noreferrer">
                 Understandit<span className="visually-hidden"> {t.newTab}</span>
               </a>{" "}
-              i Göteborg.
+              i Göteborg. Jag arbetar på svenska, engelska och norska.
             </p>
+            <h3 className="article-subheading">Det jag har tagit med mig</h3>
             <p>
               Jag tänker brett innan jag går på djupet: zoomar ut, tar reda på vad som faktiskt är trasigt och zoomar
               sedan in och löser det. Ge mig något som är svårt på riktigt, med riktiga användare och något som står
@@ -144,13 +151,6 @@ export default function FullstackPage() {
               Något jag lärde mig senare än jag borde är att kommunikation inte är en mjuk färdighet. Den är en del
               av infrastrukturen. Man kan skriva bra kod och ändå se ett projekt falla isär för att folk slutat prata
               ärligt med varandra.
-            </p>
-            <p>
-              Jag utbildade mig till Javautvecklare med inriktning fullstack på Teknikhögskolan i Göteborg
-              (2023–2025) och var studentrepresentant under det sista året. Innan dess läste jag objektorienterad
-              programmering med AI-inriktning på NBI Handelsakademin (2022–2023). Under praktiken ledde jag både
-              backend- och frontendteam, och efter det arbetade jag som teknisk projektledare på ett startupbolag.
-              Jag arbetar på svenska, engelska och norska.
             </p>
           </section>
 

@@ -52,7 +52,7 @@ export const faq: FaqItem[] = [
     q: "Hur blir man fullstackutvecklare?",
     a: [
       "Vanliga vägar är en yrkeshögskoleutbildning, en högskoleutbildning inom till exempel datateknik eller systemvetenskap, eller kortare kurser kombinerat med egna projekt. Det som avgör är oftast vad du kan visa att du har byggt.",
-      "Jag utbildade mig till Javautvecklare med inriktning fullstack på Teknikhögskolan i Göteborg och lärde mig mycket av att leda team under praktiken.",
+      "Min egen väg beskriver jag längre upp på sidan, under rubriken om hur jag blev fullstackutvecklare.",
     ],
   },
   {

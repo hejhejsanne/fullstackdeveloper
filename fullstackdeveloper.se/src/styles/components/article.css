@@ -31,6 +31,7 @@
   letter-spacing: -0.02em;
 }
 .article-content h3 { font-size: 1.125rem; font-weight: 600; line-height: 1.35; }
+.article-subheading { margin: 2rem 0 0.75rem; }
 .article-content p + p, .article-content p + ul, .article-content ul + p, .article-content ol + p { margin-top: 1rem; }
 .article-content p { color: var(--ink); }
 
