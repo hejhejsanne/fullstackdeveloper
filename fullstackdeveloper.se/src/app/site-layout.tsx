@@ -1,7 +1,6 @@
 import "@/styles/tokens.css";
 import "@/styles/globals.css";
 import "@/styles/utilities.css";
-import ChatBot from "@/components/ChatBot";
 import BackToTop from "@/components/BackToTop";
 import Nav from "@/components/Nav";
 import { profile } from "@/data/profile";
@@ -35,6 +34,6 @@ export default function SiteLayout({ children, lang }: { children: React.ReactNo
     <a className="skip-link" href="#main-content">{lang === "sv" ? "Hoppa till innehållet" : "Skip to content"}</a>
     <Nav />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person).replace(/</g, "\\u003c") }} />
-    {children}<ChatBot /><BackToTop />
+    {children}<BackToTop />
   </body></html>;
 }
