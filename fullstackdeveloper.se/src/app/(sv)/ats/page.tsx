@@ -100,7 +100,7 @@ export default function AtsPage() {
           </section>
 
           <section aria-labelledby="sa-hanteras-cv">
-            <h2 id="sa-hanteras-cv">Så hanteras ditt CV</h2>
+            <h2 id="sa-hanteras-cv">Hur fungerar ATS vid rekrytering?</h2>
             <p>De flesta system följer ungefär samma mönster:</p>
             <ol className="steps">
               <li>
@@ -152,8 +152,10 @@ export default function AtsPage() {
               <li><strong>Samma format hela vägen.</strong> Datum, titlar och punktlistor skrivna på samma sätt i varje avsnitt.</li>
             </ul>
             <p>
-              Designade CV-mallar är den vanligaste orsaken till tolkningsproblem som CV-guider tar upp. Jag har inte
-              hittat att systemleverantörerna själva skriver det, men en enkel layout kostar dig ingenting.
+              Arbetsförmedlingen ger samma råd: en enkel struktur och tydliga rubriker gör att arbetsgivaren snabbt
+              får överblick (<Src href={sources.afCv.href}>Arbetsförmedlingen</Src>). Designade CV-mallar är den
+              vanligaste orsaken till tolkningsproblem som CV-guider tar upp. Jag har inte hittat att
+              systemleverantörerna själva skriver det, men en enkel layout kostar dig ingenting.
             </p>
           </section>
 
@@ -188,11 +190,29 @@ export default function AtsPage() {
             </p>
           </section>
 
+          <section aria-labelledby="testa">
+            <h2 id="testa">Hur vet jag om mitt CV är ATS-vänligt?</h2>
+            <p className="answer">
+              Det finns inget officiellt test, eftersom systemen fungerar olika. Men du kan själv kontrollera det som
+              oftast ställer till det.
+            </p>
+            <ol className="checklist">
+              <li>
+                <strong>Kopiera all text.</strong> Markera allt i din PDF, kopiera och klistra in i ett tomt
+                textdokument. Kommer allt med, i rätt ordning? Det ger en fingervisning om vad en CV-tolkare får ut.
+              </li>
+              <li><strong>Kontrollera rubrikerna.</strong> ”Erfarenhet”, ”Utbildning” och ”Kompetenser”, inte egna formuleringar.</li>
+              <li><strong>Leta efter text i grafik.</strong> Kompetenser i staplar, ikoner eller bilder går inte att söka på.</li>
+              <li><strong>Jämför med annonsen.</strong> Finns annonsens viktigaste ord med, stavade likadant, där de stämmer för dig?</li>
+              <li><strong>Läs det formulär som fylls i.</strong> Om ansökan fyller i fält automatiskt från ditt CV, kontrollera dem. Det visar direkt vad systemet fick ut.</li>
+            </ol>
+          </section>
+
           <section aria-labelledby="misstag">
             <h2 id="misstag">Vanliga misstag</h2>
             <ul className="plain-list">
               <li><strong>Stavfel i nyckelord.</strong> Sökningen rättar inte stavning. ”Javascrpit” hittas inte på ”JavaScript”.</li>
-              <li><strong>Kreativa rubriker.</strong> ”Det jag tar med mig” i stället för ”Erfarenhet”. Jag övervägde själv något liknande.</li>
+              <li><strong>Kreativa rubriker.</strong> ”Min resa” i stället för ”Erfarenhet”. Jag övervägde själv något liknande.</li>
               <li><strong>Kompetenser bara i en grafik.</strong> Staplar och betyg i en bild går inte att söka på.</li>
               <li><strong>Samma CV till alla tjänster.</strong> Det matchar sällan orden i en specifik annons.</li>
               <li><strong>Inskannat CV.</strong> En bild av text är inte text för ett system utan textigenkänning.</li>
