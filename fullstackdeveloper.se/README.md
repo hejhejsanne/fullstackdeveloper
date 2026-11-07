@@ -13,6 +13,7 @@ Next.js uses http://localhost:3000 by default. If that port is occupied, use the
 
 ```sh
 npm run lint
+npm test
 npm run build
 npm start
 ```
@@ -29,14 +30,16 @@ npm start
 
 ## Search and privacy
 
-Public content is rendered in HTML. Each page has its own canonical URL. Only the English and Swedish landing pages advertise language alternates. The sitemap includes all public pages and project details; no synthetic modification dates are published.
+Public content is rendered in HTML. Each page has its own canonical URL. Only the English and Swedish landing pages advertise language alternates. The sitemap includes all public pages; no synthetic modification dates are published.
 
-Search and user-requested AI retrieval are allowed. Training crawlers remain blocked in `robots.ts`, including Google-Extended. Robots directives are crawler instructions, not access controls. API responses are marked noindex and no-store.
+Search and user-requested AI retrieval are allowed. Training crawlers remain blocked in `robots.ts`, including Google-Extended. Robots directives are crawler instructions, not access controls.
 
 Visitor analytics and WebGL background rendering are not loaded by the site layouts. Person structured data uses the same profile as visible current-employment content. No search or AI-answer placement is guaranteed.
 
 ## Integrations
 
-Chat requires an Anthropic API key. The optional missing-information notification requires Resend credentials. Review `.env.example` and the API routes before configuring these services. Do not commit credentials.
+The site has no backend integrations and needs no environment variables. It is static content served by Next.js.
+
+The AiSan chat (`/api/chat`, `/api/notify-missing-info`, Anthropic, Upstash Redis and Resend) was removed in November 2026 because it was no longer wanted on the site. It is in git history if it is ever needed again.
 
 The CV download flow (LinkedIn sign-in, `/api/cv-download` and the CV files) has been removed. The ATS section is kept as content about writing a CV, not as a download.
