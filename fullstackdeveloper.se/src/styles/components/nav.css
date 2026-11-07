@@ -6,12 +6,12 @@
   align-items: center;
   min-height: 44px;
   font-family: var(--font-display);
-  font-style: italic;
-  font-size: 2.25rem;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
 }
-.logo-dot { color: var(--accent); }
+.logo-dot { color: var(--accent-ink); }
 
 .site-nav { display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: var(--radius-pill); }
 .nav-links { display: flex; align-items: center; gap: 2px; margin: 0; padding: 0; list-style: none; }

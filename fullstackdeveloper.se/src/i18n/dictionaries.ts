@@ -22,7 +22,7 @@ const sv: Dictionary = {
     fullstack: "Fullstackutvecklare",
     ats: "ATS & CV",
     contact: "Kontakt",
-    homeLogo: "Sanne Delin, till startsidan",
+    homeLogo: "till startsidan",
   },
   languageSwitcher: "Välj språk",
   footer: { label: "Sidfot", rights: "Sanne Delin" },

@@ -20,8 +20,8 @@ export default function Nav({ lang }: { lang: Lang }) {
     <header className="site-header">
       <div className="container site-header-inner">
         <Link href={home} className="logo">
-          sd<span className="logo-dot" aria-hidden="true">.</span>
-          <span className="visually-hidden"> {t.nav.homeLogo}</span>
+          fullstackdeveloper<span className="logo-dot">.se</span>
+          <span className="visually-hidden">, {t.nav.homeLogo}</span>
         </Link>
         <nav className="site-nav glass" aria-label={t.nav.label}>
           <ul className="nav-links" role="list">
