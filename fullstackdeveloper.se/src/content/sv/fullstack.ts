@@ -1,21 +1,25 @@
 /**
  * Swedish content for /fullstackutvecklare.
- * Personal facts come only from Sanne's own earlier About page (education, LIA, startup role,
- * languages, skills). Do not add experience that is not confirmed by Sanne.
+ * Personal facts come only from Sanne: education, LIA, startup role and languages from her earlier
+ * About page; the skills list as she supplied it on 2026-11-07. Do not add experience that is not confirmed by Sanne.
  */
 import type { FaqItem } from "../types";
 
 export const skills: { category: string; items: string }[] = [
-  { category: "Språk", items: "TypeScript, JavaScript, Java, Python, C#" },
-  { category: "Frontend", items: "React, Next.js, Vue.js, HTML, CSS, SCSS, Tailwind CSS" },
-  { category: "Backend", items: "Node.js, Express, Spring Boot, REST-API:er, WebSockets" },
-  { category: "Databaser", items: "PostgreSQL, MySQL, MongoDB, Prisma, Supabase, Neon" },
-  { category: "AI", items: "AI-funktioner i webbapplikationer via API, promptdesign" },
-  { category: "Drift och moln", items: "AWS, Docker, GitHub Actions, CI/CD, Vercel" },
-  { category: "Test", items: "Jest, Mocha, Supertest, JUnit, testdriven utveckling" },
-  { category: "Säkerhet", items: "Autentisering och behörighet, JWT, bcrypt" },
-  { category: "Sökbarhet", items: "Metadata, canonical, sitemap, hreflang, JSON-LD, Google Search Console" },
-  { category: "Arbetssätt", items: "Scrum, Kanban, kodgranskning, teknisk ledning, mentorskap" },
+  { category: "Språk", items: "TypeScript, JavaScript, Java, Python, C#, PHP, YAML (konfigurationsdriven utveckling)" },
+  { category: "Frontend", items: "React, Next.js, Vue.js, Astro, HTML, CSS, SCSS, Tailwind CSS, responsiv design med flytande typografi och design tokens, Nano Stores, Tiptap (rich text-editor)" },
+  { category: "Backend", items: "Node.js, Express, Hono, Spring Boot, REST-API:er, WebSockets, Zod (schemavalidering), integrationer mot externa data-API:er (Elite Prospects, Cision)" },
+  { category: "CMS", items: "Drupal (headless, egen modul med översättnings-API), WordPress (tema, plugins, Gravity Forms), eget headless CMS, flerspråkigt innehåll och översättning" },
+  { category: "Databaser", items: "PostgreSQL, MySQL, MongoDB, SQLite, Prisma, Supabase, Neon" },
+  { category: "Data", items: "Python för datainsamling och statistik, pandas, Plotly, Streamlit, rankning och aggregering" },
+  { category: "AI", items: "AI-funktioner i webbapplikationer via API, promptdesign, AI-agenter i utvecklingsarbetet (Claude Code), AI-assisterad kodgranskning och felsökning" },
+  { category: "Drift och moln", items: "AWS, Docker, Docker Compose, GitHub Actions, GitLab CI/CD, GitLab Pages, schemalagda pipelines, Renovate, pnpm-monorepo, Vercel, Pulumi och Kubernetes (grundläggande)" },
+  { category: "Test", items: "Jest, Mocha, Supertest, JUnit, Vitest, Playwright (Chromium, Firefox, WebKit), axe-core, visuell regressionstestning, mutationstestning (Stryker), Bats, PHPUnit, Python unittest, testdriven utveckling" },
+  { category: "Tillgänglighet", items: "WCAG, axe-core, tangentbordsnavigering, tillgängliga namn" },
+  { category: "Säkerhet", items: "Autentisering och behörighet, JWT, bcrypt, rollbaserad åtkomst, Content Security Policy, sanering av HTML, cookiesamtycke (Cookiebot, CookieYes)" },
+  { category: "Sökbarhet", items: "Metadata, canonical, sitemap, hreflang, JSON-LD, Open Graph, redirects vid migrering, Core Web Vitals (LCP), Google Search Console" },
+  { category: "Integrationer och verktyg", items: "Salesforce/Pardot, Figma (plugin och design till kod)" },
+  { category: "Arbetssätt", items: "Scrum, Kanban, kodgranskning, teknisk ledning, mentorskap, konventionella commits, sajtmigrering med paritetskontroll, teknisk dokumentation och beslutsdokument (ADR)" },
 ];
 
 export const faq: FaqItem[] = [

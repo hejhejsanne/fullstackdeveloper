@@ -1,4 +1,14 @@
-.site-header { position: sticky; top: 0; z-index: 100; padding-block: 20px; }
+/* Frosted band behind the sticky header, so scrolled text never shows through the logo. */
+.site-header {
+  position: sticky; top: 0; z-index: 100; padding-block: 20px;
+  background: rgba(247, 244, 240, 0.72);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header { background: rgba(247, 244, 240, 0.96); }
+}
 .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .logo {

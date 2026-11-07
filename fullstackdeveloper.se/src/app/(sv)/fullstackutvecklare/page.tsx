@@ -28,7 +28,7 @@ const toc = [
   { id: "skillnaden", label: "Frontend, backend och fullstack" },
   { id: "teknikomraden", label: "Teknikområden" },
   { id: "bakgrund", label: "Min bakgrund" },
-  { id: "tekniker", label: "Tekniker jag arbetar med" },
+  { id: "tekniker", label: "Tekniker jag arbetar med / har arbetat med" },
   { id: "faq", label: "Vanliga frågor" },
 ];
 
@@ -133,7 +133,7 @@ export default function FullstackPage() {
           </section>
 
           <section aria-labelledby="tekniker">
-            <h2 id="tekniker">Tekniker jag arbetar med</h2>
+            <h2 id="tekniker">Tekniker jag arbetar med / har arbetat med</h2>
             <dl className="skills-list">
               {skills.map((s) => (
                 <div key={s.category}>
