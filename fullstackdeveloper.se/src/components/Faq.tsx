@@ -22,7 +22,7 @@ export default function Faq({ items, newTab }: { items: FaqItem[]; newTab: strin
               <p className="faq-source">
                 Källa:{" "}
                 <a className="text-link" href={item.source.href} target="_blank" rel="noopener noreferrer">
-                  {item.source.label} <span aria-hidden="true">↗</span><span className="visually-hidden"> {newTab}</span>
+                  {item.source.label}<span className="visually-hidden"> {newTab}</span>
                 </a>
               </p>
             )}

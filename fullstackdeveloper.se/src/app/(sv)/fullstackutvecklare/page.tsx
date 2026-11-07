@@ -117,7 +117,7 @@ export default function FullstackPage() {
             <p>
               Sedan juni 2026 arbetar jag som utvecklare på{" "}
               <a className="text-link" href={profile.employer.url} target="_blank" rel="noopener noreferrer">
-                Understandit <span aria-hidden="true">↗</span><span className="visually-hidden"> {t.newTab}</span>
+                Understandit<span className="visually-hidden"> {t.newTab}</span>
               </a>{" "}
               i Göteborg.
             </p>

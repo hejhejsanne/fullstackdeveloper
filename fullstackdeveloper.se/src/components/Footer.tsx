@@ -13,12 +13,12 @@ export default function Footer({ lang }: { lang: Lang }) {
           <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
           <li>
             <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              GitHub <span aria-hidden="true">↗</span><span className="visually-hidden"> {t.newTab}</span>
+              GitHub<span className="visually-hidden"> {t.newTab}</span>
             </a>
           </li>
           <li>
             <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              LinkedIn <span aria-hidden="true">↗</span><span className="visually-hidden"> {t.newTab}</span>
+              LinkedIn<span className="visually-hidden"> {t.newTab}</span>
             </a>
           </li>
         </ul>

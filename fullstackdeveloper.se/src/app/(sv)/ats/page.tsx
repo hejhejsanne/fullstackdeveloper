@@ -41,7 +41,7 @@ const structuredData = {
 function Src({ href, children }: { href: string; children: ReactNode }) {
   return (
     <a className="text-link" href={href} target="_blank" rel="noopener noreferrer">
-      {children} <span aria-hidden="true">↗</span><span className="visually-hidden"> {t.newTab}</span>
+      {children}<span className="visually-hidden"> {t.newTab}</span>
     </a>
   );
 }
