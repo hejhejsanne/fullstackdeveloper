@@ -1,7 +1,0 @@
- .skills__grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 3rem; }
-.skills__item { border-top:1px solid var(--border); padding-block:1.5rem; min-width:0; }
-.skills__category { font-size:1.1rem; font-weight:550; margin-bottom:.75rem; }
-.skills__list { color:var(--muted); font-size:1rem; }
-.skills__link { color:var(--text); overflow-wrap:anywhere; }
-@media(max-width:900px) { .skills__grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:600px) { .skills__grid { grid-template-columns:1fr; } }

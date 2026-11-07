@@ -1,6 +1,6 @@
 # fullstackdeveloper.se
 
-Sanne Delin’s personal portfolio, built with Next.js App Router, React and TypeScript.
+Sanne Delin’s personal website, built with Next.js App Router, React and TypeScript.
 
 ## Local development
 
@@ -18,23 +18,50 @@ npm run build
 npm start
 ```
 
-## Content and styling
+## Pages
 
-- `src/data/profile.ts` is the source of truth for current employment and contact information.
-- `src/data/home.ts` contains all home page copy (English and Swedish): intro, the full stack FAQ, the ATS summary and contact.
-- `src/data/navigation.ts` is the single list of pages used by header and footer.
-- `src/data/index.ts` contains technical skills (shown on /about).
-- Project pages were removed in November 2026; `/projects` and `/projects/*` redirect permanently to `/about` (see `next.config.ts`).
-- `src/styles/tokens.css` defines the design system; shared rules and component styles are separate files.
-- English and Swedish routes have separate root layouts, so their language is present in server-rendered HTML. Route groups do not change public URLs.
+Swedish is the primary language. Three pages, all statically generated:
+
+| URL | Purpose |
+|---|---|
+| `/` | Name, role, employer, contact and portrait. Kept to about one desktop screen on purpose. |
+| `/fullstackutvecklare` | What the role is, frontend vs backend vs fullstack, Sanne's background and skills, FAQ. |
+| `/ats` | Sourced guide to ATS-friendly CVs, with table of contents and FAQ. |
+
+Old URLs redirect permanently (308) in `next.config.ts`: `/about` and `/projects/*` to `/fullstackutvecklare`, `/contact` to `/#kontakt`.
+
+## Content
+
+- `src/data/profile.ts`: personal facts (name, employer, email, profiles, portrait). Used in visible text and JSON-LD so they always agree.
+- `src/content/sv/fullstack.ts`: skills and FAQ for `/fullstackutvecklare`. Personal facts come only from Sanne's own earlier About text; do not add experience she has not confirmed.
+- `src/content/sv/ats.ts`: ATS sources, table of contents, FAQ and the article dates. Every number and every claim about how a system behaves must link to a source listed there. Update `modified` when the article changes.
+- Long-form text is in the page files under `src/app/(sv)/`.
+
+## Languages (English later)
+
+`src/i18n/config.ts` holds one table of paths per page and language. Today only Swedish is listed. To publish English:
+
+1. Write the English content (no machine-translated filler, no empty pages).
+2. Add the paths to `routes`, e.g. `ats: { sv: "/ats", en: "/en/ats-resume-guide" }`.
+3. Add an `src/app/(en)/` route group with its own root layout (`<html lang="en">`) and the pages under `en/`.
+4. Add an `en` entry in `src/i18n/dictionaries.ts`.
+
+hreflang alternates (with `x-default`), the sitemap and the SV / EN switcher in the navigation then appear automatically, and only for pages that exist in both languages. The switcher keeps the visitor on the same page. Tests in `tests/site.test.mjs` cover this before any English page exists.
+
+## Design
+
+Scandinavian, warm neutrals with a restrained iOS "Liquid Glass" material: DM Serif Display for headings, DM Sans for text (self-hosted by `next/font`). Tokens are in `src/styles/tokens.css`.
+
+- Glass (`.glass`, `.glass-button`) is used for navigation, the contact button, FAQ panels and the back-to-top button only. Long text sits on solid or near-solid backgrounds for readability.
+- The page background has soft, fixed peach and lavender light so the glass has something to blur. Pure CSS, no WebGL.
+- The accent `#d77f6e` is 2.7:1 against the background, so it is decoration only. Text links, eyebrows and focus rings use `--accent-ink` (5.9:1).
+- FAQ uses `<details>`: answers are in the server-rendered HTML and open with keyboard, no JavaScript.
 
 ## Search and privacy
 
-Public content is rendered in HTML. Each page has its own canonical URL. Only the English and Swedish landing pages advertise language alternates. The sitemap includes all public pages; no synthetic modification dates are published.
+Each page has a unique title, description, self-referencing canonical, Open Graph (`sv_SE`) and JSON-LD: Person and WebSite on `/`, WebPage on `/fullstackutvecklare`, Article with author and dates on `/ats`. FAQ markup is deliberately not used for rich results; Google limits FAQ rich results to authoritative government and health sites.
 
-Search and user-requested AI retrieval are allowed. Training crawlers remain blocked in `robots.ts`, including Google-Extended. Robots directives are crawler instructions, not access controls.
-
-Visitor analytics and WebGL background rendering are not loaded by the site layouts. Person structured data uses the same profile as visible current-employment content. No search or AI-answer placement is guaranteed.
+Search and user-requested AI retrieval are allowed. Training crawlers remain blocked in `robots.ts`, including Google-Extended. Robots directives are crawler instructions, not access controls. No search or AI-answer placement is guaranteed.
 
 ## Integrations
 

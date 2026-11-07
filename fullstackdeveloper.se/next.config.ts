@@ -1,11 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Project pages were removed in the simplified site (Nov 2026). Permanent redirects keep old links and search results working.
+  // Old URLs keep working (and keep their search value) after the Swedish-first rebuild, Nov 2026.
+  // The English pages were replaced by Swedish ones; English returns later under /en/.
   async redirects() {
     return [
-      { source: "/projects", destination: "/about", permanent: true },
-      { source: "/projects/:slug", destination: "/about", permanent: true },
+      { source: "/about", destination: "/fullstackutvecklare", permanent: true },
+      { source: "/contact", destination: "/#kontakt", permanent: true },
+      { source: "/projects", destination: "/fullstackutvecklare", permanent: true },
+      { source: "/projects/:slug", destination: "/fullstackutvecklare", permanent: true },
     ];
   },
   async headers() {

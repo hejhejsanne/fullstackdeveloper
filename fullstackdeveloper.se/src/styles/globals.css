@@ -1,22 +1,77 @@
-@import "./tokens.css";
-*,*::before,*::after { box-sizing:border-box; }
-html { scroll-behavior:smooth; overflow-y:scroll; scroll-padding-top:calc(var(--header-height) + 1rem); }
-body { margin:0; min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--font-sans); font-size:var(--text-body); line-height:1.6; -webkit-font-smoothing:antialiased; }
-h1,h2,h3,p,blockquote { margin:0; }
-h1,h2,h3 { text-wrap:balance; line-height:1.15; font-weight:600; }
-p { overflow-wrap:break-word; }
+*, *::before, *::after { box-sizing: border-box; }
 
-/* Links are never underlined (design decision). In-content links get a visible marker instead, see .text-link. */
-a,a:hover,a:focus { color:inherit; text-decoration:none; }
-a:hover { color:var(--accent); }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 1rem); }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+main { flex: 1; }
 
-button,input,textarea { font:inherit; }
-button { cursor:pointer; }
-img { display:block; max-width:100%; }
-:focus-visible { outline:2px solid var(--focus); outline-offset:3px; border-radius:2px; }
-[id] { scroll-margin-top:calc(var(--header-height) + 1rem); }
-::selection { background:var(--accent); color:var(--on-accent); }
-@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { scroll-behavior:auto!important; transition-duration:.01ms!important; animation-duration:.01ms!important; animation-iteration-count:1!important; } }
+h1, h2, h3, p, dl, dd, figure { margin: 0; }
+h1, h2, h3 { text-wrap: balance; }
+p { overflow-wrap: break-word; text-wrap: pretty; }
 
-.skip-link { position:absolute; top:1rem; left:1rem; z-index:1001; padding:.75rem 1rem; background:var(--accent); color:var(--on-accent); border-radius:var(--radius-md); transform:translateY(-200%); }
-.skip-link:focus { transform:translateY(0); color:var(--on-accent); }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; height: auto; }
+
+:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 4px; border-radius: 4px; }
+::selection { background: var(--accent-soft); color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Page background. Glass needs something behind it to blur, so the page carries soft,
+ * fixed light shapes (peach low right, lavender high right) instead of a flat colour.
+ */
+.site-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 88% 88%, rgba(245, 196, 176, 0.42), transparent 52%),
+    radial-gradient(ellipse at 78% 12%, rgba(210, 204, 243, 0.38), transparent 46%),
+    radial-gradient(ellipse at 8% 30%, rgba(255, 255, 255, 0.7), transparent 40%),
+    var(--bg);
+}
+.site-background::before,
+.site-background::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+.site-background::before { width: 34vmax; height: 34vmax; right: -8vmax; top: 18vh; background: rgba(220, 217, 241, 0.55); }
+.site-background::after { width: 26vmax; height: 26vmax; left: 30vw; bottom: -10vmax; background: rgba(245, 217, 207, 0.6); }
+
+.skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  padding: 0.75rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }

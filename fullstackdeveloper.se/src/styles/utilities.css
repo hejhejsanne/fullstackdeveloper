@@ -1,34 +1,90 @@
-/* Shared layout and controls. Content is visible before JavaScript loads. */
-.container,.section { width:min(calc(100% - 2 * var(--gutter)),var(--container)); margin-inline:auto; }
-.section { padding-block:var(--section-space); }
-.section + .section { border-top:1px solid var(--border); }
-.divider { display:none; }
+.container { width: min(calc(100% - 2 * var(--page-padding)), var(--container)); margin-inline: auto; }
 
-/* Small uppercase label, used sparingly (e.g. "01 / The role") */
-.section-label,.eyebrow { display:block; font-size:var(--text-label); font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:1rem; }
-.section-title { font-family:var(--font-serif); font-size:var(--text-h2); line-height:1.15; font-weight:600; letter-spacing:-.01em; margin-bottom:1.5rem; }
-.page-title { font-family:var(--font-serif); font-size:var(--text-h1); line-height:1.1; font-weight:600; letter-spacing:-.015em; margin-bottom:1.5rem; }
-.body-large,.lead { font-size:var(--text-lead); color:var(--muted); max-width:var(--reading-width); line-height:1.6; }
-.prose { max-width:var(--reading-width); }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
 
-/* Buttons: flat, no shadow or gradient, colour change on hover only */
-.button,.btn-primary,.btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; min-height:46px; padding:12px 20px; border:1px solid var(--accent); border-radius:var(--radius-md); font-weight:500; font-size:.9375rem; line-height:1.2; transition:background var(--transition),color var(--transition),border-color var(--transition); }
-.btn-primary,.btn-primary:hover,.btn-primary:focus { background:var(--accent); color:var(--on-accent); }
-.btn-primary:hover { background:var(--accent-dark); border-color:var(--accent-dark); }
-.button,.btn-secondary { background:transparent; color:var(--accent); }
-.button:hover,.btn-secondary:hover { background:var(--surface); color:var(--accent-dark); }
+/* Reusable glass material: navigation, buttons and a few panels only, never long body text. */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+}
 
-/* In-content text link: no underline, so it carries a permanent arrow and accent colour */
-.text-link { color:var(--accent); font-weight:500; display:inline-flex; align-items:center; gap:.3em; min-height:24px; }
-.text-link:hover { color:var(--accent-dark); }
-.text-link::after { content:"→"; transition:transform var(--transition); }
-.text-link--external::after { content:"↗"; }
-.text-link:hover::after { transform:translateX(2px); }
-.text-link--external:hover::after { transform:translate(1px,-1px); }
+.glass-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 52px;
+  padding: 8px 24px 8px 8px;
+  color: var(--ink);
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: transform var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+.glass-button:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(60, 45, 40, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.7); }
+.glass-button:active { transform: scale(0.98); }
 
-.tag,.tech-pill { display:inline-block; font-size:.75rem; color:var(--muted); }
-.tag { margin-right:.75rem; }
-.tech-pill { padding:.3rem .6rem; border:1px solid var(--border); border-radius:var(--radius-sm); }
-.status-dot { width:7px; height:7px; border-radius:50%; background:var(--accent); display:inline-block; }
-.fade-in,.fade-in.visible { opacity:1; transform:none; }
-.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass, .glass-button { background: rgba(255, 255, 255, 0.92); }
+}
+
+/* Typography */
+.eyebrow {
+  color: var(--accent-ink);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eyebrow-line { display: inline-flex; align-items: center; gap: 16px; }
+.eyebrow-line::after { content: ""; width: 56px; height: 1px; background: currentColor; opacity: 0.6; }
+
+.display-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 9vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  overflow-wrap: break-word;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+.accent-dot { color: var(--accent); }
+.lead { color: var(--ink-muted); font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.65; max-width: 640px; }
+
+/* In-text link: arrow-free, underlined in the accent colour (decoration only; the text keeps full contrast). */
+.text-link {
+  color: var(--accent-ink);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgba(156, 67, 52, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--duration) var(--ease);
+}
+.text-link:hover { text-decoration-color: currentColor; }
+
+.underline-link {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.underline-link:hover { color: var(--accent-ink); }
