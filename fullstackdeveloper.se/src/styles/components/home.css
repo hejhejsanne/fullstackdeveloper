@@ -19,7 +19,8 @@
 }
 .home-lead { font-size: clamp(1.1rem, 1.6vw, 1.3rem); color: var(--ink); }
 
-.home-contact { margin-top: 8px; }
+.home-contact { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.linkedin-link { padding: 8px 24px; gap: 10px; font-weight: 500; }
 .contact-pill { max-width: 100%; }
 .contact-icon {
   flex: none;

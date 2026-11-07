@@ -76,6 +76,11 @@ export default function Home() {
               <span className="contact-email">{profile.email}</span>
               <span className="contact-arrow" aria-hidden="true">→</span>
             </a>
+            <a className="glass-button linkedin-link" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+              <span className="visually-hidden"> {t.newTab}</span>
+            </a>
           </div>
 
           <nav className="home-more" aria-label="Läs mer">
