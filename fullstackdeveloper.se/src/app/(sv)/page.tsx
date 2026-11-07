@@ -35,7 +35,7 @@ const structuredData = {
       worksFor: { "@type": "Organization", name: profile.employer.name, url: profile.employer.url },
       address: { "@type": "PostalAddress", addressLocality: profile.locality, addressCountry: "SE" },
       knowsLanguage: ["sv", "en", "no"],
-      sameAs: [profile.github, profile.linkedin],
+      sameAs: [profile.linkedin],
     },
     {
       "@type": "WebSite",
